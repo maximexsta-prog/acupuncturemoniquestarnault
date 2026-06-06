@@ -133,8 +133,13 @@ header a,
     line-height: 1.1em !important;
     font-weight: 400 !important;
 }
-/* Fix: blur bouton téléphone clippé au bon endroit */
-.elementor-718 .elementor-element.elementor-element-28c1820.elementor-widget > .elementor-widget-container {
+/* Fix: blur bouton téléphone directement sur le bouton */
+.elementor-718 .elementor-element.elementor-element-28c1820.elementor-widget > .elementor-widget-container::before {
+  display: none !important;
+}
+.elementor-718 .elementor-element.elementor-element-28c1820 .jeg-elementor-kit.jkit-button .jkit-button-wrapper {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   overflow: hidden;
   isolation: isolate;
 }
