@@ -1,0 +1,1475 @@
+{
+    "manifest_version": "1.0.21",
+    "title": "Matour \u2013 Tour & Travel Agency Elementor Template Kit",
+    "page_builder": "elementor",
+    "kit_version": "1.0.0",
+    "templates": [
+        {
+            "name": "Global Kit Styles",
+            "screenshot": "screenshots\/global-kit-styles.jpg",
+            "source": "templates\/global.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "global-styles",
+                "include_in_zip": "1",
+                "elementor_pro_required": null,
+                "additional_template_information": [
+                    "These are the global theme styles configured through the Elementor Theme Styles area."
+                ]
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Home",
+            "screenshot": "screenshots\/home.jpg",
+            "source": "templates\/home.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/home\/",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-home",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "JKit - Travel Tab Content",
+            "screenshot": "screenshots\/jkit-travel-tab-content.jpg",
+            "source": "templates\/jkit-travel-tab-content.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/jkit-travel-tab\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "About Us",
+            "screenshot": "screenshots\/about-us.jpg",
+            "source": "templates\/about-us.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/about-us\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Destination Detail",
+            "screenshot": "screenshots\/destination-detail.jpg",
+            "source": "templates\/destination-detail.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/destination-detail\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Destination",
+            "screenshot": "screenshots\/destination.jpg",
+            "source": "templates\/destination.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/destination\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Single Post",
+            "screenshot": "screenshots\/single-post.jpg",
+            "source": "templates\/single-post.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/single-post\/",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-post",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Blog",
+            "screenshot": "screenshots\/blog.jpg",
+            "source": "templates\/blog.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/blog\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "FAQ",
+            "screenshot": "screenshots\/faq.jpg",
+            "source": "templates\/faq.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/faq\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "MetForm - Contact Us",
+            "screenshot": "screenshots\/metform-contact-us.jpg",
+            "source": "templates\/metform-contact-us.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/metfrom-contact-us\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Contact Us",
+            "screenshot": "screenshots\/contact-us.jpg",
+            "source": "templates\/contact-us.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/contact-us\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "404 Page",
+            "screenshot": "screenshots\/404-page.jpg",
+            "source": "templates\/404-page.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/404-page\/",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-404",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "JKit - Offcanvas",
+            "screenshot": "screenshots\/jkit-offcanvas.jpg",
+            "source": "templates\/jkit-offcanvas.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/jkit-offcanvas\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Footer",
+            "screenshot": "screenshots\/footer.jpg",
+            "source": "templates\/footer.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/footer\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-footer",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        },
+        {
+            "name": "Header",
+            "screenshot": "screenshots\/header.jpg",
+            "source": "templates\/header.json",
+            "preview_url": "https:\/\/templatekit.jegtheme.com\/matour\/template-kit\/header\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-header",
+                "include_in_zip": "1",
+                "elementor_pro_required": null
+            },
+            "elementor_pro_required": false
+        }
+    ],
+    "required_plugins": [
+        {
+            "name": "Elementor",
+            "version": "3.12.1",
+            "file": "elementor\/elementor.php",
+            "author": "Elementor.com"
+        },
+        {
+            "name": "Jeg Elementor Kit",
+            "version": "2.6.1",
+            "file": "jeg-elementor-kit\/jeg-elementor-kit.php",
+            "author": "Jegtheme"
+        },
+        {
+            "name": "MetForm",
+            "version": "3.2.3",
+            "file": "metform\/metform.php",
+            "author": "Wpmet"
+        }
+    ],
+    "images": [
+        {
+            "filename": "the-marble-buddha-temple-wat-benchamabopit-dusitv.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/the-marble-buddha-temple-wat-benchamabopit-dusitv-800x501.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 382297,
+            "dimensions": [
+                1920,
+                1202
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-LWDZWQ5"
+        },
+        {
+            "filename": "amazing-sunrise-in-mount-bromo-e1687499507553.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/amazing-sunrise-in-mount-bromo-e1687499507553-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 292957,
+            "dimensions": [
+                1920,
+                1280
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-CRWFNXG"
+        },
+        {
+            "filename": "kelingking-beach-nusa-penida-bali-indonesia--e1687499552914.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/kelingking-beach-nusa-penida-bali-indonesia--e1687499552914-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 287842,
+            "dimensions": [
+                1440,
+                959
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-6HV6CS5"
+        },
+        {
+            "filename": "padar-island-labuan-bajo-indonesia-e1687499576580.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/padar-island-labuan-bajo-indonesia-e1687499576580-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 391216,
+            "dimensions": [
+                1860,
+                1240
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-FNXHX9N"
+        },
+        {
+            "filename": "night-temple-in-thailand-e1687499601863.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/night-temple-in-thailand-e1687499601863-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 380046,
+            "dimensions": [
+                1860,
+                1240
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-684PHTB"
+        },
+        {
+            "filename": "arrow-down.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/arrow-down.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 508,
+            "dimensions": [
+                28,
+                292
+            ],
+            "image_source": "self_created",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/templatekit.jegtheme.com\/matour\/"
+        },
+        {
+            "filename": "beautiful-landscape-of-a-diamond-beach-on-the-island-nusa-penida-e1687499629852.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/beautiful-landscape-of-a-diamond-beach-on-the-island-nusa-penida-e1687499629852-800x1200.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/destination-detail.json",
+                    "name": "Destination Detail"
+                }
+            ],
+            "filesize": 301241,
+            "dimensions": [
+                960,
+                1440
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-L7A9P76"
+        },
+        {
+            "filename": "statue-in-grand-palace-at-bangkok-e1687499997542.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/statue-in-grand-palace-at-bangkok-e1687499997542-800x585.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 304458,
+            "dimensions": [
+                1696,
+                1240
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-6MAKL64"
+        },
+        {
+            "filename": "traditional-turkish-breakfast-with-fruits-with-cappadocia-view-e1687500026252.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/traditional-turkish-breakfast-with-fruits-with-cappadocia-view-e1687500026252-800x1200.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 237282,
+            "dimensions": [
+                960,
+                1440
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-L6B6M4G"
+        },
+        {
+            "filename": "padar-island-with-scenic-high-view-of-three-beautiful-white-sandy-beaches-surrounded-by-a-wide-ocean-e1687500056237.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/padar-island-with-scenic-high-view-of-three-beautiful-white-sandy-beaches-surrounded-by-a-wide-ocean-e1687500056237-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                }
+            ],
+            "filesize": 241084,
+            "dimensions": [
+                1440,
+                962
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-MSZ8S48"
+        },
+        {
+            "filename": "young-beautiful-woman-walking-on-campuhan-ridge-way-of-artists-in-bali-ubud--e1687499737698.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/young-beautiful-woman-walking-on-campuhan-ridge-way-of-artists-in-bali-ubud--e1687499737698-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 305070,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-SNG8UCN"
+        },
+        {
+            "filename": "wat-benchamabophit-temple-in-bangkok-thailand-the-marble-temple-in-bangkok-e1687500082664.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/wat-benchamabophit-temple-in-bangkok-thailand-the-marble-temple-in-bangkok-e1687500082664-800x1036.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 281928,
+            "dimensions": [
+                1112,
+                1440
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-6EUCRCS"
+        },
+        {
+            "filename": "cheerful-young-woman-walking-on-local-market-e1687499796764.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/cheerful-young-woman-walking-on-local-market-e1687499796764-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 365196,
+            "dimensions": [
+                1920,
+                1280
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-FGJW24G"
+        },
+        {
+            "filename": "ancient-siam-or-ancient-city-bangkok-thailand--e1687499815736.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/ancient-siam-or-ancient-city-bangkok-thailand--e1687499815736-800x531.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                }
+            ],
+            "filesize": 369527,
+            "dimensions": [
+                1920,
+                1275
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-DGYKT6K"
+        },
+        {
+            "filename": "happy-couple-in-cappadocia-the-man-proposed-to-the-girl-honeymoon-in-cappadocia-e1687499848976.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/happy-couple-in-cappadocia-the-man-proposed-to-the-girl-honeymoon-in-cappadocia-e1687499848976-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                }
+            ],
+            "filesize": 390175,
+            "dimensions": [
+                1920,
+                1282
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-DWAVB3B"
+        },
+        {
+            "filename": "himeji-castle-japan-in-spring-e1687500113328.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/himeji-castle-japan-in-spring-e1687500113328-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                }
+            ],
+            "filesize": 331140,
+            "dimensions": [
+                1290,
+                861
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-G78TXRM"
+        },
+        {
+            "filename": "marina-bay-area-in-singapore-city--e1687499908842.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/marina-bay-area-in-singapore-city--e1687499908842-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                }
+            ],
+            "filesize": 209139,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-BF84HKT"
+        },
+        {
+            "filename": "smiling-young-brunette-white-man-in-sportswear-1-1.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/smiling-young-brunette-white-man-in-sportswear-1-1.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                }
+            ],
+            "filesize": 63316,
+            "dimensions": [
+                800,
+                800
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-9JWKCVY"
+        },
+        {
+            "filename": "portrait-beautiful-young-asian-woman-happy-smile.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/portrait-beautiful-young-asian-woman-happy-smile.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                }
+            ],
+            "filesize": 84874,
+            "dimensions": [
+                800,
+                800
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PRWXM2L"
+        },
+        {
+            "filename": "portrait-of-a-smiling-young-man-1-1.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/portrait-of-a-smiling-young-man-1-1.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                }
+            ],
+            "filesize": 105959,
+            "dimensions": [
+                800,
+                800
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PFP4FBK"
+        },
+        {
+            "filename": "portrait-of-happy-young-woman-at-her-desk-in-a-1-1.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/portrait-of-happy-young-woman-at-her-desk-in-a-1-1.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                }
+            ],
+            "filesize": 86790,
+            "dimensions": [
+                800,
+                800
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-98PC7MG"
+        },
+        {
+            "filename": "cropped-portrait-of-a-handsome-young-man-posing-in-1-1.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/cropped-portrait-of-a-handsome-young-man-posing-in-1-1.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                }
+            ],
+            "filesize": 142383,
+            "dimensions": [
+                800,
+                800
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-NASGBBF"
+        },
+        {
+            "filename": "magnificient-view-from-top-of-padar-island-e1687500147631.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/magnificient-view-from-top-of-padar-island-e1687500147631-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 230658,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-764RYPS"
+        },
+        {
+            "filename": "couple-traveling-by-train-e1687501037460.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/couple-traveling-by-train-e1687501037460-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 282944,
+            "dimensions": [
+                1920,
+                1280
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-QVVHZLA"
+        },
+        {
+            "filename": "dhammayazika-pagoda-bagan-pagan-buddhist-temples-and-ancient-city-myanmar-burma--e1687500176351.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/dhammayazika-pagoda-bagan-pagan-buddhist-temples-and-ancient-city-myanmar-burma--e1687500176351-800x1199.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/jkit-travel-tab-content.json",
+                    "name": "JKit - Travel Tab Content"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                }
+            ],
+            "filesize": 249341,
+            "dimensions": [
+                961,
+                1440
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-UQEYTFX"
+        },
+        {
+            "filename": "matour-video-overlay.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/matour-video-overlay-800x361.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 6854,
+            "dimensions": [
+                1863,
+                840
+            ],
+            "image_source": "self_created",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/templatekit.jegtheme.com\/matour\/"
+        },
+        {
+            "filename": "travel-by-longtail-boat-in-phi-phi-islands-e1687500216481.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/travel-by-longtail-boat-in-phi-phi-islands-e1687500216481-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                },
+                {
+                    "source": "templates\/faq.json",
+                    "name": "FAQ"
+                },
+                {
+                    "source": "templates\/contact-us.json",
+                    "name": "Contact Us"
+                }
+            ],
+            "filesize": 205201,
+            "dimensions": [
+                1440,
+                959
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-FA46T2R"
+        },
+        {
+            "filename": "chureito-pagoda-at-fuji-mountain-beautiful-japanese-landmarks-and-landscapes-e1687500237810.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/chureito-pagoda-at-fuji-mountain-beautiful-japanese-landmarks-and-landscapes-e1687500237810-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination-detail.json",
+                    "name": "Destination Detail"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                },
+                {
+                    "source": "templates\/blog.json",
+                    "name": "Blog"
+                }
+            ],
+            "filesize": 222170,
+            "dimensions": [
+                1440,
+                961
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-Y9ZQTB4"
+        },
+        {
+            "filename": "view-of-thai-traditional-longtail-boat-over-clear-sea-and-sky-in-the-sunny-day-e1687500260641.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/view-of-thai-traditional-longtail-boat-over-clear-sea-and-sky-in-the-sunny-day-e1687500260641-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/jkit-travel-tab-content.json",
+                    "name": "JKit - Travel Tab Content"
+                }
+            ],
+            "filesize": 281237,
+            "dimensions": [
+                1440,
+                961
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-YW4KN57"
+        },
+        {
+            "filename": "kelingking-beach-nusa-penida-bali-indonesia-1-1-e1687500287123.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/kelingking-beach-nusa-penida-bali-indonesia-1-1-e1687500287123-800x525.jpg",
+            "templates": [
+                {
+                    "source": "templates\/jkit-travel-tab-content.json",
+                    "name": "JKit - Travel Tab Content"
+                }
+            ],
+            "filesize": 250959,
+            "dimensions": [
+                1440,
+                945
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-E6B5XKT"
+        },
+        {
+            "filename": "dzFB8xeWg1M-unsplash.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/dzFB8xeWg1M-unsplash-800x501.jpg",
+            "templates": [
+                {
+                    "source": "templates\/jkit-travel-tab-content.json",
+                    "name": "JKit - Travel Tab Content"
+                }
+            ],
+            "filesize": 131492,
+            "dimensions": [
+                1920,
+                1202
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/unsplash.com\/photos\/dzFB8xeWg1M"
+        },
+        {
+            "filename": "pura-taman-saraswati-e1687500316374.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/pura-taman-saraswati-e1687500316374-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/jkit-travel-tab-content.json",
+                    "name": "JKit - Travel Tab Content"
+                }
+            ],
+            "filesize": 399325,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-P9MQC5Y"
+        },
+        {
+            "filename": "view-around-marina-bay-at-dusk.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/view-around-marina-bay-at-dusk-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/jkit-travel-tab-content.json",
+                    "name": "JKit - Travel Tab Content"
+                }
+            ],
+            "filesize": 341470,
+            "dimensions": [
+                2000,
+                1333
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-JMJSJAV"
+        },
+        {
+            "filename": "fujinomiya-shizuoka-japan-with-mt-fuji-e1687500345189.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/fujinomiya-shizuoka-japan-with-mt-fuji-e1687500345189-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/jkit-travel-tab-content.json",
+                    "name": "JKit - Travel Tab Content"
+                }
+            ],
+            "filesize": 341109,
+            "dimensions": [
+                1440,
+                961
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-PFXLP8W"
+        },
+        {
+            "filename": "woman-with-amazing-view-of-padar-island-in-komodo-national-park-indonesia-enjoying-tropical-e1687500365952.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/woman-with-amazing-view-of-padar-island-in-komodo-national-park-indonesia-enjoying-tropical-e1687500365952-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/jkit-travel-tab-content.json",
+                    "name": "JKit - Travel Tab Content"
+                },
+                {
+                    "source": "templates\/single-post.json",
+                    "name": "Single Post"
+                }
+            ],
+            "filesize": 257797,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-49H9FVY"
+        },
+        {
+            "filename": "lone-person-sits-on-top-of-a-temple-overlooking-old-bagan-myanmar.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/lone-person-sits-on-top-of-a-temple-overlooking-old-bagan-myanmar-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/single-post.json",
+                    "name": "Single Post"
+                }
+            ],
+            "filesize": 282054,
+            "dimensions": [
+                2000,
+                1333
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-LNKGTEA"
+        },
+        {
+            "filename": "pretty-girl-at-goa-gajah-bali-e1687500392226.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/pretty-girl-at-goa-gajah-bali-e1687500392226-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 372993,
+            "dimensions": [
+                1920,
+                1282
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-H2BX457"
+        },
+        {
+            "filename": "young-woman-riding-scooter-with-surfing-board-e1687500414104.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/young-woman-riding-scooter-with-surfing-board-e1687500414104-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 382490,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-SJ27G7Y"
+        },
+        {
+            "filename": "buddhist-temple-inside-the-grand-palace-complex-in-bangkok-e1687500439282.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/buddhist-temple-inside-the-grand-palace-complex-in-bangkok-e1687500439282-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 293781,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-PNRWTD8"
+        },
+        {
+            "filename": "tokyo-japan-cityscape-e1687500467537.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/tokyo-japan-cityscape-e1687500467537-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 252690,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-PR7J3UV"
+        },
+        {
+            "filename": "temple-in-bali-indonesia-tanah-lot-e1687500517570.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/temple-in-bali-indonesia-tanah-lot-e1687500517570-800x1200.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 387559,
+            "dimensions": [
+                1280,
+                1920
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-VUWWTQ2"
+        },
+        {
+            "filename": "volcanoes-of-bromo-national-park-e1687501058802.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/volcanoes-of-bromo-national-park-e1687501058802-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 259714,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-9GMZQ4Y"
+        },
+        {
+            "filename": "the-temples-of-bagan-at-sunrise-bagan-myanmar-e1687500541399.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/the-temples-of-bagan-at-sunrise-bagan-myanmar-e1687500541399-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 260811,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-PVSFYVQ"
+        },
+        {
+            "filename": "balloons-in-rose-valley-cappadocia-flights-in-goreme-turkey-e1687500565822.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/balloons-in-rose-valley-cappadocia-flights-in-goreme-turkey-e1687500565822-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 330596,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-CQC2ATV"
+        },
+        {
+            "filename": "aerial-shot-of-the-komodo-national-park-in-indonesia-e1687500591367.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/aerial-shot-of-the-komodo-national-park-in-indonesia-e1687500591367-800x450.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 335385,
+            "dimensions": [
+                1920,
+                1080
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-AEHU5ZB"
+        },
+        {
+            "filename": "phangnga-bay-phuket-thailand-e1687501085880.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/phangnga-bay-phuket-thailand-e1687501085880-800x600.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-us.json",
+                    "name": "About Us"
+                },
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 249365,
+            "dimensions": [
+                1440,
+                1080
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-6CBMDGN"
+        },
+        {
+            "filename": "main-bali-temple-pura-besakih-e1687500646632.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/main-bali-temple-pura-besakih-e1687500646632-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/destination-detail.json",
+                    "name": "Destination Detail"
+                }
+            ],
+            "filesize": 315267,
+            "dimensions": [
+                1920,
+                1280
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-9RLED9K"
+        },
+        {
+            "filename": "smiling-woman-buying-gifts-during-trip-stock-photo-e1687501112267.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/smiling-woman-buying-gifts-during-trip-stock-photo-e1687501112267-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/destination-detail.json",
+                    "name": "Destination Detail"
+                }
+            ],
+            "filesize": 244752,
+            "dimensions": [
+                1440,
+                960
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-GNGQS4P"
+        },
+        {
+            "filename": "ocean-coast-near-uluwatu-temple-in-bali-e1687500688714.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/ocean-coast-near-uluwatu-temple-in-bali-e1687500688714-800x520.jpg",
+            "templates": [
+                {
+                    "source": "templates\/destination-detail.json",
+                    "name": "Destination Detail"
+                }
+            ],
+            "filesize": 311660,
+            "dimensions": [
+                1440,
+                936
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-QUH8875"
+        },
+        {
+            "filename": "beautiful-woman-at-the-top-of-mount-batur-bali-indonesia-miuntain-hiking-at-sunrise-e1687500712785.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/beautiful-woman-at-the-top-of-mount-batur-bali-indonesia-miuntain-hiking-at-sunrise-e1687500712785-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/destination-detail.json",
+                    "name": "Destination Detail"
+                }
+            ],
+            "filesize": 310948,
+            "dimensions": [
+                1920,
+                1280
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-M6MWZXE"
+        },
+        {
+            "filename": "woman-in-bikini-and-straw-hat-with-floating-breakfast-at-amazing-luxury-bali-style-villa-e1687500737505.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/woman-in-bikini-and-straw-hat-with-floating-breakfast-at-amazing-luxury-bali-style-villa-e1687500737505-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/destination-detail.json",
+                    "name": "Destination Detail"
+                }
+            ],
+            "filesize": 364221,
+            "dimensions": [
+                1920,
+                1280
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-P3PB2GX"
+        },
+        {
+            "filename": "woman-with-mask-snorkeling-e1687500778952.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/woman-with-mask-snorkeling-e1687500778952-800x532.jpg",
+            "templates": [
+                {
+                    "source": "templates\/destination-detail.json",
+                    "name": "Destination Detail"
+                }
+            ],
+            "filesize": 331452,
+            "dimensions": [
+                1440,
+                958
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PCE9EEC"
+        },
+        {
+            "filename": "airplane-wing-in-the-sky.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/airplane-wing-in-the-sky-800x1067.jpg",
+            "templates": [
+                {
+                    "source": "templates\/destination-detail.json",
+                    "name": "Destination Detail"
+                }
+            ],
+            "filesize": 357139,
+            "dimensions": [
+                1500,
+                2000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-FLAHWWA"
+        },
+        {
+            "filename": "walking-happy-and-big-family-holding-hands-at-the-beach-for-vacation-trust-and-together-in-bali--e1687500799227.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/walking-happy-and-big-family-holding-hands-at-the-beach-for-vacation-trust-and-together-in-bali--e1687500799227-800x507.jpg",
+            "templates": [
+                {
+                    "source": "templates\/destination-detail.json",
+                    "name": "Destination Detail"
+                }
+            ],
+            "filesize": 291726,
+            "dimensions": [
+                1920,
+                1217
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-L6L3RS6"
+        },
+        {
+            "filename": "shibuya-tokyo-japan-e1687500817599.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/shibuya-tokyo-japan-e1687500817599-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/destination.json",
+                    "name": "Destination"
+                }
+            ],
+            "filesize": 471050,
+            "dimensions": [
+                1440,
+                961
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PS2AC4F"
+        },
+        {
+            "filename": "palm-trees-summer-background-e1687500842828.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/palm-trees-summer-background-e1687500842828-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/single-post.json",
+                    "name": "Single Post"
+                },
+                {
+                    "source": "templates\/404-page.json",
+                    "name": "404 Page"
+                }
+            ],
+            "filesize": 340626,
+            "dimensions": [
+                1440,
+                961
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-4GUG7RT"
+        },
+        {
+            "filename": "friends-lost-in-nature-with-a-map-e1687500861697.jpg",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/friends-lost-in-nature-with-a-map-e1687500861697-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/blog.json",
+                    "name": "Blog"
+                }
+            ],
+            "filesize": 295678,
+            "dimensions": [
+                1920,
+                1280
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-P3G4J5A"
+        },
+        {
+            "filename": "matour-logo_1.png",
+            "thumbnail_url": "https:\/\/templatekit.jegtheme.com\/matour\/wp-content\/uploads\/sites\/388\/2023\/06\/matour-logo_1-800x185.png",
+            "templates": [
+                {
+                    "source": "templates\/jkit-offcanvas.json",
+                    "name": "JKit - Offcanvas"
+                },
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                },
+                {
+                    "source": "templates\/header.json",
+                    "name": "Header"
+                }
+            ],
+            "filesize": 25615,
+            "dimensions": [
+                1868,
+                431
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-PX2TTZL"
+        }
+    ]
+}
