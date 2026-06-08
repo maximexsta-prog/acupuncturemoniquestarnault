@@ -272,16 +272,19 @@
       return d;
     }
 
-    // Header: first jkit_button not hidden on desktop — inject LEFT of it
-    var btns = document.querySelectorAll('.elementor-widget-jkit_button');
-    var hBtn = null;
-    for (var i = 0; i < btns.length; i++) {
-      if (!btns[i].classList.contains('elementor-hidden-desktop') && !btns[i].closest('.elementor-hidden-desktop')) {
-        hBtn = btns[i];
+    // Header: inject after desktop nav container — between Blog and Logo
+    var navWidgets = document.querySelectorAll('.elementor-widget-jkit_nav_menu');
+    var navWidget = null;
+    for (var i = 0; i < navWidgets.length; i++) {
+      if (!navWidgets[i].classList.contains('elementor-hidden-desktop') && !navWidgets[i].closest('.elementor-hidden-desktop')) {
+        navWidget = navWidgets[i];
         break;
       }
     }
-    if (hBtn) hBtn.parentNode.insertBefore(mkPill('msa-ls-header'), hBtn);
+    if (navWidget) {
+      var navContainer = navWidget.parentNode;
+      navContainer.parentNode.insertBefore(mkPill('msa-ls-header'), navContainer.nextSibling);
+    }
 
     // Footer: after social icons
     var sw = document.querySelector('.elementor-social-icons-wrapper');
