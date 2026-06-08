@@ -22,6 +22,7 @@
       'All rights reserved': 'All rights reserved',
       'Acupuncture': 'Acupuncture',
       '5 Éléments': '5 Elements',
+      '5 éléments': '5 Elements',
       'Médecine chinoise': 'Chinese Medicine',
       'Problèmes saisonniers': 'Seasonal Issues',
       'Feng Shui': 'Feng Shui',
@@ -197,7 +198,7 @@
 
   /* ── Engine ─────────────────────────────────────────────────── */
   function norm(s) {
-    return s.replace(/[‘’ʼ]/g, "'").replace(/[“”]/g, '"');
+    return s.replace(/[‘’ʼ]/g, “’”).replace(/[“”]/g, ‘”’).replace(/ /g, ‘ ‘);
   }
 
   function buildMap(lang) {
