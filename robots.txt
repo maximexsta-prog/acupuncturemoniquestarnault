@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Disallow WP backend paths (not served, but good practice)
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /wp-comments-post.php
+Disallow: /cdn-cgi/
+
+# Author archive pages — thin content
+Disallow: /author/
+
+Sitemap: https://acupuncturemoniquestarnault.com/sitemap.xml
