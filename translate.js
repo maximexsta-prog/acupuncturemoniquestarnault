@@ -259,7 +259,7 @@
   /* ── Button injection ────────────────────────────────────────── */
   function inject() {
     var s = document.createElement('style');
-    s.textContent = '.msa-ls{display:inline-flex;align-items:center;gap:0}.msa-ls-header{padding:0 10px}.msa-ls-footer{display:flex;justify-content:center;margin-top:10px}.msa-sep{color:rgba(255,255,255,.25);font-size:9px;line-height:1;pointer-events:none}.msa-lb{border:none;background:none!important;color:rgba(255,255,255,.85)!important;font:600 9px/1 Jost,sans-serif;letter-spacing:.07em;padding:0;cursor:pointer;transition:color .18s;text-transform:uppercase;box-shadow:none!important}.msa-lb.active{color:#E9B88A!important}.msa-lb:hover:not(.active){color:#fff!important}#menu-menu-mobile-view li a{color:#182A23!important}#menu-menu-mobile-view li a:hover{color:#E9B88A!important}';
+    s.textContent = '.msa-ls{display:inline-flex;align-items:center;gap:0}.msa-ls-header{padding:0 10px}.msa-ls-footer{display:flex;justify-content:center;margin-top:10px}.msa-sep{color:rgba(255,255,255,.25);font-size:9px;line-height:1;pointer-events:none}.msa-lb{border:none;margin:0;background:none!important;color:rgba(255,255,255,.85)!important;font:600 9px/1 Jost,sans-serif;letter-spacing:.05em;padding:0;cursor:pointer;transition:color .18s;text-transform:uppercase;box-shadow:none!important}.msa-lb.active{color:#E9B88A!important}.msa-lb:hover:not(.active){color:#fff!important}#menu-menu-mobile-view li a{color:#182A23!important}#menu-menu-mobile-view li a:hover{color:#E9B88A!important}';
     document.head.appendChild(s);
 
     function mkPill(cls) {
