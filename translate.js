@@ -259,7 +259,7 @@
   /* ── Button injection ────────────────────────────────────────── */
   function inject() {
     var s = document.createElement('style');
-    s.textContent = '.msa-ls{display:inline-flex;align-items:center;gap:3px}.msa-ls-header{margin-right:10px;flex-shrink:0}.msa-ls-footer{display:flex;justify-content:center;margin-top:10px}.msa-sep{color:rgba(255,255,255,.25);font-size:9px;line-height:1;pointer-events:none}.msa-lb{border:none;background:none!important;color:rgba(255,255,255,.38);font:600 9px/1 Jost,sans-serif;letter-spacing:.07em;padding:0 2px;cursor:pointer;transition:color .18s;text-transform:uppercase;box-shadow:none!important}.msa-lb.active{color:#E9B88A}.msa-lb:hover:not(.active){color:rgba(255,255,255,.75)}#menu-menu-mobile-view li a{color:#182A23!important}#menu-menu-mobile-view li a:hover{color:#E9B88A!important}';
+    s.textContent = '.msa-ls{display:inline-flex;align-items:center;gap:3px}.msa-ls-header{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:10}.msa-ls-footer{display:flex;justify-content:center;margin-top:10px}.msa-sep{color:rgba(255,255,255,.25);font-size:9px;line-height:1;pointer-events:none}.msa-lb{border:none;background:none!important;color:rgba(255,255,255,.65);font:600 9px/1 Jost,sans-serif;letter-spacing:.07em;padding:0 2px;cursor:pointer;transition:color .18s;text-transform:uppercase;box-shadow:none!important}.msa-lb.active{color:#E9B88A}.msa-lb:hover:not(.active){color:#fff}#menu-menu-mobile-view li a{color:#182A23!important}#menu-menu-mobile-view li a:hover{color:#E9B88A!important}';
     document.head.appendChild(s);
 
     function mkPill(cls) {
@@ -272,7 +272,7 @@
       return d;
     }
 
-    // Header: inject after desktop nav container — between Blog and Logo
+    // Header: absolutely centered in the desktop row — no flex impact
     var navWidgets = document.querySelectorAll('.elementor-widget-jkit_nav_menu');
     var navWidget = null;
     for (var i = 0; i < navWidgets.length; i++) {
@@ -282,8 +282,11 @@
       }
     }
     if (navWidget) {
-      var navContainer = navWidget.parentNode;
-      navContainer.parentNode.insertBefore(mkPill('msa-ls-header'), navContainer.nextSibling);
+      var desktopRow = navWidget.closest('.elementor-hidden-tablet.elementor-hidden-mobile');
+      if (desktopRow) {
+        desktopRow.style.position = 'relative';
+        desktopRow.appendChild(mkPill('msa-ls-header'));
+      }
     }
 
     // Footer: after social icons
