@@ -215,12 +215,32 @@
   /* ── Button injection ────────────────────────────────────────── */
   function inject() {
     var s = document.createElement('style');
-    s.textContent = '.msa-ls{position:fixed;top:18px;right:20px;z-index:99999;display:flex;gap:3px;background:rgba(24,42,35,.92);border-radius:20px;padding:3px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 2px 16px rgba(0,0,0,.3)}.msa-lb{border:none;background:transparent;color:rgba(255,255,255,.55);font:600 11px/1 Jost,sans-serif;letter-spacing:.08em;padding:6px 14px;border-radius:16px;cursor:pointer;transition:all .18s;text-transform:uppercase}.msa-lb.active{background:#E9B88A;color:#182A23}.msa-lb:hover:not(.active){color:#fff}';
+    s.textContent = '.msa-ls{display:flex;align-items:center;gap:2px}.msa-ls-header{margin-left:8px;flex-shrink:0}.msa-ls-footer{justify-content:center;margin-top:14px;width:100%}.msa-lb{border:none;background:transparent;color:rgba(255,255,255,.45);font:600 10px/1 Jost,sans-serif;letter-spacing:.07em;padding:5px 11px;border-radius:14px;cursor:pointer;transition:all .2s;text-transform:uppercase}.msa-lb.active{background:rgba(233,184,138,.22);color:#E9B88A}.msa-lb:hover:not(.active){color:rgba(255,255,255,.85)}';
     document.head.appendChild(s);
-    var d = document.createElement('div');
-    d.className = 'msa-ls';
-    d.innerHTML = '<button class="msa-lb' + (cur==='fr'?' active':'') + '" data-lang="fr" onclick="msaSetLang(\'fr\')">FR</button><button class="msa-lb' + (cur==='en'?' active':'') + '" data-lang="en" onclick="msaSetLang(\'en\')">EN</button>';
-    document.body.appendChild(d);
+
+    function mkPill(cls) {
+      var d = document.createElement('div');
+      d.className = 'msa-ls ' + cls;
+      var isFr = cur === 'fr';
+      d.innerHTML = '<button class="msa-lb' + (isFr ? ' active' : '') + '" data-lang="fr" onclick="msaSetLang(\'fr\')">FR</button>'
+                  + '<button class="msa-lb' + (!isFr ? ' active' : '') + '" data-lang="en" onclick="msaSetLang(\'en\')">EN</button>';
+      return d;
+    }
+
+    // Header: first jkit_button not hidden on desktop
+    var btns = document.querySelectorAll('.elementor-widget-jkit_button');
+    var hBtn = null;
+    for (var i = 0; i < btns.length; i++) {
+      if (!btns[i].classList.contains('elementor-hidden-desktop') && !btns[i].closest('.elementor-hidden-desktop')) {
+        hBtn = btns[i];
+        break;
+      }
+    }
+    if (hBtn) hBtn.parentNode.insertBefore(mkPill('msa-ls-header'), hBtn.nextSibling);
+
+    // Footer: after social icons
+    var sw = document.querySelector('.elementor-social-icons-wrapper');
+    if (sw) sw.parentNode.insertBefore(mkPill('msa-ls-footer'), sw.nextSibling);
   }
 
   window.msaSetLang = setLang;
