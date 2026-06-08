@@ -215,7 +215,7 @@
   /* ── Button injection ────────────────────────────────────────── */
   function inject() {
     var s = document.createElement('style');
-    s.textContent = '.msa-ls{display:flex;align-items:center;gap:2px}.msa-ls-header{margin-left:8px;flex-shrink:0}.msa-ls-footer{justify-content:center;margin-top:14px;width:100%}.msa-lb{border:none;background:transparent;color:rgba(255,255,255,.45);font:600 10px/1 Jost,sans-serif;letter-spacing:.07em;padding:5px 11px;border-radius:14px;cursor:pointer;transition:all .2s;text-transform:uppercase}.msa-lb.active{background:rgba(233,184,138,.22);color:#E9B88A}.msa-lb:hover:not(.active){color:rgba(255,255,255,.85)}';
+    s.textContent = '.msa-ls{display:inline-flex;align-items:center;gap:3px}.msa-ls-header{margin-right:10px;flex-shrink:0}.msa-ls-footer{display:flex;justify-content:center;margin-top:10px}.msa-sep{color:rgba(255,255,255,.25);font-size:9px;line-height:1;pointer-events:none}.msa-lb{border:none;background:none!important;color:rgba(255,255,255,.38);font:600 9px/1 Jost,sans-serif;letter-spacing:.07em;padding:0 2px;cursor:pointer;transition:color .18s;text-transform:uppercase;box-shadow:none!important}.msa-lb.active{color:#E9B88A}.msa-lb:hover:not(.active){color:rgba(255,255,255,.75)}';
     document.head.appendChild(s);
 
     function mkPill(cls) {
@@ -223,11 +223,12 @@
       d.className = 'msa-ls ' + cls;
       var isFr = cur === 'fr';
       d.innerHTML = '<button class="msa-lb' + (isFr ? ' active' : '') + '" data-lang="fr" onclick="msaSetLang(\'fr\')">FR</button>'
+                  + '<span class="msa-sep">|</span>'
                   + '<button class="msa-lb' + (!isFr ? ' active' : '') + '" data-lang="en" onclick="msaSetLang(\'en\')">EN</button>';
       return d;
     }
 
-    // Header: first jkit_button not hidden on desktop
+    // Header: first jkit_button not hidden on desktop — inject LEFT of it
     var btns = document.querySelectorAll('.elementor-widget-jkit_button');
     var hBtn = null;
     for (var i = 0; i < btns.length; i++) {
@@ -236,7 +237,7 @@
         break;
       }
     }
-    if (hBtn) hBtn.parentNode.insertBefore(mkPill('msa-ls-header'), hBtn.nextSibling);
+    if (hBtn) hBtn.parentNode.insertBefore(mkPill('msa-ls-header'), hBtn);
 
     // Footer: after social icons
     var sw = document.querySelector('.elementor-social-icons-wrapper');
