@@ -2,6 +2,17 @@
   var SK = 'msa-lang';
   var cur = localStorage.getItem(SK) || 'fr';
 
+  /* Pages with pre-rendered English versions under /en/ (see tools/build-en.js).
+     For these, the pill navigates between URLs; other pages translate in place. */
+  var EN_PAGES = ['/', '/blog/', '/le-printemps/', '/les-allergies-du-printemps/', '/le-tao/'];
+  function curPath() {
+    var p = window.location.pathname.replace(/\/index\.html$/, '/');
+    if (p.slice(-1) !== '/') p += '/';
+    return p;
+  }
+  var IS_EN_PAGE = curPath().indexOf('/en/') === 0;
+  if (IS_EN_PAGE) cur = 'en';
+
   /* ── Translations ──────────────────────────────────────────────────── */
   var T = {
     common: {
@@ -251,6 +262,12 @@
   function setLang(lang) {
     if (lang === cur) return;
     localStorage.setItem(SK, lang);
+    var p = curPath();
+    if (IS_EN_PAGE) {
+      if (lang === 'fr') location.href = p.replace(/^\/en\//, '/');
+      return;
+    }
+    if (lang === 'en' && EN_PAGES.indexOf(p) !== -1) { location.href = '/en' + p; return; }
     if (lang === 'fr') { location.reload(); return; }
     applyEN();
     updBtns(lang);
@@ -302,6 +319,11 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     inject();
-    if (cur === 'en') { applyEN(); updBtns('en'); }
+    if (IS_EN_PAGE) return; // page is already English; pill marked via cur
+    if (cur === 'en') {
+      var p = curPath();
+      if (EN_PAGES.indexOf(p) !== -1) { location.replace('/en' + p); return; }
+      applyEN(); updBtns('en');
+    }
   });
 })();

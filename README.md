@@ -42,6 +42,23 @@ footer, and swaps visible French text to English client-side. How it works:
   editors that auto-convert straight quotes to typographic quotes — that has
   broken the script before.
 
+## Pre-rendered English pages — `/en/`
+
+The 5 main pages have static English copies under `en/`, generated from the
+French pages plus the `translate.js` table, with `hreflang` alternate links on
+both versions so search engines index the English content. The FR|EN pill
+navigates between the two URL trees on these pages (and still translates
+in place on archive pages that have no `/en/` copy).
+
+**After editing French copy or translations, regenerate:**
+
+```
+node tools/build-en.js
+```
+
+This rewrites the `en/` pages and refreshes the hreflang tags. Commit the
+result. Don't edit files under `en/` by hand.
+
 ## Tools
 
 - `node tools/purge-unused-assets.js` — lists files under `wp-content/` and
