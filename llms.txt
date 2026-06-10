@@ -1,0 +1,33 @@
+# Acupuncture Monique St-Arnault
+
+> Acupuncture clinic in Montreal (Rosemont / Lacordaire area), Quebec, Canada. Monique St-Arnault has practiced traditional Chinese medicine and acupuncture since 1990 — over 35 years and more than 30,000 treatments — with a practical internship completed in Shanghai in 1991. Personalized care for pain, stress, burnout, anxiety, digestion, seasonal allergies, women's health, and overall balance. Site is bilingual: French (default) and English under /en/.
+
+Key facts:
+- Practitioner: Monique St-Arnault, acupuncturist since 1990 (acupressure training, then acupuncture; Shanghai internship 1991; background in high-level sports, physical education and Tai Chi)
+- Location: Rosemont & Lacordaire, Montreal, Quebec, Canada, H1M 2N1
+- Phone (appointments): +1 (514) 778-7975 — booking is done **by phone** (voicemail/text answered personally); call hours Monday–Friday, 9:00–20:00
+- Email: acumsta@hotmail.com
+- Languages: French and English
+- Services: acupuncture, gua sha & cupping, moxibustion, energy dietetics (Chinese dietary therapy), facial acupuncture, mind & relaxation care
+
+## Main pages (French)
+
+- [Accueil](https://acupuncturemoniquestarnault.com/): services, approach, practitioner background, booking information
+- [Blog](https://acupuncturemoniquestarnault.com/blog/): articles on acupuncture and traditional Chinese medicine
+
+## Main pages (English)
+
+- [Home](https://acupuncturemoniquestarnault.com/en/): services, approach, practitioner background, booking information
+- [Blog](https://acupuncturemoniquestarnault.com/en/blog/): articles in English
+
+## Articles
+
+- [Les allergies du printemps](https://acupuncturemoniquestarnault.com/les-allergies-du-printemps/) ([EN](https://acupuncturemoniquestarnault.com/en/les-allergies-du-printemps/)): how Chinese medicine views seasonal allergies — Lung, Kidney and Spleen energy, diet, and individualized acupuncture support
+- [Le printemps, la saison du mouvement de l'élément Bois](https://acupuncturemoniquestarnault.com/le-printemps/) ([EN](https://acupuncturemoniquestarnault.com/en/le-printemps/)): the Wood element, the five-element generation and control cycles, stress, and seasonal balance
+- [Le Tao](https://acupuncturemoniquestarnault.com/le-tao/) ([EN](https://acupuncturemoniquestarnault.com/en/le-tao/)): introduction to Taoism, Qi, yin/yang and the five elements as the foundation of Chinese medicine
+
+## Optional
+
+- [llms-full.txt](https://acupuncturemoniquestarnault.com/llms-full.txt): condensed full content of the site in English
+- [Sitemap](https://acupuncturemoniquestarnault.com/sitemap.xml)
+- [Facebook](https://www.facebook.com/profile.php?id=100053163715953)
