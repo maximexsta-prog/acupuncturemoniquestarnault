@@ -15,7 +15,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Syntax-check JavaScript
+        run: node --check translate.js
+
+      - name: Translation drift report (warning only)
+        run: node tools/check-translations.js
+        continue-on-error: true
+
+      - name: Check internal links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --offline --root-dir "$GITHUB_WORKSPACE" "**/*.html"
+          fail: true
+
   deploy:
+    needs: check
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
