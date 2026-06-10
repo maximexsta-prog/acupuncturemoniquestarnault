@@ -61,6 +61,9 @@ result. Don't edit files under `en/` by hand.
 
 ## Tools
 
+- `node tools/build-llms-full.js` — regenerates `llms-full.txt` (the English
+  content digest for AI crawlers, built from translate.js). `llms.txt` is the
+  hand-maintained summary; update it when pages/services change.
 - `node tools/purge-unused-assets.js` — lists files under `wp-content/` and
   `wp-includes/` that no page references (directly, or via CSS `url()` /
   Elementor webpack lazy chunks). Add `--delete` to remove them. Useful after

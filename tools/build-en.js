@@ -64,6 +64,20 @@ function translateTitle(title, map) {
   return title.split(' - ').map((part) => map[norm(part.trim())] !== undefined ? map[norm(part.trim())] : part).join(' - ');
 }
 
+// English FAQPage for /en/ (mirrors the French FAQ on the home page)
+const EN_FAQ = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What is acupuncture?', acceptedAnswer: { '@type': 'Answer', text: 'Acupuncture is a traditional Chinese medicine practice that uses fine needles to stimulate precise points on the body, promoting the balance of Qi (vital energy) and overall well-being.' } },
+    { '@type': 'Question', name: 'What conditions can acupuncture help with?', acceptedAnswer: { '@type': 'Answer', text: 'Acupuncture effectively addresses chronic and acute pain, stress and anxiety, digestive disorders, women’s health (menstrual cycles, menopause, fertility), seasonal allergies and insomnia, and promotes deep relaxation.' } },
+    { '@type': 'Question', name: 'Where is the Acupuncture Monique St-Arnault clinic in Montreal?', acceptedAnswer: { '@type': 'Answer', text: 'The clinic is located in Montreal in the Rosemont neighbourhood, near Lacordaire. Postal code: H1M 2N1. Phone: (514) 778-7975.' } },
+    { '@type': 'Question', name: 'How do I book an acupuncture appointment?', acceptedAnswer: { '@type': 'Answer', text: 'Appointments are booked by phone at (514) 778-7975 (Monday to Friday, 9:00 AM to 8:00 PM). If Monique is in a session, leave a voicemail or text at the same number and she will call you back personally. Email: acumsta@hotmail.com.' } },
+    { '@type': 'Question', name: 'How long has Monique St-Arnault practiced acupuncture?', acceptedAnswer: { '@type': 'Answer', text: 'Monique St-Arnault has practiced acupuncture since 1990 — over 35 years of experience in traditional Chinese medicine and personalized care in Montreal, with more than 30,000 treatments given.' } },
+    { '@type': 'Question', name: 'What services does the Acupuncture Monique St-Arnault clinic offer?', acceptedAnswer: { '@type': 'Answer', text: 'The clinic offers acupuncture, gua sha and cupping, moxibustion, energy dietetics (Chinese dietary therapy), mind and relaxation care, and facial acupuncture.' } },
+  ],
+};
+
 const hreflang = (route) =>
   `<link rel="alternate" hreflang="fr" href="${SITE}${route}">\n<link rel="alternate" hreflang="en" href="${SITE}/en${route}">\n<link rel="alternate" hreflang="x-default" href="${SITE}${route}">`;
 
@@ -96,6 +110,13 @@ for (const [route, file] of Object.entries(PAGES)) {
     Object.prototype.hasOwnProperty.call(PAGES, p) ? `href="/en${p}"` : m);
 
   html = translateBody(html, map);
+
+  // English structured data on /en/ pages
+  html = html.replace(/"inLanguage": "fr-CA"/g, '"inLanguage": "en-CA"');
+  if (route === '/') {
+    html = html.replace(/<script type="application\/ld\+json">\s*\{\s*"@context": "https:\/\/schema\.org",\s*"@type": "FAQPage"[\s\S]*?<\/script>/, '<script type="application/ld+json">' + JSON.stringify(EN_FAQ) + '</script>');
+    html = html.replace(/"description": "Depuis 1990[^"]*"/, '"description": ' + JSON.stringify('Since 1990, Monique St-Arnault has offered personalized acupuncture care in Montreal. Specialized in pain management, stress, digestion and women’s health.'));
+  }
 
   const out = path.join('en', route === '/' ? '' : route.slice(1), 'index.html');
   fs.mkdirSync(path.dirname(out), { recursive: true });
