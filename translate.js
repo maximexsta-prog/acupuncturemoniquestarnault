@@ -165,7 +165,7 @@
       'Si les allergies reviennent d’année en année, il peut être bénéfique d’adopter une approche qui ne cherche pas seulement à calmer les symptômes, mais aussi à soutenir l’organisme dans son ensemble.': 'If allergies return year after year, it may be beneficial to adopt an approach that not only seeks to calm the symptoms, but also to support the body as a whole.',
     },
 
-    '/elementor-390/': {
+    '/le-tao/': {
       'Le Tao': 'The Tao',
       'la voie où s’achemine les mystères de la vie': 'the path where the mysteries of life unfold',
       'Si la vie m’était contée': 'If Life Could Be Told',
@@ -198,7 +198,7 @@
 
   /* ── Engine ─────────────────────────────────────────────────── */
   function norm(s) {
-    return s.replace(/[‘’ʼ]/g, “’”).replace(/[“”]/g, ‘”’).replace(/ /g, ‘ ‘);
+    return s.replace(/['\u2018\u2019\u02BC]/g, '\u2019').replace(/[\u201C\u201D]/g, '\u201D').replace(/\u00A0/g, ' ');
   }
 
   function buildMap(lang) {
