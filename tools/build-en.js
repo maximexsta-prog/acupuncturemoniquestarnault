@@ -9,9 +9,9 @@ const SITE = 'https://acupuncturemoniquestarnault.com';
 const PAGES = {
   '/': 'index.html',
   '/blog/': 'blog/index.html',
-  '/le-printemps/': 'le-printemps/index.html',
-  '/les-allergies-du-printemps/': 'les-allergies-du-printemps/index.html',
-  '/le-tao/': 'le-tao/index.html',
+  '/blog/le-printemps/': 'blog/le-printemps/index.html',
+  '/blog/les-allergies-du-printemps/': 'blog/les-allergies-du-printemps/index.html',
+  '/blog/le-tao/': 'blog/le-tao/index.html',
 };
 
 // ── extract T from translate.js ──────────────────────────────────────────
@@ -105,9 +105,11 @@ for (const [route, file] of Object.entries(PAGES)) {
     return a + (map[k] !== undefined ? map[k].replace(/"/g, '&quot;') : d) + b;
   });
 
-  // internal links to translated pages -> /en/ equivalents
-  html = html.replace(/href="(\/(?:blog\/|le-printemps\/|les-allergies-du-printemps\/|le-tao\/)?)"/g, (m, p) =>
-    Object.prototype.hasOwnProperty.call(PAGES, p) ? `href="/en${p}"` : m);
+  // internal links to translated pages -> /en/ equivalents (longest path first
+  // so /blog/le-tao/ is rewritten before the /blog/ listing link)
+  for (const p of Object.keys(PAGES).sort((a, b) => b.length - a.length)) {
+    html = html.split(`href="${p}"`).join(`href="/en${p}"`);
+  }
 
   html = translateBody(html, map);
 

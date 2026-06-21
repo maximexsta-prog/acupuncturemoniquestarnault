@@ -4,7 +4,7 @@
 
   /* Pages with pre-rendered English versions under /en/ (see tools/build-en.js).
      For these, the pill navigates between URLs; other pages translate in place. */
-  var EN_PAGES = ['/', '/blog/', '/le-printemps/', '/les-allergies-du-printemps/', '/le-tao/'];
+  var EN_PAGES = ['/', '/blog/', '/blog/le-printemps/', '/blog/les-allergies-du-printemps/', '/blog/le-tao/'];
   function curPath() {
     var p = window.location.pathname.replace(/\/index\.html$/, '/');
     if (p.slice(-1) !== '/') p += '/';
@@ -88,7 +88,7 @@
       'À lire': 'Read',
     },
 
-    '/le-printemps/': {
+    '/blog/le-printemps/': {
       'Le printemps, la saison du mouvement de l’élément Bois': 'Spring, the Season of the Wood Element',
       'Tout le monde dehors !': 'Everyone Outside!',
       'Le printemps, la saison du Bois': 'Spring, the Season of Wood',
@@ -154,7 +154,7 @@
       'Les aides thérapeutiques : Herbes, aromathérapie, massage musculaire profond, relaxation, visualisation': 'Therapeutic aids: Herbs, aromatherapy, deep muscle massage, relaxation, visualization',
     },
 
-    '/les-allergies-du-printemps/': {
+    '/blog/les-allergies-du-printemps/': {
       'Les allergies du printemps': 'Spring Allergies',
       'Acupuncture , Problèmes saisonniers': 'Acupuncture, Seasonal Issues',
       'Le retour du printemps apporte souvent lumière, douceur et renouveau. Mais pour plusieurs, cette saison s’accompagne aussi de symptômes inconfortables: éternuements, nez qui coule, congestion, démangeaisons, yeux irrités ou sensation d’encombrement.': 'The return of spring often brings light, warmth and renewal. But for many, this season also comes with uncomfortable symptoms: sneezing, runny nose, congestion, itching, irritated eyes or a feeling of stuffiness.',
@@ -167,7 +167,7 @@
       'Si les allergies reviennent d’année en année, il peut être bénéfique d’adopter une approche qui ne cherche pas seulement à calmer les symptômes, mais aussi à soutenir l’organisme dans son ensemble.': 'If allergies return year after year, it may be beneficial to adopt an approach that not only seeks to calm the symptoms, but also to support the body as a whole.',
     },
 
-    '/le-tao/': {
+    '/blog/le-tao/': {
       'Le Tao': 'The Tao',
       'la voie où s’achemine les mystères de la vie': 'the path where the mysteries of life unfold',
       'Si la vie m’était contée': 'If Life Could Be Told',

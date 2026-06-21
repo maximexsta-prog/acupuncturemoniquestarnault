@@ -17,8 +17,10 @@ There is no build step: what is in the repo is what is served.
 ## Pages
 
 - `/` — home, `/blog/` — article index
-- Articles: `/le-printemps/`, `/les-allergies-du-printemps/`, `/le-tao/`
-  (`/elementor-390/` is a redirect stub kept for old links)
+- Articles live under `/blog/`: `/blog/le-printemps/`,
+  `/blog/les-allergies-du-printemps/`, `/blog/le-tao/`. The old root URLs
+  (`/le-printemps/`, …) and `/elementor-390/` are redirect stubs kept for
+  inbound links.
 - `/category/*`, `/tag/*` — archive pages
 
 Because the host is static, WordPress features that need a server (comments,

@@ -18,9 +18,9 @@ const T = sandbox.__T;
 
 const SECTIONS = [
   ['/', 'Home — Acupuncture Monique St-Arnault (Montreal)'],
-  ['/le-printemps/', 'Article: Spring, the Season of the Wood Element'],
-  ['/les-allergies-du-printemps/', 'Article: Spring Allergies'],
-  ['/le-tao/', 'Article: The Tao'],
+  ['/blog/le-printemps/', 'Article: Spring, the Season of the Wood Element'],
+  ['/blog/les-allergies-du-printemps/', 'Article: Spring Allergies'],
+  ['/blog/le-tao/', 'Article: The Tao'],
 ];
 
 let out = `# Acupuncture Monique St-Arnault — full site content (English)
