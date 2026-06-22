@@ -9,13 +9,29 @@ function matchDiv(s) {
   while ((m = re.exec(h))) { d += m[0] === '</div>' ? -1 : 1; if (d === 0) return m.index + m[0].length; }
   throw new Error('unbalanced');
 }
-const pageStart = h.indexOf('<div data-elementor-type="wp-page"');
-const headerStart = h.indexOf('<div class="elementor-element elementor-element-376ee40b');
-const headerEnd = matchDiv(headerStart);
-const pageEnd = matchDiv(pageStart);
+// Enumerate the top-level sections of the page body (elementor-718).
+// Layout: [header sections...] [content sections...] [footer section].
+// Keep the leading header section(s) and the trailing footer section; the
+// content sections in between are replaced with the landing-page content.
+const pageOpen = h.indexOf('<div data-elementor-type="wp-page"');
+const bodyStart = h.indexOf('>', pageOpen) + 1;
+const pageEnd = matchDiv(pageOpen);
+const kids = [];
+for (let pos = bodyStart; pos < pageEnd;) {
+  const nx = h.indexOf('<div', pos);
+  if (nx < 0 || nx >= pageEnd) break;
+  const end = matchDiv(nx);
+  const cls = (h.slice(nx, h.indexOf('>', nx)).match(/class="([^"]*)"/) || [])[1] || '';
+  kids.push({ start: nx, end, cls });
+  pos = end;
+}
+let nHeader = 0;
+while (nHeader < kids.length && /\bheader\b/.test(kids[nHeader].cls)) nHeader++;
+const headerEnd = kids[nHeader - 1].end;     // after last header section
+const footerStart = kids[kids.length - 1].start; // start of footer section
 
 let prefix = h.slice(0, headerEnd);
-const suffix = h.slice(pageEnd);
+const suffix = h.slice(footerStart);          // footer section + page close + theme footer + scripts
 
 const TITLE = 'L’acupuncture et l’escalade - Acupuncture Monique St-Arnault';
 const DESC = 'Acupuncture pour grimpeurs à Montréal : douleurs aux coudes (épicondylite), épaules, poignets et doigts, récupération et prévention des blessures. Monique St-Arnault, ancienne athlète, depuis 1990. (514) 778-7975.';
@@ -63,6 +79,9 @@ prefix = prefix.replace('</head>', ldHtml + '</head>');
 
 // ── page content ─────────────────────────────────────────────────────────
 const STYLE = `<style>
+/* This page has a light background, but the shared header is styled for a dark
+   hero (white logo + white nav). Give the header a navy bar so it stays legible. */
+.elementor-718 .header.e-con{background-color:var(--e-global-color-primary)}
 .msa-esc{max-width:1140px;margin:0 auto;padding:56px 20px;color:var(--e-global-color-text)}
 .msa-esc-hero{text-align:center;padding:32px 20px 8px}
 .msa-esc h1{color:var(--e-global-color-primary);margin:0 0 10px}
@@ -80,7 +99,7 @@ const STYLE = `<style>
 .msa-esc .card h3{color:var(--e-global-color-primary);margin:0 0 12px}
 .msa-esc .card ul{padding-left:18px;margin:0}
 .msa-esc .card li{margin:9px 0}
-.msa-esc .credit{background:var(--e-global-color-01449a1);border-radius:12px;padding:34px 28px;margin-top:52px;text-align:center}
+.msa-esc .credit{background:#fff;border:1px solid var(--e-global-color-193b8aa);border-radius:12px;padding:34px 28px;margin-top:52px;text-align:center}
 .msa-esc .credit p{max-width:720px;margin:0 auto;font-size:1.08em;line-height:1.6}
 .msa-esc .contact{text-align:center;margin-top:48px}
 .msa-esc .contact .row{margin:10px 0;font-size:1.12em}
@@ -141,7 +160,7 @@ const CONTENT = `${STYLE}
   </section>
 </main>`;
 
-const page = prefix + '\n' + CONTENT + '\n\t\t</div>\n\t\t' + suffix;
+const page = prefix + '\n' + CONTENT + '\n' + suffix;
 fs.mkdirSync('acupuncture-escalade', { recursive: true });
 fs.writeFileSync('acupuncture-escalade/index.html', page);
 console.log('wrote acupuncture-escalade/index.html (' + page.length + ' bytes)');
