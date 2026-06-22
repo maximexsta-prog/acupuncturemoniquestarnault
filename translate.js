@@ -307,7 +307,7 @@
   /* ── Button injection ────────────────────────────────────────── */
   function inject() {
     var s = document.createElement('style');
-    s.textContent = '.msa-ls{display:inline-flex;align-items:center;gap:0}.msa-ls-header{padding:0 10px}.msa-ls-footer{display:flex;justify-content:center;margin-top:10px}.msa-sep{color:rgba(255,255,255,.25);font-size:9px;line-height:1;pointer-events:none}.msa-lb{border:none;margin:0;background:none!important;color:rgba(255,255,255,.85)!important;font:600 9px/1 Jost,sans-serif;letter-spacing:.05em;padding:0;cursor:pointer;transition:color .18s;text-transform:uppercase;box-shadow:none!important}.msa-lb.active{color:#E9B88A!important}.msa-lb:hover:not(.active){color:#fff!important}#menu-menu-mobile-view li a{color:#182A23!important}#menu-menu-mobile-view li a:hover{color:#E9B88A!important}';
+    s.textContent = '.msa-ls{display:inline-flex;align-items:center;gap:0}.msa-ls-header{padding:0 10px}.msa-ls-footer{display:flex;justify-content:center;margin-top:10px}.msa-sep{color:rgba(255,255,255,.25);font-size:9px;line-height:1;pointer-events:none}.msa-lb{border:none;margin:0;background:none!important;color:rgba(255,255,255,.85)!important;font:600 9px/1 Jost,sans-serif;letter-spacing:.05em;padding:0;cursor:pointer;transition:color .18s;text-transform:uppercase;box-shadow:none!important}.msa-lb.active{color:#E9B88A!important}.msa-lb:hover:not(.active){color:#fff!important}#menu-menu-mobile-view li a{color:#182A23!important}#menu-menu-mobile-view li a:hover{color:#E9B88A!important}.msa-ls-mobile{padding:10px 0}.msa-ls-mobile .msa-lb{color:#182A23!important;font-size:14px}.msa-ls-mobile .msa-lb.active{color:#5d7d3a!important}.msa-ls-mobile .msa-lb:hover:not(.active){color:#5d7d3a!important}.msa-ls-mobile .msa-sep{color:rgba(24,42,35,.3);font-size:12px}';
     document.head.appendChild(s);
 
     function mkPill(cls) {
@@ -338,6 +338,17 @@
         li.appendChild(mkPill('msa-ls-header'));
         menuList.appendChild(li);
       }
+    }
+
+    // Mobile hamburger menu: append as <li> inside #menu-menu-mobile-view so the
+    // language toggle is reachable on phones (the header pill above lives in the
+    // desktop-only nav widget).
+    var mobileMenu = document.querySelector('#menu-menu-mobile-view');
+    if (mobileMenu) {
+      var mli = document.createElement('li');
+      mli.style.cssText = 'list-style:none;padding:0';
+      mli.appendChild(mkPill('msa-ls-mobile'));
+      mobileMenu.appendChild(mli);
     }
 
     // Footer: after social icons

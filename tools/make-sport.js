@@ -77,6 +77,10 @@ const STYLE = `<style>
    a navy bar so it stays legible on this light page, and zero the negative
    header margins (-90px/-222px) that otherwise pull content up behind it. */
 .elementor-718 .header.e-con{background-color:var(--e-global-color-primary);margin:0!important}
+/* the second header section (4fdf38d) is an empty strip; with a navy background
+   and z-index 200 it paints over the open mobile menu. It carries no content, so
+   hide it — removes the navy band overlapping the logo when the hamburger is open. */
+.elementor-718 .elementor-element-4fdf38d{display:none!important}
 .msa-esc{max-width:1140px;margin:0 auto;padding:56px 20px;color:var(--e-global-color-text)}
 .msa-esc-hero{text-align:center;padding:32px 20px 8px}
 .msa-esc h1{color:var(--e-global-color-primary);margin:0 0 10px}
