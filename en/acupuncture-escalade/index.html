@@ -193,8 +193,11 @@ header a,
 				</div>
 <style>
 /* This page has a light background, but the shared header is styled for a dark
-   hero (white logo + white nav). Give the header a navy bar so it stays legible. */
-.elementor-718 .header.e-con{background-color:var(--e-global-color-primary)}
+   hero (white logo + white nav). Give the header a navy bar so it stays legible.
+   The header sections carry large negative bottom margins (-90px / -222px) that
+   tuck the hero image under the transparent header on other pages; with no hero
+   image here, zero them so the content sits below the header instead of behind it. */
+.elementor-718 .header.e-con{background-color:var(--e-global-color-primary);margin:0!important}
 .msa-esc{max-width:1140px;margin:0 auto;padding:56px 20px;color:var(--e-global-color-text)}
 .msa-esc-hero{text-align:center;padding:32px 20px 8px}
 .msa-esc h1{color:var(--e-global-color-primary);margin:0 0 10px}
