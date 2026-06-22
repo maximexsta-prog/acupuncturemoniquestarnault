@@ -118,7 +118,7 @@
       'Blessés ou en prévention': 'Injured or for prevention',
       'Une praticienne qui connaît le sport de l’intérieur': 'A practitioner who knows sport from the inside',
       'Avant l’acupuncture, Monique a été gymnaste de compétition et entraîneuse de haut niveau au Canada — quatre médailles d’or en 1977. Cette expérience du sport, de l’entraînement et de la blessure nourrit chaque traitement.': 'Before acupuncture, Monique was a competitive gymnast and high-level coach in Canada — four gold medals in 1977. This experience of sport, training and injury informs every treatment.',
-      'Monique St-Arnaud, gymnastique de compétition — The Montreal Star, 1er mars 1977.': 'Monique St-Arnaud, competitive gymnastics — The Montreal Star, March 1, 1977.',
+      'Monique St-Arnault, gymnastique de compétition — The Montreal Star, 1er mars 1977.': 'Monique St-Arnault, competitive gymnastics — The Montreal Star, March 1, 1977.',
       'La prise de rendez-vous se fait par téléphone. Laissez un message vocal ou texto si je suis en consultation, je vous rappelle personnellement.': 'Appointments are made by phone. Leave a voicemail or text if I am in a session, and I will call you back personally.',
       'Clinique à Montréal — Rosemont et Lacordaire': 'Clinic in Montreal — Rosemont & Lacordaire',
     },

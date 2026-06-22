@@ -123,8 +123,8 @@ const STYLE = `<style>
 const PHOTO_FILE = 'wp-content/uploads/2026/04/monique-gymnaste-1977.jpg';
 const PHOTO = fs.existsSync(PHOTO_FILE)
   ? `<figure class="msa-photo">
-      <img src="/${PHOTO_FILE}" alt="Monique St-Arnaud à la poutre en gymnastique de compétition, 1977" loading="lazy">
-      <figcaption>Monique St-Arnaud, gymnastique de compétition — The Montreal Star, 1er mars 1977.</figcaption>
+      <img src="/${PHOTO_FILE}" alt="Monique St-Arnault à la poutre en gymnastique de compétition, 1977" loading="lazy">
+      <figcaption>Monique St-Arnault, gymnastique de compétition — The Montreal Star, 1er mars 1977.</figcaption>
     </figure>`
   : `<!-- PHOTO a venir : ajouter le fichier ${PHOTO_FILE} puis relancer node tools/make-sport.js -->`;
 
