@@ -104,9 +104,13 @@ const STYLE = `<style>
 .msa-esc .card li{margin:9px 0}
 .msa-esc .credit{background:#fff;border:1px solid var(--e-global-color-193b8aa);border-radius:12px;padding:34px 28px;margin-top:52px;text-align:center}
 .msa-esc .credit p{max-width:720px;margin:0 auto;font-size:1.08em;line-height:1.6}
-.msa-esc .contact{text-align:center;margin-top:48px}
-.msa-esc .contact .row{margin:10px 0;font-size:1.12em}
-.msa-esc .contact a{color:var(--e-global-color-primary);font-weight:600;text-decoration:none}
+.msa-esc .contact{text-align:center;margin-top:52px}
+.msa-esc .contact .cta{margin:8px 0 24px}
+/* a global theme rule forces bare links to white/uppercase (built for dark
+   backgrounds); override it so the email and address stay legible here */
+.msa-esc .contact .contact-meta{font-size:1.12em;line-height:1.9;margin:0}
+.msa-esc .contact .contact-meta a{color:var(--e-global-color-primary)!important;font-weight:600!important;text-transform:none!important;letter-spacing:normal!important;font-size:1em!important;text-decoration:underline!important}
+.msa-esc .contact .contact-meta .addr{display:block;color:var(--e-global-color-text);margin-top:8px}
 @media(max-width:767px){.msa-esc{padding:28px 16px}.msa-esc .sub{font-size:1.35em}}
 </style>`;
 
@@ -157,9 +161,11 @@ const CONTENT = `${STYLE}
   <section class="contact">
     <h2>Pour prendre rendez-vous</h2>
     <p class="lead">La prise de rendez-vous se fait par téléphone. Laissez un message vocal ou texto si je suis en consultation, je vous rappelle personnellement.</p>
-    <div class="row"><a href="tel:+15147787975">(514) 778-7975</a></div>
-    <div class="row"><a href="mailto:acumsta@hotmail.com">acumsta@hotmail.com</a></div>
-    <div class="row">Clinique à Montréal — Rosemont et Lacordaire</div>
+    <a class="cta" href="tel:+15147787975">Appeler le (514) 778-7975</a>
+    <p class="contact-meta">
+      <a href="mailto:acumsta@hotmail.com">acumsta@hotmail.com</a>
+      <span class="addr">Clinique à Montréal — Rosemont et Lacordaire</span>
+    </p>
   </section>
 </main>`;
 
