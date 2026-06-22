@@ -4,7 +4,7 @@
 
   /* Pages with pre-rendered English versions under /en/ (see tools/build-en.js).
      For these, the pill navigates between URLs; other pages translate in place. */
-  var EN_PAGES = ['/', '/blog/', '/acupuncture-escalade/', '/blog/le-printemps/', '/blog/les-allergies-du-printemps/', '/blog/le-tao/'];
+  var EN_PAGES = ['/', '/blog/', '/acupuncture-sport/', '/blog/le-printemps/', '/blog/les-allergies-du-printemps/', '/blog/le-tao/'];
   function curPath() {
     var p = window.location.pathname.replace(/\/index\.html$/, '/');
     if (p.slice(-1) !== '/') p += '/';
@@ -17,7 +17,7 @@
   var T = {
     common: {
       'Blog': 'Blog',
-      'Escalade': 'Climbing',
+      'Sport': 'Sports',
       'Rendez-vous': 'Book Now',
       'Accueil': 'Home',
       'Skip to content': 'Skip to content',
@@ -86,27 +86,39 @@
       'Appelez le (514) 778-7975': 'Call (514) 778-7975',
     },
 
-    '/acupuncture-escalade/': {
-      'L’acupuncture et l’escalade': 'Acupuncture and Climbing',
-      'Douleurs aux coudes, épaules, poignets ?': 'Elbow, shoulder and wrist pain?',
+    '/acupuncture-sport/': {
+      'L’acupuncture sportive': 'Sports Acupuncture',
+      'Blessures, douleurs et performance — pour tous les sports': 'Injuries, pain and performance — for every sport',
       'depuis 1990': 'since 1990',
-      'L’escalade sollicite intensément les doigts, les poignets, les coudes et les épaules. Que vous grimpiez en salle ou en falaise, de façon récréative ou intensive, l’acupuncture aide à soulager la douleur, à accélérer la récupération et à prévenir les blessures de surutilisation.': 'Climbing places intense demands on the fingers, wrists, elbows and shoulders. Whether you climb indoors or outdoors, recreationally or intensively, acupuncture helps relieve pain, speed up recovery and prevent overuse injuries.',
+      'Tendinites, entorses, douleurs de surutilisation, tensions, récupération lente, anxiété de performance… le sport met le corps à l’épreuve. L’acupuncture aide à soulager la douleur, à accélérer la récupération et à prévenir les blessures, quel que soit votre sport et votre niveau.': 'Tendinitis, sprains, overuse pain, tension, slow recovery, performance anxiety… sport puts the body to the test. Acupuncture helps relieve pain, speed up recovery and prevent injuries, whatever your sport and level.',
       'Appeler le (514) 778-7975': 'Call (514) 778-7975',
-      'Ce que je traite souvent chez les grimpeurs': 'What I often treat in climbers',
+      'Ce que je traite souvent chez les sportifs': 'What I often treat in athletes',
+      'Tendinites et épicondylites (coudes, épaules, genoux)': 'Tendinitis and epicondylitis (elbows, shoulders, knees)',
+      'Entorses, foulures et raideurs articulaires': 'Sprains, strains and joint stiffness',
       'Tensions à la nuque, au dos et aux épaules': 'Tension in the neck, back and shoulders',
-      'Épicondylites et douleurs aux coudes': 'Epicondylitis and elbow pain',
-      'Poignets et doigts sursollicités': 'Overused wrists and fingers',
+      'Poignets, doigts et articulations sursollicités': 'Overused wrists, fingers and joints',
       'Stress et anxiété de performance': 'Stress and performance anxiety',
-      'Douleurs ou raideurs qui traînent': 'Lingering pain or stiffness',
-      'Récupération et prévention des blessures': 'Recovery and injury prevention',
+      'Récupération, fatigue et prévention des blessures': 'Recovery, fatigue and injury prevention',
+      'Adaptée à votre sport': 'Tailored to your sport',
+      'Chaque discipline sollicite le corps différemment. Les soins sont adaptés à votre pratique :': 'Every discipline stresses the body differently. Care is tailored to your activity:',
+      'Escalade et bloc — coudes, doigts, poignets, épaules': 'Climbing and bouldering — elbows, fingers, wrists, shoulders',
+      'Course à pied — genoux, hanches, tendons': 'Running — knees, hips, tendons',
+      'Vélo et cyclisme — dos, nuque, genoux': 'Cycling — back, neck, knees',
+      'Sports de raquette — coudes, épaules, poignets': 'Racquet sports — elbows, shoulders, wrists',
+      'Gymnastique et sports acrobatiques — poignets, dos, souplesse': 'Gymnastics and acrobatic sports — wrists, back, flexibility',
+      'Musculation et entraînement — récupération, tendons': 'Strength training — recovery, tendons',
+      'Sports d’équipe — entorses, chocs, surmenage': 'Team sports — sprains, impacts, overtraining',
+      'Une attention particulière pour les grimpeurs': 'Special attention for climbers',
+      'Les grimpeurs forment une part importante de ma clientèle sportive. Les coudes (épicondylite), les doigts, les poignets et les épaules, très sollicités en escalade, répondent particulièrement bien à l’acupuncture — en traitement comme en prévention.': 'Climbers make up a large part of my athletic clientele. The elbows (epicondylitis), fingers, wrists and shoulders, heavily used in climbing, respond especially well to acupuncture — both as treatment and prevention.',
       'Approche globale': 'A holistic approach',
       'Au-delà du symptôme, on soutient l’ensemble du corps : douleur, stress, digestion, sommeil et énergie, pour une récupération durable.': 'Beyond the symptom, the whole body is supported: pain, stress, digestion, sleep and energy, for lasting recovery.',
       'Pour tout le monde': 'For everyone',
-      'Grimpeurs récréatifs ou intensifs': 'Recreational or intensive climbers',
+      'Sportifs récréatifs ou de compétition': 'Recreational or competitive athletes',
       'Débutants comme avancés': 'Beginners to advanced',
       'Blessés ou en prévention': 'Injured or for prevention',
-      'Une approche par une ancienne athlète': 'An approach from a former athlete',
-      'Ancienne gymnaste et entraîneuse de gymnastique de haut niveau au Canada, Monique comprend les exigences du corps sportif et l’importance d’une récupération bien menée.': 'A former high-level gymnast and gymnastics coach in Canada, Monique understands the demands of the athletic body and the importance of well-managed recovery.',
+      'Une praticienne qui connaît le sport de l’intérieur': 'A practitioner who knows sport from the inside',
+      'Avant l’acupuncture, Monique a été gymnaste de compétition et entraîneuse de haut niveau au Canada — quatre médailles d’or en 1977. Cette expérience du sport, de l’entraînement et de la blessure nourrit chaque traitement.': 'Before acupuncture, Monique was a competitive gymnast and high-level coach in Canada — four gold medals in 1977. This experience of sport, training and injury informs every treatment.',
+      'Monique St-Arnaud, gymnastique de compétition — The Montreal Star, 1er mars 1977.': 'Monique St-Arnaud, competitive gymnastics — The Montreal Star, March 1, 1977.',
       'La prise de rendez-vous se fait par téléphone. Laissez un message vocal ou texto si je suis en consultation, je vous rappelle personnellement.': 'Appointments are made by phone. Leave a voicemail or text if I am in a session, and I will call you back personally.',
       'Clinique à Montréal — Rosemont et Lacordaire': 'Clinic in Montreal — Rosemont & Lacordaire',
     },

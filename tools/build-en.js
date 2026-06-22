@@ -9,7 +9,7 @@ const SITE = 'https://acupuncturemoniquestarnault.com';
 const PAGES = {
   '/': 'index.html',
   '/blog/': 'blog/index.html',
-  '/acupuncture-escalade/': 'acupuncture-escalade/index.html',
+  '/acupuncture-sport/': 'acupuncture-sport/index.html',
   '/blog/le-printemps/': 'blog/le-printemps/index.html',
   '/blog/les-allergies-du-printemps/': 'blog/les-allergies-du-printemps/index.html',
   '/blog/le-tao/': 'blog/le-tao/index.html',
