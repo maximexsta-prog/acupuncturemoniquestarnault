@@ -18,7 +18,7 @@ const T = sandbox.__T;
 
 const SECTIONS = [
   ['/', 'Home — Acupuncture Monique St-Arnault (Montreal)'],
-  ['/acupuncture-sport/', 'Sports acupuncture (incl. climbing, running, cycling, racquet sports, gymnastics)'],
+  ['/sport/', 'Sports acupuncture (incl. climbing, running, cycling, racquet sports, gymnastics)'],
   ['/blog/le-printemps/', 'Article: Spring, the Season of the Wood Element'],
   ['/blog/les-allergies-du-printemps/', 'Article: Spring Allergies'],
   ['/blog/le-tao/', 'Article: The Tao'],

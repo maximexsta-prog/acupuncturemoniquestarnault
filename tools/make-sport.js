@@ -34,7 +34,7 @@ const suffix = h.slice(footerStart);
 const TITLE = 'L’acupuncture sportive - Acupuncture Monique St-Arnault';
 const DESC = 'Acupuncture sportive à Montréal : tendinites, épicondylites, entorses, douleurs de surutilisation, récupération et prévention des blessures — escalade, course, vélo, sports de raquette et plus. Monique St-Arnault, ancienne gymnaste de compétition, depuis 1990. (514) 778-7975.';
 const HOME_DESC = "Depuis 1990, Monique St-Arnault offre des soins d'acupuncture personnalisés à Montréal. Douleur, stress, digestion, santé des femmes. Clinique Rosemont — (514) 778-7975.";
-const U = 'https://acupuncturemoniquestarnault.com/acupuncture-sport/';
+const U = 'https://acupuncturemoniquestarnault.com/sport/';
 
 // ── head SEO rewrites ────────────────────────────────────────────────────
 prefix = prefix
@@ -44,7 +44,7 @@ prefix = prefix
   .replace('rel="canonical" href="https://acupuncturemoniquestarnault.com/"', `rel="canonical" href="${U}"`)
   .replace('hreflang="fr" href="https://acupuncturemoniquestarnault.com/"', `hreflang="fr" href="${U}"`)
   .replace('hreflang="x-default" href="https://acupuncturemoniquestarnault.com/"', `hreflang="x-default" href="${U}"`)
-  .replace('hreflang="en" href="https://acupuncturemoniquestarnault.com/en/"', 'hreflang="en" href="https://acupuncturemoniquestarnault.com/en/acupuncture-sport/"')
+  .replace('hreflang="en" href="https://acupuncturemoniquestarnault.com/en/"', 'hreflang="en" href="https://acupuncturemoniquestarnault.com/en/sport/"')
   .split('content="https://acupuncturemoniquestarnault.com/"').join(`content="${U}"`);
 
 const LD = [
@@ -198,6 +198,6 @@ const CONTENT = `${STYLE}
 </main>`;
 
 const page = prefix + '\n' + CONTENT + '\n' + suffix;
-fs.mkdirSync('acupuncture-sport', { recursive: true });
-fs.writeFileSync('acupuncture-sport/index.html', page);
-console.log('wrote acupuncture-sport/index.html (' + page.length + ' bytes)');
+fs.mkdirSync('sport', { recursive: true });
+fs.writeFileSync('sport/index.html', page);
+console.log('wrote sport/index.html (' + page.length + ' bytes)');

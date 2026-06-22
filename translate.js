@@ -4,7 +4,7 @@
 
   /* Pages with pre-rendered English versions under /en/ (see tools/build-en.js).
      For these, the pill navigates between URLs; other pages translate in place. */
-  var EN_PAGES = ['/', '/blog/', '/acupuncture-sport/', '/blog/le-printemps/', '/blog/les-allergies-du-printemps/', '/blog/le-tao/'];
+  var EN_PAGES = ['/', '/blog/', '/sport/', '/blog/le-printemps/', '/blog/les-allergies-du-printemps/', '/blog/le-tao/'];
   function curPath() {
     var p = window.location.pathname.replace(/\/index\.html$/, '/');
     if (p.slice(-1) !== '/') p += '/';
@@ -86,7 +86,7 @@
       'Appelez le (514) 778-7975': 'Call (514) 778-7975',
     },
 
-    '/acupuncture-sport/': {
+    '/sport/': {
       'L’acupuncture sportive': 'Sports Acupuncture',
       'Blessures, douleurs et performance — pour tous les sports': 'Injuries, pain and performance — for every sport',
       'depuis 1990': 'since 1990',

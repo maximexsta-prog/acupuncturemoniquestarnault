@@ -13,13 +13,13 @@ Key facts:
 ## Main pages (French)
 
 - [Accueil](https://acupuncturemoniquestarnault.com/): services, approach, practitioner background, booking information
-- [Acupuncture sportive](https://acupuncturemoniquestarnault.com/acupuncture-sport/): sports acupuncture — tendinitis, epicondylitis, sprains, overuse and recovery for climbing (a strong focus), running, cycling, racquet sports, gymnastics and more
+- [Acupuncture sportive](https://acupuncturemoniquestarnault.com/sport/): sports acupuncture — tendinitis, epicondylitis, sprains, overuse and recovery for climbing (a strong focus), running, cycling, racquet sports, gymnastics and more
 - [Blog](https://acupuncturemoniquestarnault.com/blog/): articles on acupuncture and traditional Chinese medicine
 
 ## Main pages (English)
 
 - [Home](https://acupuncturemoniquestarnault.com/en/): services, approach, practitioner background, booking information
-- [Sports Acupuncture](https://acupuncturemoniquestarnault.com/en/acupuncture-sport/): sports acupuncture — tendinitis, epicondylitis, sprains, overuse and recovery for climbing (a strong focus), running, cycling, racquet sports, gymnastics and more
+- [Sports Acupuncture](https://acupuncturemoniquestarnault.com/en/sport/): sports acupuncture — tendinitis, epicondylitis, sprains, overuse and recovery for climbing (a strong focus), running, cycling, racquet sports, gymnastics and more
 - [Blog](https://acupuncturemoniquestarnault.com/en/blog/): articles in English
 
 ## Articles
