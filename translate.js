@@ -4,7 +4,7 @@
 
   /* Pages with pre-rendered English versions under /en/ (see tools/build-en.js).
      For these, the pill navigates between URLs; other pages translate in place. */
-  var EN_PAGES = ['/', '/blog/', '/blog/le-printemps/', '/blog/les-allergies-du-printemps/', '/blog/le-tao/'];
+  var EN_PAGES = ['/', '/blog/', '/acupuncture-escalade/', '/blog/le-printemps/', '/blog/les-allergies-du-printemps/', '/blog/le-tao/'];
   function curPath() {
     var p = window.location.pathname.replace(/\/index\.html$/, '/');
     if (p.slice(-1) !== '/') p += '/';
@@ -17,6 +17,7 @@
   var T = {
     common: {
       'Blog': 'Blog',
+      'Escalade': 'Climbing',
       'Rendez-vous': 'Book Now',
       'Accueil': 'Home',
       'Skip to content': 'Skip to content',
@@ -83,6 +84,31 @@
       'Heures d’appels :': 'Call hours:',
       'Lundi – Vendredi : 9h00 à 20h00': 'Monday – Friday: 9:00 AM to 8:00 PM',
       'Appelez le (514) 778-7975': 'Call (514) 778-7975',
+    },
+
+    '/acupuncture-escalade/': {
+      'L’acupuncture et l’escalade': 'Acupuncture and Climbing',
+      'Douleurs aux coudes, épaules, poignets ?': 'Elbow, shoulder and wrist pain?',
+      'depuis 1990': 'since 1990',
+      'L’escalade sollicite intensément les doigts, les poignets, les coudes et les épaules. Que vous grimpiez en salle ou en falaise, de façon récréative ou intensive, l’acupuncture aide à soulager la douleur, à accélérer la récupération et à prévenir les blessures de surutilisation.': 'Climbing places intense demands on the fingers, wrists, elbows and shoulders. Whether you climb indoors or outdoors, recreationally or intensively, acupuncture helps relieve pain, speed up recovery and prevent overuse injuries.',
+      'Appeler le (514) 778-7975': 'Call (514) 778-7975',
+      'Ce que je traite souvent chez les grimpeurs': 'What I often treat in climbers',
+      'Tensions à la nuque, au dos et aux épaules': 'Tension in the neck, back and shoulders',
+      'Épicondylites et douleurs aux coudes': 'Epicondylitis and elbow pain',
+      'Poignets et doigts sursollicités': 'Overused wrists and fingers',
+      'Stress et anxiété de performance': 'Stress and performance anxiety',
+      'Douleurs ou raideurs qui traînent': 'Lingering pain or stiffness',
+      'Récupération et prévention des blessures': 'Recovery and injury prevention',
+      'Approche globale': 'A holistic approach',
+      'Au-delà du symptôme, on soutient l’ensemble du corps : douleur, stress, digestion, sommeil et énergie, pour une récupération durable.': 'Beyond the symptom, the whole body is supported: pain, stress, digestion, sleep and energy, for lasting recovery.',
+      'Pour tout le monde': 'For everyone',
+      'Grimpeurs récréatifs ou intensifs': 'Recreational or intensive climbers',
+      'Débutants comme avancés': 'Beginners to advanced',
+      'Blessés ou en prévention': 'Injured or for prevention',
+      'Une approche par une ancienne athlète': 'An approach from a former athlete',
+      'Ancienne gymnaste et entraîneuse de gymnastique de haut niveau au Canada, Monique comprend les exigences du corps sportif et l’importance d’une récupération bien menée.': 'A former high-level gymnast and gymnastics coach in Canada, Monique understands the demands of the athletic body and the importance of well-managed recovery.',
+      'La prise de rendez-vous se fait par téléphone. Laissez un message vocal ou texto si je suis en consultation, je vous rappelle personnellement.': 'Appointments are made by phone. Leave a voicemail or text if I am in a session, and I will call you back personally.',
+      'Clinique à Montréal — Rosemont et Lacordaire': 'Clinic in Montreal — Rosemont & Lacordaire',
     },
 
     '/blog/': {
