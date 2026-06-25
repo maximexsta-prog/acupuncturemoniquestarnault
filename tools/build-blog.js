@@ -139,8 +139,9 @@ function main() {
       .replace(`rel="canonical" href="${SITE}/"`, `rel="canonical" href="${p.url}"`)
       .replace(`hreflang="fr" href="${SITE}/"`, `hreflang="fr" href="${p.url}"`)
       .replace(`hreflang="x-default" href="${SITE}/"`, `hreflang="x-default" href="${p.url}"`)
-      .split(`content="${SITE}/"`).join(`content="${p.url}"`)
-      .replace(/\s*<link rel="alternate" hreflang="en"[^>]*>/g, '');
+      .split(`content="${SITE}/"`).join(`content="${p.url}"`);
+    if (p.enUrl) out = out.replace(`hreflang="en" href="${SITE}/en/"`, `hreflang="en" href="${p.enUrl}"`);
+    else out = out.replace(/\s*<link rel="alternate" hreflang="en"[^>]*>/g, '');
     if (p.image) out = out.replace(/(og:image" content=")[^"]*(")/g, `$1${p.image}$2`).replace(/(twitter:image" content=")[^"]*(")/g, `$1${p.image}$2`);
     if (p.noindex) out = out.replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex, follow">');
     out = out.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
@@ -164,6 +165,7 @@ function main() {
       const image = data.image || '';
       const url = `${SITE}/blog/${slug}/`;
       const noindex = /^(1|true|yes|oui)$/i.test(data.noindex || '');
+      const enUrl = /^(1|true|yes|oui)$/i.test(data.en || '') ? `${SITE}/en/blog/${slug}/` : '';
       const tags = (data.tags || '').split(',').map((t) => t.trim()).filter(Boolean);
       const ld = [
         { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: title, description: desc, inLanguage: 'fr-CA', datePublished: date || undefined, dateModified: date || undefined, url, image: image || undefined, author: { '@type': 'Person', name: 'Monique St-Arnault' }, publisher: orgLD, mainEntityOfPage: { '@type': 'WebPage', '@id': url } },
@@ -181,7 +183,7 @@ function main() {
 </main>`;
       const dir = path.join('blog', slug);
       fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(path.join(dir, 'index.html'), rewriteHead({ title, desc, url, image, noindex, ld }) + '\n' + content + '\n' + SUFFIX);
+      fs.writeFileSync(path.join(dir, 'index.html'), rewriteHead({ title, desc, url, image, noindex, enUrl, ld }) + '\n' + content + '\n' + SUFFIX);
       console.log(`build-blog: wrote blog/${slug}/index.html`);
       built++;
     } catch (e) { console.warn('build-blog: SKIP ' + f + ' — ' + e.message); }
