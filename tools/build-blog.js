@@ -83,22 +83,24 @@ function readMeta(html) {
 const STYLE_POST = `<style>
 .elementor-718 .header.e-con{background-color:var(--e-global-color-primary);margin:0!important}
 .elementor-718 .elementor-element-4fdf38d{display:none!important}
-.msa-article{max-width:760px;margin:0 auto;padding:48px 20px;color:var(--e-global-color-text);font-size:1.08em;line-height:1.7}
-.msa-article h1{color:var(--e-global-color-primary);font-size:2.1em;line-height:1.2;margin:0 0 10px}
-.msa-article .meta{color:#9aa6a0;font-style:italic;margin:0 0 26px}
-.msa-article h2{color:var(--e-global-color-primary);margin:38px 0 14px}
-.msa-article h3{color:var(--e-global-color-primary);margin:28px 0 10px}
-.msa-article p{margin:0 0 18px}
-.msa-article a{color:var(--e-global-color-primary)!important;text-decoration:underline!important;text-transform:none!important;letter-spacing:normal!important}
-.msa-article img{max-width:100%;height:auto;border-radius:8px;display:block;margin:24px auto}
-.msa-article blockquote{border-left:4px solid #5d7d3a;margin:24px 0;padding:8px 22px;color:#5d7d3a;background:#fff;border-radius:0 8px 8px 0;font-style:italic}
-.msa-article ul,.msa-article ol{padding-left:22px;margin:0 0 18px}
-.msa-article li{margin:8px 0}
-.msa-article hr{border:0;border-top:1px solid var(--e-global-color-ae87854);margin:34px 0}
-.msa-article code{background:#fff;border:1px solid var(--e-global-color-ae87854);border-radius:5px;padding:1px 6px;font-size:.92em}
-.msa-article .backlink{display:inline-block;margin-bottom:24px;color:var(--e-global-color-primary)!important;text-decoration:none!important;font-family:"Jost",sans-serif}
-.msa-article .tags{margin-top:36px;font-size:.9em;color:#9aa6a0;font-style:italic}
-@media(max-width:767px){.msa-article{padding:28px 16px;font-size:1.04em}}
+.msa-hero{height:360px;background:var(--e-global-color-primary) center/cover no-repeat}
+.msa-article{max-width:780px;margin:0 auto;padding:54px 22px;color:var(--e-global-color-text);font-family:var( --e-global-typography-text-font-family ),"Jost",sans-serif;font-size:1.12em;line-height:1.8}
+.msa-article .backlink{display:inline-block;margin-bottom:26px;color:var(--e-global-color-primary)!important;text-decoration:none!important;font-family:var( --e-global-typography-text-font-family ),"Jost",sans-serif;font-size:.9em}
+.msa-article h1{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:var(--e-global-color-primary);font-size:2.5em;line-height:1.18;margin:0 0 12px}
+.msa-article .meta{color:#a9b2a8;font-size:.82em;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}
+.msa-article .rule{width:54px;height:3px;background:var(--e-global-color-secondary);border:0;margin:0 0 32px}
+.msa-article h2{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:var(--e-global-color-primary);font-size:1.72em;line-height:1.25;margin:44px 0 14px}
+.msa-article h3{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:var(--e-global-color-primary);font-size:1.34em;margin:32px 0 10px}
+.msa-article p{margin:0 0 20px}
+.msa-article a{color:var(--e-global-color-primary)!important;text-decoration:underline!important;text-decoration-color:var(--e-global-color-secondary)!important;text-underline-offset:3px;text-transform:none!important;letter-spacing:normal!important}
+.msa-article img{max-width:100%;height:auto;border-radius:14px;display:block;margin:32px auto;box-shadow:0 14px 32px rgba(24,42,35,.12)}
+.msa-article blockquote{border-left:4px solid var(--e-global-color-secondary);margin:28px 0;padding:6px 24px;color:var(--e-global-color-primary);font-style:italic;font-size:1.05em}
+.msa-article ul,.msa-article ol{padding-left:24px;margin:0 0 20px}
+.msa-article li{margin:9px 0}
+.msa-article hr{border:0;border-top:1px solid var(--e-global-color-ae87854);margin:38px 0}
+.msa-article code{background:var(--e-global-color-01449a1);border:1px solid var(--e-global-color-ae87854);border-radius:5px;padding:1px 6px;font-size:.92em}
+.msa-article .tags{margin-top:42px;padding-top:22px;border-top:1px solid var(--e-global-color-ae87854);font-size:.9em;color:#a9b2a8}
+@media(max-width:767px){.msa-article{padding:30px 16px;font-size:1.06em}.msa-hero{height:220px}.msa-article h1{font-size:2em}}
 </style>`;
 const STYLE_BLOG = `<style>
 .elementor-718 .header.e-con{background-color:var(--e-global-color-primary);margin:0!important}
@@ -171,12 +173,15 @@ function main() {
         { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: title, description: desc, inLanguage: 'fr-CA', datePublished: date || undefined, dateModified: date || undefined, url, image: image || undefined, author: { '@type': 'Person', name: 'Monique St-Arnault' }, publisher: orgLD, mainEntityOfPage: { '@type': 'WebPage', '@id': url } },
         { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Blogue', item: SITE + '/blog/' }, { '@type': 'ListItem', position: 3, name: title, item: url }] },
       ];
+      const hero = image ? `<div class="msa-hero" style="background-image:url('${image.replace(/'/g, '%27')}')"></div>` : '';
       const content = `${STYLE_POST}
+${hero}
 <main id="content" class="msa-article">
   <a class="backlink" href="/blog/">← Tous les articles</a>
   <article>
     <h1>${esc(title)}</h1>
     ${date ? `<p class="meta">${esc(frDate(date))}</p>` : ''}
+    <hr class="rule">
     ${renderMarkdown(body)}
     ${tags.length ? `<p class="tags">${tags.map((t) => '#' + esc(t)).join('&nbsp; &nbsp;')}</p>` : ''}
   </article>
