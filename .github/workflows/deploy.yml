@@ -27,8 +27,15 @@ jobs:
         run: node tools/check-translations.js
         continue-on-error: true
 
-      - name: Check internal links
+      # Rapport seulement, jamais bloquant : le 2026-09-14 le simple
+      # telechargement du binaire lychee a echoue (CDN GitHub, code 22) et a
+      # fige la publication du site pendant 6 jours, sans qu'aucun lien n'ait
+      # meme ete verifie. Un outil tiers indisponible ne doit pas pouvoir
+      # empecher la mise en ligne. Meme traitement que le controle de
+      # traduction ci-dessus.
+      - name: Check internal links (warning only)
         uses: lycheeverse/lychee-action@v2
+        continue-on-error: true
         with:
           args: --offline --root-dir "$GITHUB_WORKSPACE" "**/*.html"
           fail: true
