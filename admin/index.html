@@ -87,12 +87,12 @@
 /* L'adresse de l'atelier n'est PAS ecrite dans cette page : elle est chiffree
    (AES-GCM, cle derivee du mot de passe par PBKDF2). Sans le bon mot de passe,
    le code source ne revele donc ni le mot de passe, ni la destination.
-   Regenerer apres un changement de mot de passe : scratchpad/genadmin.py */
+   Regenerer apres un changement de mot de passe : tools/genadmin.py */
 (function () {
   var COFFRE = {
-    salt: 'CWbgG20pWT+DGIyEOid3xA==',
-    iv:   '4PUh11cnyS1MDxDd',
-    ct:   'fId6pfRKXGcz7P5n+fg/zFcTl0eyHENKaFsPKqnG6oomduEZQNDd+OU2lvDv70rASsLUUKHoOw==',
+    salt: 'OR5r4XDLO/eJ5Yf+inGFiA==',
+    iv:   'DZ/5y1PAmia1C7ZQ',
+    ct:   'zpHmoP8sfydrnS2wPbUSDpH7W2bfSN+m4qvSKabGTw4PBqw5bnz8GYPYzyOfNYPHu2VaV3oUew==',
     iter: 310000
   };
 
