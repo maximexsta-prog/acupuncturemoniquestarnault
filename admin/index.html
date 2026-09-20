@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Accès — Acupuncture Monique St-Arnault</title>
+<link rel="icon" href="/favicon-flower.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Federo&family=Jost:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --vert:#182A23; --or:#E9B88A; --creme:#FAF5EC;
+    --trait:rgba(255,255,255,.18); --erreur:#E88A8A;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background:var(--vert); color:var(--creme);
+    font-family:Jost,"Segoe UI",system-ui,sans-serif;
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+  }
+  .carte{ width:100%; max-width:380px; text-align:center }
+
+  .fleur{ color:var(--or); margin-bottom:22px }
+
+  h1{ font-family:Federo,Georgia,serif; font-weight:400; margin:0 0 6px;
+      font-size:26px; letter-spacing:.02em }
+  .sous{ margin:0 0 28px; font-size:14px; color:rgba(250,245,236,.6) }
+
+  form{ display:flex; flex-direction:column; gap:12px }
+  label{ text-align:left; font-size:12px; letter-spacing:.1em;
+         text-transform:uppercase; color:var(--or) }
+  input{
+    width:100%; padding:13px 15px; font:400 16px Jost,sans-serif;
+    color:var(--creme); background:rgba(255,255,255,.06);
+    border:1px solid var(--trait); border-radius:8px;
+  }
+  input:focus{ outline:2px solid var(--or); outline-offset:2px;
+               border-color:transparent }
+  button{
+    padding:13px 15px; font:600 13px/1 Jost,sans-serif; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--vert); background:var(--or);
+    border:0; border-radius:8px; cursor:pointer; transition:filter .18s;
+  }
+  button:hover:not(:disabled){ filter:brightness(1.08) }
+  button:disabled{ opacity:.55; cursor:default }
+  button:focus-visible{ outline:2px solid var(--creme); outline-offset:2px }
+
+  .msg{ min-height:20px; font-size:13.5px; margin:2px 0 0 }
+  .msg.err{ color:var(--erreur) }
+  .msg.ok{ color:var(--or) }
+
+  .retour{ display:inline-block; margin-top:26px; font-size:13px;
+           color:rgba(250,245,236,.5); text-decoration:none }
+  .retour:hover{ color:var(--creme) }
+
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important} }
+</style>
+</head>
+<body>
+  <main class="carte">
+    <svg class="fleur" width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M23 6c5 6 5 13 0 19-5-6-5-13 0-19z"/>
+        <path d="M9 17c7 1 12 6 14 13-7-1-12-6-14-13z"/>
+        <path d="M37 17c-7 1-12 6-14 13 7-1 12-6 14-13z"/>
+        <circle cx="23" cy="34" r="6"/>
+      </g>
+    </svg>
+
+    <h1>Accès réservé</h1>
+    <p class="sous">Espace de rédaction</p>
+
+    <form id="f" autocomplete="off">
+      <label for="mdp">Mot de passe</label>
+      <input id="mdp" name="mdp" type="password" autocomplete="current-password"
+             autocapitalize="off" autocorrect="off" spellcheck="false" required>
+      <button id="go" type="submit">Entrer</button>
+      <p class="msg" id="msg" role="status" aria-live="polite"></p>
+    </form>
+
+    <a class="retour" href="/">&larr; Retour au site</a>
+  </main>
+
+<script>
+/* L'adresse de l'atelier n'est PAS ecrite dans cette page : elle est chiffree
+   (AES-GCM, cle derivee du mot de passe par PBKDF2). Sans le bon mot de passe,
+   le code source ne revele donc ni le mot de passe, ni la destination.
+   Regenerer apres un changement de mot de passe : scratchpad/genadmin.py */
+(function () {
+  var COFFRE = {
+    salt: 'CWbgG20pWT+DGIyEOid3xA==',
+    iv:   '4PUh11cnyS1MDxDd',
+    ct:   'fId6pfRKXGcz7P5n+fg/zFcTl0eyHENKaFsPKqnG6oomduEZQNDd+OU2lvDv70rASsLUUKHoOw==',
+    iter: 310000
+  };
+
+  var f = document.getElementById('f'),
+      champ = document.getElementById('mdp'),
+      bouton = document.getElementById('go'),
+      msg = document.getElementById('msg');
+
+  function octets(b64) {
+    var s = atob(b64), a = new Uint8Array(s.length);
+    for (var i = 0; i < s.length; i++) a[i] = s.charCodeAt(i);
+    return a;
+  }
+
+  function dire(texte, classe) { msg.textContent = texte; msg.className = 'msg ' + (classe || ''); }
+
+  if (!window.crypto || !window.crypto.subtle) {
+    dire('Ce navigateur ne peut pas ouvrir cette page.', 'err');
+    bouton.disabled = true;
+    return;
+  }
+
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var mdp = champ.value;
+    if (!mdp) return;
+
+    bouton.disabled = true;
+    dire('Vérification…');
+
+    crypto.subtle.importKey('raw', new TextEncoder().encode(mdp), 'PBKDF2', false, ['deriveKey'])
+      .then(function (base) {
+        return crypto.subtle.deriveKey(
+          { name: 'PBKDF2', salt: octets(COFFRE.salt), iterations: COFFRE.iter, hash: 'SHA-256' },
+          base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+      })
+      .then(function (cle) {
+        return crypto.subtle.decrypt({ name: 'AES-GCM', iv: octets(COFFRE.iv) }, cle, octets(COFFRE.ct));
+      })
+      .then(function (clair) {
+        var url = new TextDecoder().decode(clair);
+        if (!/^https:\/\//.test(url)) throw new Error('destination invalide');
+        dire('Ouverture de l’atelier…', 'ok');
+        location.href = url;
+      })
+      .catch(function () {
+        /* AES-GCM echoue a dechiffrer si le mot de passe est faux : pas besoin
+           de stocker un hachage a comparer, l'echec EST la verification. */
+        dire('Mot de passe incorrect.', 'err');
+        bouton.disabled = false;
+        champ.value = '';
+        champ.focus();
+      });
+  });
+
+  champ.focus();
+})();
+</script>
+</body>
+</html>

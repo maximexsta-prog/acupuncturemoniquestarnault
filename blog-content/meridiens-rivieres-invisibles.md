@@ -1,5 +1,5 @@
 ---
-titre: Les méridiens : ces rivières invisibles qui nous traversent
+titre: Les méridiens : un voyage au cœur d’une carte ancienne
 description: Monique Starnault, acupunctrice à Montréal depuis 1990, explique avec ses mots simples ce que sont les méridiens en médecine traditionnelle chinoise.
 date: 2026-06-26
 slug: meridiens-rivieres-invisibles
