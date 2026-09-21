@@ -9,8 +9,6 @@ tags: Tao, Médecine chinoise, Qi
 image: https://acupuncturemoniquestarnault.com/wp-content/uploads/2026/04/maxresdefault-1.jpg
 en: true
 ---
-*La voie où s’acheminent les mystères de la vie.*
-
 La difficulté d’un tel exercice vient du fait que dans tous les phénomènes qui nous entourent – la nature, les saisons, la vie – rien n’est jamais statique, tout est en mouvement. Un instant on croit avoir trouvé les réponses à nos questions et l’instant d’après tout redevient confus, nous donnant ainsi l’impression de vivre dans un monde aussi bien illusoire qu’éphémère. Et pendant tout ce temps, malgré cette sensation d’éternel recommencement, la petite étincelle qui scintille à l’intérieur de soi nous donne l’espoir et le courage de pousser plus loin nos recherches, de toujours aller de l’avant !
 
 ## Si la vie m’était contée
