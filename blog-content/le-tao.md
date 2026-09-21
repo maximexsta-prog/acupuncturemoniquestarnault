@@ -3,6 +3,8 @@ titre: Le Tao
 description: Le Tao, voie des mystères de la vie. Monique St-Arnault explore les fondements philosophiques de la médecine traditionnelle chinoise.
 date: 2026-04-19
 slug: le-tao
+sous_titre: la voie où s’achemine les mystères de la vie
+categorie: Feng Shui
 tags: Tao, Médecine chinoise, Qi
 image: https://acupuncturemoniquestarnault.com/wp-content/uploads/2026/04/maxresdefault-1.jpg
 en: true

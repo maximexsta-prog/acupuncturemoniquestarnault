@@ -42,6 +42,10 @@ listes, citations et sous-titres fonctionnent.
   pour Google (optionnel ; sinon le titre de l'article est utilisé).
 - `auteur` — **Monique St-Arnault par défaut**, rien à écrire. À remplir
   seulement si un article est signé par quelqu'un d'autre.
+- `sous_titre` — une ligne sous le titre, dans la grande image du haut
+  (optionnel).
+- `categorie` — le mot affiché à côté de la date, par exemple « Feng Shui »
+  (optionnel ; sinon le premier mot-clé est utilisé).
 
 ## Publier
 Ajoutez/modifiez un `.md` ici → `git commit` + `git push` → l'article paraît en

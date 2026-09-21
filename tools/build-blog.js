@@ -141,6 +141,35 @@ const STYLE_BLOG = `<style>
 .msa-blog .post .date{color:#9aa6a0;font-style:italic;font-size:.9em;margin:0 0 10px}
 .msa-blog .post .excerpt{color:var(--e-global-color-text);line-height:1.6;margin:0}
 @media(max-width:680px){.msa-blog .post{flex-direction:column}.msa-blog .post .thumb{flex:0 0 180px;width:100%}}
+/* ── Mise en page d'article : couverture titree + deux colonnes ───────── */
+.msa-cover{position:relative;min-height:470px;display:flex;align-items:center;justify-content:center;text-align:center;padding:130px 22px 58px;background:var(--e-global-color-primary) center/cover no-repeat}
+.msa-cover::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,42,35,.60),rgba(24,42,35,.50))}
+.msa-cover .in{position:relative;max-width:860px}
+.msa-cover h1{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:#fff;font-size:clamp(1.9em,5vw,3.3em);line-height:1.14;letter-spacing:.06em;text-transform:uppercase;margin:0;text-wrap:balance}
+.msa-cover .sub{color:rgba(255,255,255,.88);font-size:clamp(1em,2.2vw,1.3em);line-height:1.5;margin:18px 0 0}
+.msa-cover .fil{color:rgba(255,255,255,.82);font-size:.92em;margin:26px 0 0;display:flex;flex-wrap:wrap;gap:8px 12px;justify-content:center;align-items:center}
+.msa-cover .fil i{font-style:normal;color:var(--e-global-color-193b8aa)}
+.msa-wrap{max-width:1180px;margin:0 auto;padding:62px 22px 74px;display:grid;grid-template-columns:minmax(0,1fr) 328px;gap:54px;align-items:start}
+.msa-wrap .msa-article{max-width:none;margin:0;padding:0}
+@media(max-width:940px){.msa-wrap{grid-template-columns:1fr;gap:46px;padding-top:44px}}
+.msa-side{display:flex;flex-direction:column;gap:30px}
+.msa-side h2{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:var(--e-global-color-primary);font-size:1.45em;margin:0 0 16px}
+.side-search{display:flex;background:#fff;border:1px solid var(--e-global-color-ae87854)}
+.side-search input{flex:1;min-width:0;border:0;padding:15px 16px;font:400 1em Jost,sans-serif;color:var(--e-global-color-primary);background:transparent}
+.side-search input:focus{outline:2px solid var(--e-global-color-193b8aa);outline-offset:-2px}
+.side-search button{border:0;background:var(--e-global-color-193b8aa);color:var(--e-global-color-primary);padding:0 20px;cursor:pointer;font-size:1.15em;line-height:1}
+.side-post{display:block;position:relative;min-height:188px;text-decoration:none!important;background:var(--e-global-color-primary) center/cover no-repeat;margin-bottom:18px}
+.side-post::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,42,35,.12),rgba(24,42,35,.80))}
+.side-post .t{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;min-height:188px;padding:20px}
+.side-post .t b{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:#fff;font-size:1.1em;line-height:1.26;text-transform:uppercase;letter-spacing:.03em}
+.side-post .t span{color:rgba(255,255,255,.8);font-size:.76em;letter-spacing:.1em;text-transform:uppercase;margin-top:9px}
+.side-cats{background:var(--e-global-color-primary);padding:26px 28px}
+.side-cats h2{color:#fff;border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:14px}
+.side-cats ul{list-style:none;margin:0;padding:0}
+.side-cats li{margin:15px 0}
+.side-cats a{color:rgba(255,255,255,.9)!important;text-decoration:none!important;font-size:.83em;letter-spacing:.11em;text-transform:uppercase;display:flex;gap:11px}
+.side-cats a::before{content:"→";color:var(--e-global-color-193b8aa)}
+.side-cats a:hover{color:#fff!important}
 </style>`;
 
 function main() {
@@ -178,6 +207,42 @@ function main() {
   // ── 1) build a page for each Markdown post ───────────────────────────────
   const legacyDates = (() => { try { return JSON.parse(fs.readFileSync(path.join(SRC, 'legacy-posts.json'), 'utf8')); } catch (e) { return {}; } })();
   const files = fs.readdirSync(SRC).filter((f) => f.endsWith('.md') && f.toLowerCase() !== 'readme.md');
+
+  const enSlug = (v) => String(v).trim().toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '');
+
+  // La barre laterale de CHAQUE article montre les plus recents : il faut donc
+  // connaitre toute la liste avant de construire la premiere page.
+  const metas = [];
+  for (const f of files) {
+    try {
+      const { data } = parseFront(fs.readFileSync(path.join(SRC, f), 'utf8'));
+      if ((data.status || '').toLowerCase() === 'draft') continue;
+      if (/^(1|true|yes|oui)$/i.test(data.noindex || '')) continue;
+      metas.push({ slug: enSlug(data.slug || f.replace(/\.md$/i, '')), title: data.titre || data.title || '',
+                   date: data.date || '', image: data.image || '' });
+    } catch (e) { /* fichier illisible : ignore */ }
+  }
+  metas.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+  const CATEGORIES = [['problemes-saisonniers', 'Problèmes saisonniers'], ['medecine-chinoise', 'Médecine chinoise'],
+                      ['feng-shui', 'Feng Shui'], ['acupuncture', 'Acupuncture'], ['5-elements', '5 Éléments']];
+
+  function barreLaterale(slugCourant) {
+    const recents = metas.filter((m) => m.slug !== slugCourant).slice(0, 2);
+    const cartes = recents.map((p) => {
+      const fond = p.image ? ` style="background-image:url('${p.image.replace(/'/g, '%27')}')"` : '';
+      return `<a class="side-post" href="/blog/${p.slug}/"${fond}><span class="t"><b>${esc(p.title)}</b>`
+           + `${p.date ? `<span>${esc(frDate(p.date))}</span>` : ''}</span></a>`;
+    }).join('');
+    return `<section><form class="side-search" action="/blog/" method="get" role="search">`
+      + `<input type="search" name="q" placeholder="Rechercher…" aria-label="Rechercher un article">`
+      + `<button type="submit" aria-label="Lancer la recherche">&#9906;</button></form></section>`
+      + (cartes ? `<section><h2>Articles récents</h2>${cartes}</section>` : '')
+      + `<section class="side-cats"><h2>Catégorie</h2><ul>`
+      + CATEGORIES.map(([s, n]) => `<li><a href="/category/${s}/">${esc(n)}</a></li>`).join('')
+      + `</ul></section>`;
+  }
+
   let built = 0;
   for (const f of files) {
     try {
@@ -199,20 +264,30 @@ function main() {
         { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: title, description: desc, inLanguage: 'fr-CA', datePublished: date || undefined, dateModified: date || undefined, url, image: image || undefined, author: { '@type': 'Person', name: auteur }, publisher: orgLD, mainEntityOfPage: { '@type': 'WebPage', '@id': url } },
         { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Blogue', item: SITE + '/blog/' }, { '@type': 'ListItem', position: 3, name: title, item: url }] },
       ];
-      const hero = `<div class="msa-hero" style="background-image:url('${HERO_AMBIANCE.replace(/'/g, '%27')}')"></div>`;
+      // Le titre, le sous-titre et le fil « auteur > date > categorie » vivent
+      // dans la couverture, en surimpression de l'image d'ambiance.
+      const sousTitre = (data.sous_titre || data.soustitre || data.subtitle || '').trim();
+      const categorie = (data.categorie || data.category || tags[0] || '').trim();
+      const fil = [esc(auteur), date ? esc(frDate(date)) : '', categorie ? esc(categorie) : '']
+        .filter(Boolean).join(' <i>›</i> ');
       const content = `${STYLE_POST}
-${hero}
-<main id="content" class="msa-article">
-  <a class="backlink" href="/blog/">← Tous les articles</a>
-  <article>
+<header class="msa-cover" style="background-image:url('${HERO_AMBIANCE.replace(/'/g, '%27')}')">
+  <div class="in">
     <h1>${esc(title)}</h1>
-    <p class="byline">Par ${esc(auteur)}</p>
-    ${date ? `<p class="meta">${esc(frDate(date))}</p>` : ''}
-    <hr class="rule">
-    ${insererImageArticle(renderMarkdown(body), image, data.image_alt || data.alt || title)}
-    ${tags.length ? `<p class="tags">${tags.map((t) => '#' + esc(t)).join('&nbsp; &nbsp;')}</p>` : ''}
-  </article>
-</main>`;
+    ${sousTitre ? `<p class="sub">${esc(sousTitre)}</p>` : ''}
+    <p class="fil">${fil}</p>
+  </div>
+</header>
+<div class="msa-wrap">
+  <main id="content" class="msa-article">
+    <a class="backlink" href="/blog/">← Tous les articles</a>
+    <article>
+      ${insererImageArticle(renderMarkdown(body), image, data.image_alt || data.alt || title)}
+      ${tags.length ? `<p class="tags">${tags.map((t) => '#' + esc(t)).join('&nbsp; &nbsp;')}</p>` : ''}
+    </article>
+  </main>
+  <aside class="msa-side">${barreLaterale(slug)}</aside>
+</div>`;
       const dir = path.join('blog', slug);
       fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(path.join(dir, 'index.html'), rewriteHead({ title, desc, url, image, noindex, enUrl, ld }) + '\n' + content + '\n' + SUFFIX);
@@ -254,7 +329,26 @@ ${hero}
 ${cards}
   </div>
 </main>`;
-    fs.writeFileSync(path.join('blog', 'index.html'), head + '\n' + body + '\n' + SUFFIX);
+    const RECHERCHE = `<script>
+(function(){
+  // Filtre la liste selon ?q= — le champ de recherche de la barre laterale
+  // pointe ici. Tout se passe dans le navigateur : aucun serveur necessaire.
+  var q=(new URLSearchParams(location.search).get('q')||'').trim().toLowerCase();
+  if(!q) return;
+  var liste=document.querySelector('.msa-blog'); if(!liste) return;
+  var n=0;
+  liste.querySelectorAll('.post').forEach(function(p){
+    var ok=p.textContent.toLowerCase().indexOf(q)>=0;
+    p.hidden=!ok; if(ok) n++;
+  });
+  var avis=document.createElement('p');
+  avis.style.cssText='margin:0 0 26px;color:var(--e-global-color-text)';
+  avis.textContent=n?(n+' article'+(n>1?'s':'')+' pour « '+q+' »')
+                    :('Aucun article pour « '+q+' ».');
+  liste.parentNode.insertBefore(avis,liste);
+})();
+</script>`;
+    fs.writeFileSync(path.join('blog', 'index.html'), head + '\n' + body + '\n' + RECHERCHE + '\n' + SUFFIX);
     console.log(`build-blog: wrote blog/index.html (${posts.length} posts listed)`);
   } catch (e) { console.warn('build-blog: index not rewritten — ' + e.message); }
 
