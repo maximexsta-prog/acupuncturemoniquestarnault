@@ -4,7 +4,7 @@ description: Le printemps selon la médecine chinoise : saison du Bois et du mou
 date: 2026-04-19
 slug: le-printemps
 tags: 5 éléments, Médecine chinoise, Printemps
-image: https://acupuncturemoniquestarnault.com/wp-content/uploads/2026/04/flowers-276014_1920-1.jpg
+image: /wp-content/uploads/2026/04/flowers-276014_1920-1.jpg
 en: true
 ---
 Après un hiver qui n’en finit plus, le printemps est la saison la plus attendue de toutes. La première vraie journée de printemps nous apparaît comme un cadeau du ciel, presque un miracle!

@@ -6,7 +6,8 @@ slug: le-tao
 sous_titre: la voie où s’achemine les mystères de la vie
 categorie: Feng Shui
 tags: Tao, Médecine chinoise, Qi
-image: https://acupuncturemoniquestarnault.com/wp-content/uploads/2026/04/maxresdefault-1.jpg
+image: /images/blog/cinq-elements.webp
+image_alt: Diagramme des cinq éléments — Bois, Feu, Terre, Métal et Eau — reliés par le cycle d’engendrement et le cycle de contrôle
 en: true
 ---
 La difficulté d’un tel exercice vient du fait que dans tous les phénomènes qui nous entourent – la nature, les saisons, la vie – rien n’est jamais statique, tout est en mouvement. Un instant on croit avoir trouvé les réponses à nos questions et l’instant d’après tout redevient confus, nous donnant ainsi l’impression de vivre dans un monde aussi bien illusoire qu’éphémère. Et pendant tout ce temps, malgré cette sensation d’éternel recommencement, la petite étincelle qui scintille à l’intérieur de soi nous donne l’espoir et le courage de pousser plus loin nos recherches, de toujours aller de l’avant !

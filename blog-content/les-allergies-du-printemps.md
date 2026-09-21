@@ -4,7 +4,7 @@ description: Les allergies saisonnières vues par la médecine traditionnelle ch
 date: 2026-04-19
 slug: les-allergies-du-printemps
 tags: Allergies, Médecine chinoise, Printemps
-image: https://acupuncturemoniquestarnault.com/images/blog/allergies-printemps.webp
+image: /images/blog/allergies-printemps.webp
 en: true
 ---
 Le retour du printemps apporte souvent lumière, douceur et renouveau. Mais pour plusieurs, cette saison s’accompagne aussi de symptômes inconfortables: éternuements, nez qui coule, congestion, démangeaisons, yeux irrités ou sensation d’encombrement.
