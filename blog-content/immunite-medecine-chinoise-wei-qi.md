@@ -3,6 +3,7 @@ titre: Renforcer son immunité selon la médecine chinoise : le Wei Qi
 description: Découvrez le Wei Qi, l'énergie de défense en médecine chinoise, et des gestes simples pour soutenir votre immunité au fil des saisons.
 date: 2026-09-21
 slug: immunite-medecine-chinoise-wei-qi
+image: /images/blog/immunite-wei-qi.webp
 tags: médecine chinoise,Wei Qi,système immunitaire,énergie défensive,cinq éléments,acupuncture,saisons,immunité naturelle
 ---
 Chaque automne, dans mon cabinet, je vois revenir les mêmes visages un peu fatigués. « Je tombe malade dès qu'il fait froid », me dit-on souvent. En médecine traditionnelle chinoise, on ne parle pas exactement de système immunitaire comme le fait la médecine occidentale. On parle plutôt d'une énergie de protection, une sorte de manteau invisible qui nous entoure. Laissez-moi vous en parler doucement.
