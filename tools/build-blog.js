@@ -168,7 +168,9 @@ const STYLE_BLOG = `<style>
 .msa-blog .post .thumb{flex:0 0 220px;min-height:170px;background:#eef0ec center/cover no-repeat}
 .msa-blog .post .body{padding:24px 26px}
 .msa-blog .post h2{color:var(--e-global-color-primary)!important;margin:0 0 8px;font-size:1.45em;line-height:1.25}
-.msa-blog .post .date{color:#9aa6a0;font-style:italic;font-size:.9em;margin:0 0 10px}
+.msa-blog .post .date{color:#9aa6a0;font-style:italic;font-size:.9em;margin:0 0 10px;text-transform:none}
+/* Le theme met en majuscules tout ce bloc : illisible pour du texte courant. */
+.msa-blog .post .excerpt,.msa-blog .post .date{text-transform:none}
 .msa-blog .post .excerpt{color:var(--e-global-color-text);line-height:1.6;margin:0}
 @media(max-width:680px){.msa-blog .post{flex-direction:column}.msa-blog .post .thumb{flex:0 0 180px;width:100%}}
 </style>`;
