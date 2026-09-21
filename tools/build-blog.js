@@ -106,6 +106,7 @@ const STYLE_POST = `<style>
 .msa-article{max-width:780px;margin:0 auto;padding:54px 22px;color:var(--e-global-color-text);font-family:var( --e-global-typography-text-font-family ),"Jost",sans-serif;font-size:1.12em;line-height:1.8}
 .msa-article .backlink{display:inline-block;margin-bottom:26px;color:var(--e-global-color-primary)!important;text-decoration:none!important;font-family:var( --e-global-typography-text-font-family ),"Jost",sans-serif;font-size:.9em}
 .msa-article h1{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:var(--e-global-color-primary);font-size:2.5em;line-height:1.18;margin:0 0 12px}
+.msa-article .byline{color:var(--e-global-color-primary);font-size:.92em;margin:0 0 4px}
 .msa-article .meta{color:#a9b2a8;font-size:.82em;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}
 .msa-article .rule{width:54px;height:3px;background:var(--e-global-color-secondary);border:0;margin:0 0 32px}
 .msa-article h2{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:var(--e-global-color-primary);font-size:1.72em;line-height:1.25;margin:44px 0 14px}
@@ -205,7 +206,8 @@ ${hero}
   <a class="backlink" href="/blog/">← Tous les articles</a>
   <article>
     <h1>${esc(title)}</h1>
-    <p class="meta">${esc(auteur)}${date ? ` &middot; ${esc(frDate(date))}` : ''}</p>
+    <p class="byline">Par ${esc(auteur)}</p>
+    ${date ? `<p class="meta">${esc(frDate(date))}</p>` : ''}
     <hr class="rule">
     ${insererImageArticle(renderMarkdown(body), image, data.image_alt || data.alt || title)}
     ${tags.length ? `<p class="tags">${tags.map((t) => '#' + esc(t)).join('&nbsp; &nbsp;')}</p>` : ''}
@@ -294,6 +296,47 @@ ${items}
       if (added) { fs.writeFileSync('sitemap.xml', sm); console.log(`build-blog: added ${added} post(s) to sitemap.xml`); }
     }
   } catch (e) { console.warn('build-blog: sitemap not updated — ' + e.message); }
+
+  // ── 6) page d'accueil : les deux articles mis en avant suivent les parutions ─
+  // La page portait deux articles ecrits en dur depuis l'export WordPress, qui
+  // ne bougeaient plus. On y reinjecte les deux plus recents a chaque build,
+  // pour que publier un article suffise a rafraichir l'accueil.
+  function carteAccueil(p, langue) {
+    const url = (langue === 'en' ? '/en' : '') + `/blog/${p.slug}/`;
+    const img = p.image || '';
+    const par = langue === 'en' ? 'by ' : 'Par ';
+    const quand = langue === 'en' ? p.date : frDate(p.date);
+    const vignette = img
+      ? `<div class="jkit-thumb"><a aria-label="${attr(p.title)}" href="${url}"><div class="thumbnail-container "> <img loading="lazy" decoding="async" width="540" height="360" src="${attr(img)}" class="attachment-full size-full wp-post-image" alt="${attr(p.title)}"> </div></a></div>`
+      : '';
+    return `<article class="jkit-post post type-post status-publish format-standard has-post-thumbnail hentry">`
+      + ` ${vignette} <div class="jkit-postblock-content">`
+      + `<h3 class="jkit-post-title"> <a href="${url}">${esc(p.title)}</a> </h3>`
+      + `<div class="jkit-post-meta"><div class="jkit-meta-author icon-position-before">`
+      + `<span class="by">${par}</span><a href="/author/admin-msta/">Monique St-Arnault</a></div>`
+      + `<div class="jkit-meta-date icon-position-before">${esc(quand || '')}</div></div>`
+      + `<div class="jkit-post-meta-bottom"> </div></div> </article>`;
+  }
+
+  function majAccueil(fichier, choisis, langue) {
+    if (!fs.existsSync(fichier) || choisis.length < 2) return;
+    let h = fs.readFileSync(fichier, 'utf8');
+    let i = 0;
+    // Le motif s'arrete au DERNIER </article> du bloc : entre deux articles on
+    // lit « </article> <article », qui ne correspond pas a « </article></div> ».
+    const avant = h;
+    h = h.replace(/(<div class="jkit-posts jkit-ajax-flag">)[\s\S]*?<\/article>\s*<\/div>/g,
+      (m, ouvre) => (i < choisis.length ? ouvre + carteAccueil(choisis[i++], langue) + '</div>' : m));
+    if (h !== avant) {
+      fs.writeFileSync(fichier, h);
+      console.log(`build-blog: ${fichier} — ${i} article(s) mis en avant`);
+    }
+  }
+
+  majAccueil('index.html', posts.slice(0, 2), 'fr');
+  // Accueil anglais : seuls les articles reellement traduits, sinon on
+  // enverrait le lecteur anglophone sur une page francaise.
+  majAccueil('en/index.html', posts.filter((p) => fs.existsSync(path.join('en', 'blog', p.slug, 'index.html'))).slice(0, 2), 'en');
 
   console.log(`build-blog: done — ${built} post page(s) built, ${posts.length} listed.`);
 }
