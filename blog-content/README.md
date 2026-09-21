@@ -34,6 +34,14 @@ listes, citations et sous-titres fonctionnent.
 - `tags` — séparés par des virgules (optionnel).
 - `status: draft` — l'article est ignoré (brouillon, non publié).
 - `noindex: true` — la page existe mais n'est pas indexée par Google (pour les essais).
+- `image` — l'image de l'article. Elle apparaît **dans le texte, après le premier
+  paragraphe**, et sert aussi de vignette dans la liste du blogue et d'aperçu
+  lors d'un partage sur les réseaux sociaux. La grande bannière en haut de page
+  est la même pour tous les articles : vous n'avez pas à vous en occuper.
+- `image_alt` — la description de l'image pour les personnes non voyantes et
+  pour Google (optionnel ; sinon le titre de l'article est utilisé).
+- `auteur` — **Monique St-Arnault par défaut**, rien à écrire. À remplir
+  seulement si un article est signé par quelqu'un d'autre.
 
 ## Publier
 Ajoutez/modifiez un `.md` ici → `git commit` + `git push` → l'article paraît en

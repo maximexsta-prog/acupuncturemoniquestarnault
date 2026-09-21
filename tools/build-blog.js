@@ -28,9 +28,28 @@ const SUFFIX_NAME = 'Acupuncture Monique St-Arnault';
 const SRC = 'blog-content';
 
 // ── tiny, safe Markdown → HTML (the subset a blog needs) ───────────────────
+// Banniere d'ambiance commune a TOUS les articles : la meme image que la
+// section « Pour prendre rendez-vous » de la page d'accueil, pour que le
+// blogue et le site respirent pareil. L'image propre a chaque article
+// (champ « image: » de l'en-tete) ne sert plus de banniere : elle descend
+// dans le texte, apres le premier paragraphe (voir insererImageArticle).
+const HERO_AMBIANCE = '/wp-content/uploads/2026/04/stones-and-bamboo-sprout-in-water-on-dark-backgrou-2026-01-05-19-12-47-utc.jpg';
+
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 function attr(s) { return esc(s).replace(/"/g, '&quot;'); }
 function xml(s) { return String(s).replace(/&amp;/g, '&').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+// Place l'image de l'article APRES le premier paragraphe : le lecteur entre
+// par le texte, l'image vient appuyer le propos au lieu de l'annoncer.
+// Rien a faire de plus en ecrivant un article — il suffit du champ « image: ».
+function insererImageArticle(html, src, alt) {
+  if (!src) return html;
+  const figure = `\n<figure class="post-image"><img src="${attr(src)}" alt="${attr(alt)}" loading="lazy"></figure>\n`;
+  const fin = html.indexOf('</p>');
+  if (fin < 0) return figure + html;           // article sans paragraphe : image en tete
+  const coupe = fin + '</p>'.length;
+  return html.slice(0, coupe) + figure + html.slice(coupe);
+}
 function inline(s) {
   s = esc(s);
   s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (m, a, u) => `<img src="${u}" alt="${attr(a)}" loading="lazy">`);
@@ -94,6 +113,9 @@ const STYLE_POST = `<style>
 .msa-article p{margin:0 0 20px}
 .msa-article a{color:var(--e-global-color-primary)!important;text-decoration:underline!important;text-decoration-color:var(--e-global-color-secondary)!important;text-underline-offset:3px;text-transform:none!important;letter-spacing:normal!important}
 .msa-article img{max-width:100%;height:auto;border-radius:14px;display:block;margin:32px auto;box-shadow:0 14px 32px rgba(24,42,35,.12)}
+.msa-article figure.post-image{margin:36px 0}
+.msa-article figure.post-image img{margin:0 auto}
+.msa-article figure.post-image figcaption{margin-top:10px;text-align:center;font-size:.86em;font-style:italic;color:#a9b2a8}
 .msa-article blockquote{border-left:4px solid var(--e-global-color-secondary);margin:28px 0;padding:6px 24px;color:var(--e-global-color-primary);font-style:italic;font-size:1.05em}
 .msa-article ul,.msa-article ol{padding-left:24px;margin:0 0 20px}
 .msa-article li{margin:9px 0}
@@ -165,24 +187,27 @@ function main() {
       const desc = data.description || '';
       const date = data.date || '';
       const image = data.image || '';
+      // Monique signe tout par defaut : rien a ecrire dans l'en-tete d'un
+      // nouvel article. Un champ « auteur: » permet d'y deroger au besoin.
+      const auteur = (data.auteur || data.author || 'Monique St-Arnault').trim();
       const url = `${SITE}/blog/${slug}/`;
       const noindex = /^(1|true|yes|oui)$/i.test(data.noindex || '');
       const enUrl = /^(1|true|yes|oui)$/i.test(data.en || '') ? `${SITE}/en/blog/${slug}/` : '';
       const tags = (data.tags || '').split(',').map((t) => t.trim()).filter(Boolean);
       const ld = [
-        { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: title, description: desc, inLanguage: 'fr-CA', datePublished: date || undefined, dateModified: date || undefined, url, image: image || undefined, author: { '@type': 'Person', name: 'Monique St-Arnault' }, publisher: orgLD, mainEntityOfPage: { '@type': 'WebPage', '@id': url } },
+        { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: title, description: desc, inLanguage: 'fr-CA', datePublished: date || undefined, dateModified: date || undefined, url, image: image || undefined, author: { '@type': 'Person', name: auteur }, publisher: orgLD, mainEntityOfPage: { '@type': 'WebPage', '@id': url } },
         { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Blogue', item: SITE + '/blog/' }, { '@type': 'ListItem', position: 3, name: title, item: url }] },
       ];
-      const hero = image ? `<div class="msa-hero" style="background-image:url('${image.replace(/'/g, '%27')}')"></div>` : '';
+      const hero = `<div class="msa-hero" style="background-image:url('${HERO_AMBIANCE.replace(/'/g, '%27')}')"></div>`;
       const content = `${STYLE_POST}
 ${hero}
 <main id="content" class="msa-article">
   <a class="backlink" href="/blog/">← Tous les articles</a>
   <article>
     <h1>${esc(title)}</h1>
-    ${date ? `<p class="meta">${esc(frDate(date))}</p>` : ''}
+    <p class="meta">${esc(auteur)}${date ? ` &middot; ${esc(frDate(date))}` : ''}</p>
     <hr class="rule">
-    ${renderMarkdown(body)}
+    ${insererImageArticle(renderMarkdown(body), image, data.image_alt || data.alt || title)}
     ${tags.length ? `<p class="tags">${tags.map((t) => '#' + esc(t)).join('&nbsp; &nbsp;')}</p>` : ''}
   </article>
 </main>`;
