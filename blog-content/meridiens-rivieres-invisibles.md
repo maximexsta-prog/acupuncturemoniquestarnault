@@ -3,6 +3,7 @@ titre: Les méridiens : un voyage au cœur d’une carte ancienne
 description: Monique Starnault, acupunctrice à Montréal depuis 1990, explique avec ses mots simples ce que sont les méridiens en médecine traditionnelle chinoise.
 date: 2026-06-26
 slug: meridiens-rivieres-invisibles
+image: /images/blog/meridiens.webp
 tags: méridiens, médecine traditionnelle chinoise, énergie vitale
 ---
 Quand j'ai commencé à pratiquer l'acupuncture, en 1990, on me posait souvent la même question, avec un mélange de curiosité et de méfiance : « Mais qu'est-ce que c'est, au juste, ces fameux méridiens ? »
