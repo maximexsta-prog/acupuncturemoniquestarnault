@@ -239,7 +239,18 @@ const STYLE_BLOG = `<style>
 .bl-card .ttl{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:#fff;font-size:1.62em;line-height:1.22;letter-spacing:.03em;text-transform:uppercase;margin:0 0 12px}
 .bl-card .by{font-size:.8em;color:rgba(255,255,255,.82);text-transform:none;letter-spacing:.02em}
 .bl-card .by b{font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+/* .bl-card pose display:block, qui l'emporte sur le [hidden]{display:none}
+   du navigateur : sans cette regle, une carte « masquee » par la recherche
+   reste visible a l'ecran. */
+.bl-card[hidden]{display:none}
 .bl-vide{grid-column:1/-1;text-align:center;color:var(--e-global-color-text);padding:24px 0}
+/* Champ de recherche de la page de liste */
+.bl-search{display:flex;max-width:460px;margin:0 auto 38px;background:#fff;border:1px solid var(--e-global-color-ae87854)}
+.bl-search input{flex:1;min-width:0;border:0;padding:15px 17px;font:400 1em Jost,sans-serif;color:var(--e-global-color-primary);background:transparent}
+.bl-search input:focus{outline:2px solid var(--e-global-color-193b8aa);outline-offset:-2px}
+.bl-search button{border:0;background:var(--e-global-color-193b8aa);color:var(--e-global-color-primary);padding:0 22px;cursor:pointer;font-size:1.15em;line-height:1;text-transform:none}
+.bl-avis{text-align:center;margin:0 0 30px;color:var(--e-global-color-text)}
+.bl-avis a{color:var(--e-global-color-primary)!important}
 </style>`;
 
 function main() {
@@ -401,10 +412,10 @@ function main() {
   const T = {
     fr: { rac: '', titre: 'Blogue', fil: 'Accueil', eyebrow: 'À lire',
           intro: 'Des articles pour mieux comprendre l’acupuncture et prendre soin de votre santé',
-          par: 'par', vide: 'Aucun article pour le moment.', lang: 'fr-CA', desc: BLOG_DESC },
+          par: 'par', vide: 'Aucun article pour le moment.', cherche: 'Rechercher…', tous: 'Voir tous les articles', lang: 'fr-CA', desc: BLOG_DESC },
     en: { rac: '/en', titre: 'Blog', fil: 'Home', eyebrow: 'Read',
           intro: 'Articles to better understand acupuncture and care for your health',
-          par: 'by', vide: 'No articles yet.', lang: 'en-CA',
+          par: 'by', vide: 'No articles yet.', cherche: 'Search…', tous: 'See all articles', lang: 'en-CA',
           desc: 'Articles by Monique St-Arnault on acupuncture, traditional Chinese medicine, the five elements and the seasons.' },
   };
 
@@ -452,12 +463,17 @@ function main() {
 </header>
 <main id="content" class="msa-blog">
   <div class="bl-intro"><span class="eyebrow">${esc(L.eyebrow)}</span><h2>${esc(L.intro)}</h2></div>
+  <form class="bl-search" action="${L.rac}/blog/" method="get" role="search">
+    <input type="search" name="q" placeholder="${attr(L.cherche)}" aria-label="${attr(L.cherche)}">
+    <button type="submit" aria-label="${attr(L.cherche)}">&#9906;</button>
+  </form>
   <div class="bl-grid">
 ${cartes}
   </div>
 </main>`;
     const RECHERCHE = `<script>
 (function(){
+  var TOUS="${L.tous}";
   // Filtre la grille selon ?q= — le champ de recherche de la barre laterale
   // des articles pointe ici. Tout se passe dans le navigateur.
   // Sans accents : personne ne tape « médecine » avec l'accent dans un champ
@@ -471,10 +487,14 @@ ${cartes}
     var ok=plat((c.dataset.rech||'')+' '+c.textContent).indexOf(q)>=0;
     c.hidden=!ok; if(ok) n++;
   });
-  var avis=document.createElement('p');
-  avis.style.cssText='text-align:center;margin:0 0 26px;color:var(--e-global-color-text)';
   var brut=(new URLSearchParams(location.search).get('q')||'').trim();
-  avis.textContent=n?(n+' article'+(n>1?'s':'')+' pour « '+brut+' »'):('Aucun article pour « '+brut+' ».');
+  var champ=document.querySelector('.bl-search input'); if(champ) champ.value=brut;
+  var avis=document.createElement('p');
+  avis.className='bl-avis';
+  avis.textContent=n?(n+' article'+(n>1?'s':'')+' pour « '+brut+' » — '):('Aucun article pour « '+brut+' » — ');
+  var lien=document.createElement('a');
+  lien.href=location.pathname; lien.textContent=TOUS;
+  avis.appendChild(lien);
   g.parentNode.insertBefore(avis,g);
 })();
 </script>`;
