@@ -137,6 +137,68 @@ for (const [route, file] of Object.entries(PAGES)) {
   // page anglaise il doit rester dans le blogue anglais.
   html = html.split('action="/blog/"').join('action="/en/blog/"');
 
+  // translateBody ne parcourt que les noeuds de TEXTE : les libelles ranges
+  // dans un attribut (placeholder, aria-label) restaient en francais.
+  // Messages du bouton « Copier le lien » : ils vivent dans un <script>, que
+  // translateBody ignore volontairement (on ne traduit pas du code).
+  for (const [fr, en] of [['Lien copié !', 'Link copied!'], ['Copie refusée', 'Copy blocked']]) {
+    html = html.split("'" + fr + "'").join("'" + en + "'");
+  }
+
+  // Les textes alternatifs des images passent aussi par le dictionnaire :
+  // ils comptent pour les lecteurs d'ecran et pour le referencement.
+  html = html.replace(/(alt|aria-label|placeholder|title)="([^"]+)"/g, (m, att, val) => {
+    const k = norm(decodeEnt(val).trim());
+    return map[k] !== undefined ? `${att}="${map[k].replace(/"/g, '&quot;')}"` : m;
+  });
+
+  for (const [fr, en] of [['Rechercher…', 'Search…'],
+                          ['Rechercher un article', 'Search articles'],
+                          ['Lancer la recherche', 'Search'],
+                          ['Partager cet article', 'Share this article']]) {
+    html = html.split('placeholder="' + fr + '"').join('placeholder="' + en + '"');
+    html = html.split('aria-label="' + fr + '"').join('aria-label="' + en + '"');
+  }
+
+  // Barre laterale « Recent Articles » : la version francaise y met les deux
+  // articles les plus recents, qui n'ont pas forcement de version anglaise —
+  // leur titre s'affichait alors en francais. On RECONSTRUIT la section a
+  // partir des seuls articles traduits ; s'il n'en reste aucun, la section
+  // entiere disparait plutot que de laisser un titre sans contenu.
+  html = html.replace(/(<section><h2>Recent Articles<\/h2>)([\s\S]*?)(<\/section>)/,
+    (bloc, ouvre, _corps, ferme) => {
+      const ici = route.replace(/^\/blog\/|\/$/g, '');
+      const autres = fs.existsSync(path.join('en', 'blog'))
+        ? fs.readdirSync(path.join('en', 'blog'), { withFileTypes: true })
+            .filter((d) => d.isDirectory() && d.name !== ici)
+            .map((d) => {
+              try {
+                const h = fs.readFileSync(path.join('en', 'blog', d.name, 'index.html'), 'utf8');
+                return {
+                  slug: d.name,
+                  titre: ((h.match(/<title>([^<]*)<\/title>/) || [])[1] || '')
+                           .replace(/\s*-\s*Acupuncture Monique St-Arnault\s*$/, '').trim(),
+                  image: (h.match(/og:image" content="([^"]*)"/) || [])[1] || '',
+                  date: ((h.match(/"datePublished":"([^"]*)"/) || [])[1] || '').slice(0, 10),
+                };
+              } catch (e) { return null; }
+            })
+            .filter((x) => x && x.titre)
+            .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+            .slice(0, 2)
+        : [];
+      if (!autres.length) return '';
+      const cartes = autres.map((a) => {
+        const fond = a.image ? ` style="background-image:url('${a.image.replace(/'/g, '%27')}')"` : '';
+        const quand = a.date ? new Date(a.date + 'T12:00:00Z').toLocaleDateString('en-CA',
+          { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }) : '';
+        return `<a class="side-post" href="/en/blog/${a.slug}/"${fond}><span class="t">`
+             + `<b>${a.titre.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</b>`
+             + (quand ? `<span>${quand}</span>` : '') + `</span></a>`;
+      }).join('');
+      return ouvre + cartes + ferme;
+    });
+
   const out = path.join('en', route === '/' ? '' : route.slice(1), 'index.html');
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, html);

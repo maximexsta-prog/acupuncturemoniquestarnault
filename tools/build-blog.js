@@ -498,9 +498,17 @@ ${cartes}
   g.parentNode.insertBefore(avis,g);
 })();
 </script>`;
+    // Le pied de page est clone de l'accueil FRANCAIS : sur la page anglaise,
+    // ses quelques libelles francais doivent suivre. build-en.js ne passe pas
+    // ici (cette page est generee, pas transformee), d'ou ce petit relais.
+    const PIED_EN = [['© Tout droits réservés 2026.', '© All rights reserved 2026.'],
+                     ['Rosemont et Lacordaire', 'Rosemont & Lacordaire']];
+    let queue = SUFFIX;
+    if (lang === 'en') for (const [fr, en] of PIED_EN) queue = queue.split(fr).join(en);
+
     const dossier = lang === 'en' ? path.join('en', 'blog') : 'blog';
     fs.mkdirSync(dossier, { recursive: true });
-    fs.writeFileSync(path.join(dossier, 'index.html'), head + '\n' + body + '\n' + RECHERCHE + '\n' + SUFFIX);
+    fs.writeFileSync(path.join(dossier, 'index.html'), head + '\n' + body + '\n' + RECHERCHE + '\n' + queue);
     console.log(`build-blog: wrote ${dossier}/index.html (${liste.length} article(s))`);
   }
 
@@ -556,15 +564,24 @@ ${items}
   // pour que publier un article suffise a rafraichir l'accueil.
   function carteAccueil(p, langue) {
     const url = (langue === 'en' ? '/en' : '') + `/blog/${p.slug}/`;
-    const img = p.image || '';
+    let img = p.image || '', titre = p.title;
+    // Sur l'accueil anglais, le titre et l'image viennent de la page ANGLAISE :
+    // sinon la carte affiche un titre francais a un lecteur anglophone.
+    if (langue === 'en') {
+      try {
+        const en = readMeta(fs.readFileSync(path.join('en', 'blog', p.slug, 'index.html'), 'utf8'));
+        if (en.title) titre = en.title;
+        if (en.image) img = en.image;
+      } catch (e) { /* pas de page anglaise : on garde le francais */ }
+    }
     const par = langue === 'en' ? 'by ' : 'Par ';
     const quand = langue === 'en' ? p.date : frDate(p.date);
     const vignette = img
-      ? `<div class="jkit-thumb"><a aria-label="${attr(p.title)}" href="${url}"><div class="thumbnail-container "> <img loading="lazy" decoding="async" width="540" height="360" src="${attr(img)}" class="attachment-full size-full wp-post-image" alt="${attr(p.title)}"> </div></a></div>`
+      ? `<div class="jkit-thumb"><a aria-label="${attr(titre)}" href="${url}"><div class="thumbnail-container "> <img loading="lazy" decoding="async" width="540" height="360" src="${attr(img)}" class="attachment-full size-full wp-post-image" alt="${attr(titre)}"> </div></a></div>`
       : '';
     return `<article class="jkit-post post type-post status-publish format-standard has-post-thumbnail hentry">`
       + ` ${vignette} <div class="jkit-postblock-content">`
-      + `<h3 class="jkit-post-title"> <a href="${url}">${esc(p.title)}</a> </h3>`
+      + `<h3 class="jkit-post-title"> <a href="${url}">${esc(titre)}</a> </h3>`
       + `<div class="jkit-post-meta"><div class="jkit-meta-author icon-position-before">`
       + `<span class="by">${par}</span><a href="/author/admin-msta/">Monique St-Arnault</a></div>`
       + `<div class="jkit-meta-date icon-position-before">${esc(quand || '')}</div></div>`
