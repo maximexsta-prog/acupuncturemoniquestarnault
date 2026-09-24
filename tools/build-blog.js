@@ -50,6 +50,41 @@ function insererImageArticle(html, src, alt) {
   const coupe = fin + '</p>'.length;
   return html.slice(0, coupe) + figure + html.slice(coupe);
 }
+// Partage social par LIENS SIMPLES, pas par widgets officiels : les boutons
+// Facebook & co chargent des scripts de pistage tiers qui ralentissent la page,
+// suivent le visiteur meme sans clic, et declenchent une obligation de
+// consentement sous la Loi 25. Un lien ne fait rien de tout cela.
+function rangeePartage(url, titre) {
+  const u = encodeURIComponent(url), t = encodeURIComponent(titre);
+  const ic = {
+    fb: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg>',
+    wa: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-5.8c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.6 6.6 0 01-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5.2-.4v-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3a2.8 2.8 0 00-.9 2.1 4.8 4.8 0 001 2.5 11 11 0 004.2 3.7c1.5.6 2 .6 2.7.5.4 0 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1z"/></svg>',
+    ml: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4.2l-8 5-8-5V6l8 5 8-5v2.2z"/></svg>',
+    cp: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>',
+  };
+  return `<nav class="msa-share" aria-label="Partager cet article"><b>Partager cet article</b><ul>`
+    + `<li><a href="https://www.facebook.com/sharer/sharer.php?u=${u}" target="_blank" rel="noopener noreferrer">${ic.fb}Facebook</a></li>`
+    + `<li><a href="https://wa.me/?text=${t}%20${u}" target="_blank" rel="noopener noreferrer">${ic.wa}WhatsApp</a></li>`
+    + `<li><a href="mailto:?subject=${t}&body=${u}">${ic.ml}Courriel</a></li>`
+    + `<li><button type="button" class="msa-copy" data-url="${attr(url)}">${ic.cp}<span>Copier le lien</span></button></li>`
+    + `</ul></nav>`;
+}
+
+const SCRIPT_PARTAGE = `<script>
+document.addEventListener('click', function (e) {
+  var b = e.target.closest && e.target.closest('.msa-copy');
+  if (!b) return;
+  var dire = function (t) { var s = b.querySelector('span'); var v = s.textContent; s.textContent = t;
+                            setTimeout(function () { s.textContent = v; }, 1800); };
+  // navigator.clipboard exige HTTPS et peut etre refuse : on garde un repli.
+  if (navigator.clipboard) { navigator.clipboard.writeText(b.dataset.url).then(function(){dire('Lien copié !');},
+                                                                               function(){dire('Copie refusée');}); return; }
+  var z = document.createElement('textarea'); z.value = b.dataset.url; document.body.appendChild(z);
+  z.select(); try { document.execCommand('copy'); dire('Lien copié !'); } catch (x) { dire('Copie refusée'); }
+  document.body.removeChild(z);
+});
+</script>`;
+
 function inline(s) {
   s = esc(s);
   s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (m, a, u) => `<img src="${u}" alt="${attr(a)}" loading="lazy">`);
@@ -154,6 +189,19 @@ const STYLE_POST = `<style>
 .side-cats a{color:rgba(255,255,255,.9)!important;text-decoration:none!important;font-size:.83em;letter-spacing:.11em;text-transform:uppercase;display:flex;gap:11px}
 .side-cats a::before{content:"→";color:var(--e-global-color-193b8aa)}
 .side-cats a:hover{color:#fff!important}
+.msa-share{margin:42px 0 0;padding-top:26px;border-top:1px solid var(--e-global-color-ae87854)}
+.msa-share b{display:block;font-family:var( --e-global-typography-text-font-family ),"Jost",sans-serif;font-weight:500;font-size:.82em;letter-spacing:.12em;text-transform:uppercase;color:#a9b2a8;margin:0 0 14px}
+.msa-share ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.msa-share li{margin:0}
+.msa-share a,.msa-share button{display:inline-flex;align-items:center;gap:9px;padding:11px 16px;border:1px solid var(--e-global-color-ae87854);border-radius:8px;background:#fff;color:var(--e-global-color-primary)!important;text-decoration:none!important;font:500 .84em/1 Jost,sans-serif;letter-spacing:.04em;cursor:pointer;transition:background .18s,border-color .18s}
+.msa-share a:hover,.msa-share button:hover{background:var(--e-global-color-01449a1);border-color:var(--e-global-color-193b8aa)}
+.msa-share a:focus-visible,.msa-share button:focus-visible{outline:2px solid var(--e-global-color-193b8aa);outline-offset:2px}
+.msa-share svg{flex:none}
+/* Le theme met les <button> en capitales et force sa taille : on aligne
+   le bouton « Copier le lien » sur les trois liens voisins. */
+.msa-share button,.msa-share button span{text-transform:none;font-size:.84em;font-family:Jost,sans-serif;font-weight:500;letter-spacing:.04em;line-height:1}
+.msa-share button span{font-size:1em}
+
 </style>`;
 const STYLE_BLOG = `<style>
 .elementor-718 .header.e-con{background-color:var(--e-global-color-primary);margin:0!important}
@@ -287,13 +335,14 @@ function main() {
     <article>
       ${insererImageArticle(renderMarkdown(body), image, data.image_alt || data.alt || title)}
       ${tags.length ? `<p class="tags">${tags.map((t) => '#' + esc(t)).join('&nbsp; &nbsp;')}</p>` : ''}
+      ${rangeePartage(url, title)}
     </article>
   </main>
   <aside class="msa-side">${barreLaterale(slug)}</aside>
 </div>`;
       const dir = path.join('blog', slug);
       fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(path.join(dir, 'index.html'), rewriteHead({ title, desc, url, image, noindex, enUrl, ld }) + '\n' + content + '\n' + SUFFIX);
+      fs.writeFileSync(path.join(dir, 'index.html'), rewriteHead({ title, desc, url, image, noindex, enUrl, ld }) + '\n' + content + '\n' + SCRIPT_PARTAGE + '\n' + SUFFIX);
       console.log(`build-blog: wrote blog/${slug}/index.html`);
       built++;
     } catch (e) { console.warn('build-blog: SKIP ' + f + ' — ' + e.message); }
