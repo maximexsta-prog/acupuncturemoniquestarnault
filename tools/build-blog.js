@@ -236,7 +236,7 @@ const STYLE_BLOG = `<style>
 .bl-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,42,35,0) 18%,rgba(24,42,35,.55) 52%,rgba(24,42,35,.93) 100%)}
 .bl-card .in{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;min-height:340px;padding:26px 28px}
 .bl-card .cat{font-size:.74em;letter-spacing:.16em;text-transform:uppercase;color:var(--e-global-color-193b8aa);margin:0 0 10px}
-.bl-card .ttl{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:#fff;font-size:1.22em;line-height:1.28;letter-spacing:.04em;text-transform:uppercase;margin:0 0 10px}
+.bl-card .ttl{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:#fff;font-size:1.62em;line-height:1.22;letter-spacing:.03em;text-transform:uppercase;margin:0 0 12px}
 .bl-card .by{font-size:.8em;color:rgba(255,255,255,.82);text-transform:none;letter-spacing:.02em}
 .bl-card .by b{font-weight:500;letter-spacing:.06em;text-transform:uppercase}
 .bl-vide{grid-column:1/-1;text-align:center;color:var(--e-global-color-text);padding:24px 0}
@@ -425,7 +425,10 @@ function main() {
       const cat = lang === 'en' ? (CAT_EN[m.categorie] || '') : (m.categorie || '');
       const fond = img ? ` style="background-image:url('${img.replace(/'/g, '%27')}')"` : '';
       const quand = lang === 'en' ? enDate(p.date) : frDate(p.date);
-      return `<a class="bl-card" href="${L.rac}/blog/${p.slug}/"${fond}><span class="in">`
+      // Les cartes n'affichent pas le resume : on le porte en attribut pour que
+      // la recherche couvre aussi le contenu, pas seulement le titre.
+      const cherchable = [titre, cat, m.desc || p.desc || ''].join(' ');
+      return `<a class="bl-card" href="${L.rac}/blog/${p.slug}/"${fond} data-rech="${attr(cherchable)}"><span class="in">`
         + (cat ? `<span class="cat">${esc(cat)}</span>` : '')
         + `<span class="ttl">${esc(titre)}</span>`
         + `<span class="by">${L.par} <b>${esc(m.auteur || 'Monique St-Arnault')}</b>`
@@ -457,17 +460,21 @@ ${cartes}
 (function(){
   // Filtre la grille selon ?q= — le champ de recherche de la barre laterale
   // des articles pointe ici. Tout se passe dans le navigateur.
-  var q=(new URLSearchParams(location.search).get('q')||'').trim().toLowerCase();
+  // Sans accents : personne ne tape « médecine » avec l'accent dans un champ
+  // de recherche. On aplatit les deux cotes avant de comparer.
+  var plat=function(t){return (t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();};
+  var q=plat((new URLSearchParams(location.search).get('q')||'').trim());
   if(!q) return;
   var g=document.querySelector('.bl-grid'); if(!g) return;
   var n=0;
   g.querySelectorAll('.bl-card').forEach(function(c){
-    var ok=c.textContent.toLowerCase().indexOf(q)>=0;
+    var ok=plat((c.dataset.rech||'')+' '+c.textContent).indexOf(q)>=0;
     c.hidden=!ok; if(ok) n++;
   });
   var avis=document.createElement('p');
   avis.style.cssText='text-align:center;margin:0 0 26px;color:var(--e-global-color-text)';
-  avis.textContent=n?(n+' article'+(n>1?'s':'')+' pour « '+q+' »'):('Aucun article pour « '+q+' ».');
+  var brut=(new URLSearchParams(location.search).get('q')||'').trim();
+  avis.textContent=n?(n+' article'+(n>1?'s':'')+' pour « '+brut+' »'):('Aucun article pour « '+brut+' ».');
   g.parentNode.insertBefore(avis,g);
 })();
 </script>`;

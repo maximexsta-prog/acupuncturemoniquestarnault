@@ -133,6 +133,10 @@ for (const [route, file] of Object.entries(PAGES)) {
   // sur une page anglaise il doit mener a l'accueil anglais.
   html = html.split('href="/#sec-1"').join('href="/en/#sec-1"');
 
+  // Le champ de recherche de la barre laterale envoie vers /blog/ ; depuis une
+  // page anglaise il doit rester dans le blogue anglais.
+  html = html.split('action="/blog/"').join('action="/en/blog/"');
+
   const out = path.join('en', route === '/' ? '' : route.slice(1), 'index.html');
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, html);
