@@ -93,6 +93,13 @@
       '#5 éléments   #Médecine chinoise   #Printemps': '#5 elements   #Chinese medicine   #Spring',
       'Courriel': 'Email',
       'Copier le lien': 'Copy link',
+      'Acupunctrice d’expérience à Montréal — Rosemont | Depuis 1990': 'Experienced Acupuncturist in Montreal — Rosemont | Since 1990',
+      'Acupunctrice sportive d’expérience à Montréal — Rosemont': 'Experienced Sports Acupuncturist in Montreal — Rosemont',
+      'Acupunctrice d’expérience à Montréal, quartier Rosemont (angle Lacordaire). Monique St-Arnault pratique depuis 1990 — plus de 30 000 traitements. Douleur, stress, digestion, santé des femmes. (514) 778-7975.': 'Experienced acupuncturist in Montreal, Rosemont neighbourhood (at Lacordaire). Monique St-Arnault has practised since 1990 — over 30,000 treatments. Pain, stress, digestion, women’s health. (514) 778-7975.',
+      'Acupuncture sportive à Montréal (Rosemont) : tendinites, épicondylites, entorses, récupération et prévention des blessures — escalade, course, vélo, sports de raquette. Monique St-Arnault, ancienne gymnaste de compétition, depuis 1990. (514) 778-7975.': 'Sports acupuncture in Montreal (Rosemont): tendinitis, epicondylitis, sprains, recovery and injury prevention — climbing, running, cycling, racquet sports. Monique St-Arnault, former competitive gymnast, since 1990. (514) 778-7975.',
+      "Le printemps selon la médecine chinoise : saison du Bois et du mouvement. Découvrez comment l'acupuncture aide à retrouver l'équilibre au printemps.": "Spring in Chinese medicine: the season of Wood and movement. How acupuncture helps restore balance in spring. Monique St-Arnault, Montreal (Rosemont).",
+      'Le Tao, voie des mystères de la vie. Monique St-Arnault explore les fondements philosophiques de la médecine traditionnelle chinoise.': 'The Tao, the path of life’s mysteries. Monique St-Arnault, acupuncturist in Montreal (Rosemont), explores the philosophical roots of traditional Chinese medicine.',
+      "Les allergies saisonnières vues par la médecine traditionnelle chinoise. Comment l'acupuncture soulage les symptômes du printemps à Montréal.": "Seasonal allergies seen through traditional Chinese medicine. How acupuncture eases spring symptoms. Monique St-Arnault, Montreal (Rosemont).",
       'Acupuncture Monique St-Arnault\nRosemont et Lacordaire\nMontréal, Qc H1M 2N1': 'Acupuncture Monique St-Arnault\nRosemont & Lacordaire\nMontreal, QC H1M 2N1',
     },
 

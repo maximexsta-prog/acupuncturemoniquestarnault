@@ -21,9 +21,9 @@ const fs = require('fs');
 const path = require('path');
 
 const SITE = 'https://acupuncturemoniquestarnault.com';
-const HOME_TITLE = 'Accueil - Acupuncture Monique St-Arnault';
-const HOME_DESC = "Depuis 1990, Monique St-Arnault offre des soins d'acupuncture personnalisés à Montréal. Douleur, stress, digestion, santé des femmes. Clinique Rosemont — (514) 778-7975.";
-const BLOG_DESC = "Articles de Monique St-Arnault sur l'acupuncture, la médecine traditionnelle chinoise, les cinq éléments et les saisons.";
+const HOME_TITLE = 'Acupunctrice d’expérience à Montréal — Rosemont | Depuis 1990';
+const HOME_DESC = "Acupunctrice d’expérience à Montréal, quartier Rosemont (angle Lacordaire). Monique St-Arnault pratique depuis 1990 — plus de 30 000 traitements. Douleur, stress, digestion, santé des femmes. (514) 778-7975.";
+const BLOG_DESC = "Articles de Monique St-Arnault, acupunctrice à Montréal (Rosemont) depuis 1990 : acupuncture, médecine traditionnelle chinoise, cinq éléments et saisons.";
 const SUFFIX_NAME = 'Acupuncture Monique St-Arnault';
 const SRC = 'blog-content';
 
@@ -273,7 +273,10 @@ function main() {
       // n'existe sur aucune autre page : le clic ne faisait rien. On le
       // renvoie vers la section de l'accueil.
       .split('href="#sec-1"').join(`href="${p.rac || ''}/#sec-1"`)
-      .replace(`<title>${HOME_TITLE}</title>`, `<title>${esc(p.title)} - ${SUFFIX_NAME}</title>`)
+      .replace(`<title>${HOME_TITLE}</title>`,
+        // un titre deja complet (celui des pages de liste) se passe du suffixe :
+        // sinon « Acupuncture » apparait deux fois et la balise depasse 80 signes.
+        `<title>${esc(p.title)}${p.titreComplet ? '' : ' - ' + SUFFIX_NAME}</title>`)
       .split(`content="${HOME_TITLE}"`).join(`content="${attr(p.title)} - ${SUFFIX_NAME}"`)
       .split(HOME_DESC).join(attr(p.desc))
       .replace(`rel="canonical" href="${SITE}/"`, `rel="canonical" href="${p.url}"`)
@@ -410,13 +413,13 @@ function main() {
     'Problèmes saisonniers': 'Seasonal Issues', 'Printemps': 'Spring' };
 
   const T = {
-    fr: { rac: '', titre: 'Blogue', fil: 'Accueil', eyebrow: 'À lire',
+    fr: { rac: '', titre: 'Blogue', titreSeo: 'Blogue — Acupuncture et médecine chinoise à Montréal', fil: 'Accueil', eyebrow: 'À lire',
           intro: 'Des articles pour mieux comprendre l’acupuncture et prendre soin de votre santé',
           par: 'par', vide: 'Aucun article pour le moment.', cherche: 'Rechercher…', tous: 'Voir tous les articles', lang: 'fr-CA', desc: BLOG_DESC },
-    en: { rac: '/en', titre: 'Blog', fil: 'Home', eyebrow: 'Read',
+    en: { rac: '/en', titre: 'Blog', titreSeo: 'Blog — Acupuncture and Chinese Medicine in Montreal', fil: 'Home', eyebrow: 'Read',
           intro: 'Articles to better understand acupuncture and care for your health',
           par: 'by', vide: 'No articles yet.', cherche: 'Search…', tous: 'See all articles', lang: 'en-CA',
-          desc: 'Articles by Monique St-Arnault on acupuncture, traditional Chinese medicine, the five elements and the seasons.' },
+          desc: 'Articles by Monique St-Arnault, acupuncturist in Montreal (Rosemont) since 1990: acupuncture, traditional Chinese medicine, the five elements and the seasons.' },
   };
 
   function ecrireListe(lang, liste) {
@@ -448,7 +451,7 @@ function main() {
 
     const url = `${SITE}${L.rac}/blog/`;
     const head = rewriteHead({
-      title: L.titre, desc: L.desc, url, image: '', rac: L.rac,
+      title: L.titreSeo || L.titre, titreComplet: !!L.titreSeo, desc: L.desc, url, image: '', rac: L.rac,
       extraHead: lang === 'fr'
         ? `<link rel="alternate" type="application/rss+xml" title="Blogue — ${SUFFIX_NAME}" href="/blog/feed.xml">` : '',
       ld: [{ '@context': 'https://schema.org', '@type': 'Blog', name: L.titre + ' — ' + SUFFIX_NAME,

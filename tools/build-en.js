@@ -147,7 +147,13 @@ for (const [route, file] of Object.entries(PAGES)) {
 
   // Les textes alternatifs des images passent aussi par le dictionnaire :
   // ils comptent pour les lecteurs d'ecran et pour le referencement.
-  html = html.replace(/(alt|aria-label|placeholder|title)="([^"]+)"/g, (m, att, val) => {
+  // og:title / twitter:title : l'apercu affiche quand on partage la page.
+  // Ils portaient le titre FRANCAIS ; translateTitle sait les traiter puisque
+  // c'est le meme format que la balise <title>.
+  html = html.replace(/((?:property|name)="(?:og|twitter):title" content=")([^"]*)(")/g,
+    (m, a, t, b) => a + translateTitle(decodeEnt(t), map).replace(/"/g, '&quot;') + b);
+
+  html = html.replace(/(alt|aria-label|placeholder|title|content)="([^"]+)"/g, (m, att, val) => {
     const k = norm(decodeEnt(val).trim());
     return map[k] !== undefined ? `${att}="${map[k].replace(/"/g, '&quot;')}"` : m;
   });

@@ -31,15 +31,15 @@ const footerStart = kids[kids.length - 1].start;
 let prefix = h.slice(0, headerEnd);
 const suffix = h.slice(footerStart);
 
-const TITLE = 'L’acupuncture sportive - Acupuncture Monique St-Arnault';
-const DESC = 'Acupuncture sportive à Montréal : tendinites, épicondylites, entorses, douleurs de surutilisation, récupération et prévention des blessures — escalade, course, vélo, sports de raquette et plus. Monique St-Arnault, ancienne gymnaste de compétition, depuis 1990. (514) 778-7975.';
-const HOME_DESC = "Depuis 1990, Monique St-Arnault offre des soins d'acupuncture personnalisés à Montréal. Douleur, stress, digestion, santé des femmes. Clinique Rosemont — (514) 778-7975.";
+const TITLE = 'Acupunctrice sportive d’expérience à Montréal — Rosemont';
+const DESC = 'Acupuncture sportive à Montréal (Rosemont) : tendinites, épicondylites, entorses, récupération et prévention des blessures — escalade, course, vélo, sports de raquette. Monique St-Arnault, ancienne gymnaste de compétition, depuis 1990. (514) 778-7975.';
+const HOME_DESC = "Acupunctrice d’expérience à Montréal, quartier Rosemont (angle Lacordaire). Monique St-Arnault pratique depuis 1990 — plus de 30 000 traitements. Douleur, stress, digestion, santé des femmes. (514) 778-7975.";
 const U = 'https://acupuncturemoniquestarnault.com/sport/';
 
 // ── head SEO rewrites ────────────────────────────────────────────────────
 prefix = prefix
-  .replace('<title>Accueil - Acupuncture Monique St-Arnault</title>', `<title>${TITLE}</title>`)
-  .split('content="Accueil - Acupuncture Monique St-Arnault"').join(`content="${TITLE}"`)
+  .replace('<title>Acupunctrice d’expérience à Montréal — Rosemont | Depuis 1990</title>', `<title>${TITLE}</title>`)
+  .split('content="Acupunctrice d’expérience à Montréal — Rosemont | Depuis 1990"').join(`content="${TITLE}"`)
   .split(HOME_DESC).join(DESC)
   .replace('rel="canonical" href="https://acupuncturemoniquestarnault.com/"', `rel="canonical" href="${U}"`)
   .replace('hreflang="fr" href="https://acupuncturemoniquestarnault.com/"', `hreflang="fr" href="${U}"`)
