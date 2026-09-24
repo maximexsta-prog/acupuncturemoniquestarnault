@@ -22,25 +22,25 @@
 <path d="M1231.7,379.8 L1216.7,387.6 L1216.7,372.0 Z" fill="#C4553D"/>
 <circle cx="1030.0" cy="178.0" r="62.0" fill="#C4553D"/>
 <text x="1030.0" y="197.0" font-family="WenQuanYi Zen Hei" font-size="54" text-anchor="middle" fill="#FAF5EC">火</text>
-<text x="1030.0" y="82.0" font-family="DejaVu Sans" font-size="31" text-anchor="middle" fill="#182A23">Feu</text>
+<text x="1030.0" y="82.0" font-family="DejaVu Sans" font-size="31" text-anchor="middle" fill="#182A23">Fire</text>
 <circle cx="1307.7" cy="379.8" r="62.0" fill="#C79A5B"/>
 <text x="1307.7" y="398.8" font-family="WenQuanYi Zen Hei" font-size="54" text-anchor="middle" fill="#FAF5EC">土</text>
-<text x="1395.2" y="347.3" font-family="DejaVu Sans" font-size="31" text-anchor="start" fill="#182A23">Terre</text>
+<text x="1395.2" y="347.3" font-family="DejaVu Sans" font-size="31" text-anchor="start" fill="#182A23">Earth</text>
 <circle cx="1201.6" cy="706.2" r="62.0" fill="#9AA3A0"/>
 <text x="1201.6" y="725.2" font-family="WenQuanYi Zen Hei" font-size="54" text-anchor="middle" fill="#FAF5EC">金</text>
-<text x="1255.7" y="791.7" font-family="DejaVu Sans" font-size="31" text-anchor="start" fill="#182A23">Métal</text>
+<text x="1255.7" y="791.7" font-family="DejaVu Sans" font-size="31" text-anchor="start" fill="#182A23">Metal</text>
 <circle cx="858.4" cy="706.2" r="62.0" fill="#3E6B7A"/>
 <text x="858.4" y="725.2" font-family="WenQuanYi Zen Hei" font-size="54" text-anchor="middle" fill="#FAF5EC">水</text>
-<text x="804.3" y="791.7" font-family="DejaVu Sans" font-size="31" text-anchor="end" fill="#182A23">Eau</text>
+<text x="804.3" y="791.7" font-family="DejaVu Sans" font-size="31" text-anchor="end" fill="#182A23">Water</text>
 <circle cx="752.3" cy="379.8" r="62.0" fill="#6E8B5A"/>
 <text x="752.3" y="398.8" font-family="WenQuanYi Zen Hei" font-size="54" text-anchor="middle" fill="#FAF5EC">木</text>
-<text x="664.8" y="347.3" font-family="DejaVu Sans" font-size="31" text-anchor="end" fill="#182A23">Bois</text>
+<text x="664.8" y="347.3" font-family="DejaVu Sans" font-size="31" text-anchor="end" fill="#182A23">Wood</text>
 <text x="120" y="330" font-family="WenQuanYi Zen Hei" font-size="132" fill="#182A23">五行</text>
-<text x="122" y="400" font-family="DejaVu Sans" font-size="40" fill="#182A23">Les cinq éléments</text>
+<text x="122" y="400" font-family="DejaVu Sans" font-size="40" fill="#182A23">The Five Elements</text>
 <line x1="124" y1="520" x2="183.2" y2="520" stroke="#7E9A76" stroke-width="3.4" stroke-linecap="round"/>
 <path d="M196.0,520.0 L181.0,527.8 L181.0,512.2 Z" fill="#7E9A76"/>
-<text x="216" y="530" font-family="DejaVu Sans" font-size="29" fill="#182A23">Cycle d’engendrement</text>
+<text x="216" y="530" font-family="DejaVu Sans" font-size="29" fill="#182A23">Generating cycle</text>
 <line x1="124" y1="582" x2="183.2" y2="582" stroke="#C4553D" stroke-width="3.4" stroke-linecap="round"/>
 <path d="M196.0,582.0 L181.0,589.8 L181.0,574.2 Z" fill="#C4553D"/>
-<text x="216" y="592" font-family="DejaVu Sans" font-size="29" fill="#182A23">Cycle de contrôle</text>
+<text x="216" y="592" font-family="DejaVu Sans" font-size="29" fill="#182A23">Controlling cycle</text>
 </svg>

@@ -121,6 +121,18 @@ for (const [route, file] of Object.entries(PAGES)) {
     html = html.replace(/"description": "Depuis 1990[^"]*"/, '"description": ' + JSON.stringify('Since 1990, Monique St-Arnault has offered personalized acupuncture care in Montreal. Specialized in pain management, stress, digestion and women’s health.'));
   }
 
+  // Variante anglaise d'une image : si /images/blog/X-en.webp existe, la page
+  // anglaise l'utilise a la place de X.webp. Convention valable pour toute
+  // image future dont les legendes sont en francais (schemas, captures).
+  html = html.replace(/\/images\/blog\/([A-Za-z0-9._-]+)\.(webp|png|jpg|jpeg|svg)/g, (m, nom, ext) => {
+    if (nom.endsWith('-en')) return m;
+    return fs.existsSync(path.join('images', 'blog', nom + '-en.' + ext)) ? `/images/blog/${nom}-en.${ext}` : m;
+  });
+
+  // Le bouton « Rendez-vous » de l'en-tete pointe vers l'accueil FRANCAIS ;
+  // sur une page anglaise il doit mener a l'accueil anglais.
+  html = html.split('href="/#sec-1"').join('href="/en/#sec-1"');
+
   const out = path.join('en', route === '/' ? '' : route.slice(1), 'index.html');
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, html);

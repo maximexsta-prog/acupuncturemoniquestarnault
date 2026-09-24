@@ -257,6 +257,11 @@ function main() {
 
   function rewriteHead(p) {
     let out = PREFIX
+      // L'en-tete est clone de l'accueil, ou le bouton pointe vers l'ancre
+      // locale #sec-1 (la section « Pour prendre rendez-vous »). Cette ancre
+      // n'existe sur aucune autre page : le clic ne faisait rien. On le
+      // renvoie vers la section de l'accueil.
+      .split('href="#sec-1"').join(`href="${p.rac || ''}/#sec-1"`)
       .replace(`<title>${HOME_TITLE}</title>`, `<title>${esc(p.title)} - ${SUFFIX_NAME}</title>`)
       .split(`content="${HOME_TITLE}"`).join(`content="${attr(p.title)} - ${SUFFIX_NAME}"`)
       .split(HOME_DESC).join(attr(p.desc))
@@ -429,7 +434,7 @@ function main() {
 
     const url = `${SITE}${L.rac}/blog/`;
     const head = rewriteHead({
-      title: L.titre, desc: L.desc, url, image: '',
+      title: L.titre, desc: L.desc, url, image: '', rac: L.rac,
       extraHead: lang === 'fr'
         ? `<link rel="alternate" type="application/rss+xml" title="Blogue — ${SUFFIX_NAME}" href="/blog/feed.xml">` : '',
       ld: [{ '@context': 'https://schema.org', '@type': 'Blog', name: L.titre + ' — ' + SUFFIX_NAME,
