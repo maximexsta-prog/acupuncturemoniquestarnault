@@ -35,6 +35,11 @@ const SRC = 'blog-content';
 // dans le texte, apres le premier paragraphe (voir insererImageArticle).
 const HERO_AMBIANCE = '/wp-content/uploads/2026/04/stones-and-bamboo-sprout-in-water-on-dark-backgrou-2026-01-05-19-12-47-utc.jpg';
 
+// L'Atelier ecrit des URL absolues vers le site. Un chemin relatif marche
+// partout — en local, en preproduction et en ligne — donc on normalise a
+// la lecture plutot que de corriger chaque article a la main.
+function relImg(u) { return String(u || '').replace(SITE, ''); }
+
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 function attr(s) { return esc(s).replace(/"/g, '&quot;'); }
 function xml(s) { return String(s).replace(/&amp;/g, '&').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -120,6 +125,8 @@ function parseFront(src) {
   m[1].split('\n').forEach((line) => { const mm = line.match(/^([A-Za-z0-9_]+)\s*:\s*(.*)$/); if (mm) data[mm[1].toLowerCase()] = mm[2].trim().replace(/^["']|["']$/g, ''); });
   return { data, body: m[2] };
 }
+const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+function enDate(iso) { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || ''); return m ? `${MONTHS_EN[+m[2]-1]} ${+m[3]}, ${m[1]}` : (iso || ''); }
 const MONTHS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 function frDate(iso) { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || ''); return m ? `${+m[3]} ${MONTHS[+m[2] - 1]} ${m[1]}` : (iso || ''); }
 function rfc822(iso) { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || ''); const d = m ? new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], 12)) : new Date(); return isNaN(d) ? '' : d.toUTCString(); }
@@ -128,7 +135,7 @@ function readMeta(html) {
   return {
     title: t.replace(new RegExp('\\s*-\\s*' + SUFFIX_NAME + '\\s*$'), '').trim(),
     desc: (html.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '',
-    image: (html.match(/og:image" content="([^"]*)"/) || [])[1] || '',
+    image: String((html.match(/og:image" content="([^"]*)"/) || [])[1] || '').replace(SITE, ''),
     date: ((html.match(/"datePublished":"([^"]*)"/) || [])[1] || '').slice(0, 10),
     noindex: /name="robots" content="[^"]*noindex/.test(html),
   };
@@ -206,21 +213,33 @@ const STYLE_POST = `<style>
 const STYLE_BLOG = `<style>
 .elementor-718 .header.e-con{background-color:var(--e-global-color-primary);margin:0!important}
 .elementor-718 .elementor-element-4fdf38d{display:none!important}
-.msa-blog{max-width:900px;margin:0 auto;padding:48px 20px;color:var(--e-global-color-text)}
-.msa-blog .bloghead{text-align:center;margin:0 0 40px}
-.msa-blog .bloghead h1{color:var(--e-global-color-primary);margin:0 0 8px}
-.msa-blog .bloghead p{color:#5d7d3a;font-family:"Federo",sans-serif;font-size:1.35em;margin:0}
-.msa-blog .posts{display:grid;gap:22px}
-.msa-blog .post{display:flex;gap:0;background:#fff;border:1px solid var(--e-global-color-193b8aa);border-radius:12px;overflow:hidden;text-decoration:none!important;transition:box-shadow .15s,transform .15s}
-.msa-blog .post:hover{box-shadow:0 8px 26px rgba(0,0,0,.08);transform:translateY(-2px)}
-.msa-blog .post .thumb{flex:0 0 220px;min-height:170px;background:#eef0ec center/cover no-repeat}
-.msa-blog .post .body{padding:24px 26px}
-.msa-blog .post h2{color:var(--e-global-color-primary)!important;margin:0 0 8px;font-size:1.45em;line-height:1.25}
-.msa-blog .post .date{color:#9aa6a0;font-style:italic;font-size:.9em;margin:0 0 10px;text-transform:none}
-/* Le theme met en majuscules tout ce bloc : illisible pour du texte courant. */
-.msa-blog .post .excerpt,.msa-blog .post .date{text-transform:none}
-.msa-blog .post .excerpt{color:var(--e-global-color-text);line-height:1.6;margin:0}
-@media(max-width:680px){.msa-blog .post{flex-direction:column}.msa-blog .post .thumb{flex:0 0 180px;width:100%}}
+/* Banniere de tete, comme sur les articles */
+.bl-cover{position:relative;min-height:330px;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 22px 48px;background:var(--e-global-color-primary) center/cover no-repeat}
+.bl-cover::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,42,35,.58),rgba(24,42,35,.50))}
+.bl-cover .in{position:relative}
+.bl-cover h1{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:#fff;font-size:clamp(2em,5vw,3.1em);letter-spacing:.05em;margin:0}
+.bl-cover .fil{color:rgba(255,255,255,.8);font-size:.92em;margin:16px 0 0}
+.bl-cover .fil a{color:rgba(255,255,255,.8)!important;text-decoration:none!important}
+.bl-cover .fil i{font-style:normal;color:var(--e-global-color-193b8aa);margin:0 8px}
+/* Intro */
+.msa-blog{max-width:1180px;margin:0 auto;padding:58px 22px 76px;color:var(--e-global-color-text)}
+.bl-intro{text-align:center;margin:0 auto 46px;max-width:720px}
+.bl-intro .eyebrow{display:block;font-size:.8em;letter-spacing:.18em;text-transform:uppercase;color:var(--e-global-color-193b8aa);margin:0 0 14px}
+.bl-intro h2{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:var(--e-global-color-primary);font-size:clamp(1.6em,3.4vw,2.4em);line-height:1.22;margin:0;text-wrap:balance}
+/* Grille de cartes */
+.bl-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+@media(max-width:820px){.bl-grid{grid-template-columns:1fr}}
+.bl-card{position:relative;display:block;min-height:340px;border-radius:2px;overflow:hidden;text-decoration:none!important;background:var(--e-global-color-primary) center/cover no-repeat;transition:transform .2s}
+.bl-card:hover{transform:translateY(-3px)}
+/* Degrade franc : certaines images sont tres claires (illustration, diagramme)
+   et le texte en surimpression devenait illisible. */
+.bl-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,42,35,0) 18%,rgba(24,42,35,.55) 52%,rgba(24,42,35,.93) 100%)}
+.bl-card .in{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;min-height:340px;padding:26px 28px}
+.bl-card .cat{font-size:.74em;letter-spacing:.16em;text-transform:uppercase;color:var(--e-global-color-193b8aa);margin:0 0 10px}
+.bl-card .ttl{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:#fff;font-size:1.22em;line-height:1.28;letter-spacing:.04em;text-transform:uppercase;margin:0 0 10px}
+.bl-card .by{font-size:.8em;color:rgba(255,255,255,.82);text-transform:none;letter-spacing:.02em}
+.bl-card .by b{font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.bl-vide{grid-column:1/-1;text-align:center;color:var(--e-global-color-text);padding:24px 0}
 </style>`;
 
 function main() {
@@ -269,8 +288,11 @@ function main() {
       const { data } = parseFront(fs.readFileSync(path.join(SRC, f), 'utf8'));
       if ((data.status || '').toLowerCase() === 'draft') continue;
       if (/^(1|true|yes|oui)$/i.test(data.noindex || '')) continue;
+      const tg = (data.tags || '').split(',').map((t) => t.trim()).filter(Boolean);
       metas.push({ slug: enSlug(data.slug || f.replace(/\.md$/i, '')), title: data.titre || data.title || '',
-                   date: data.date || '', image: data.image || '' });
+                   date: data.date || '', image: relImg(data.image), desc: data.description || '',
+                   categorie: (data.categorie || data.category || tg[0] || '').trim(),
+                   auteur: (data.auteur || data.author || 'Monique St-Arnault').trim() });
     } catch (e) { /* fichier illisible : ignore */ }
   }
   metas.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
@@ -303,7 +325,7 @@ function main() {
       const title = data.titre || data.title || slug;
       const desc = data.description || '';
       const date = data.date || '';
-      const image = data.image || '';
+      const image = relImg(data.image);
       // Monique signe tout par defaut : rien a ecrire dans l'en-tete d'un
       // nouvel article. Un champ « auteur: » permet d'y deroger au besoin.
       const auteur = (data.auteur || data.author || 'Monique St-Arnault').trim();
@@ -362,46 +384,99 @@ function main() {
   }
   posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
-  // ── 3) the blog listing (blog/index.html) ────────────────────────────────
-  try {
-    const cards = posts.map((p) => {
-      const thumb = p.image ? `<div class="thumb" style="background-image:url('${p.image.replace(/'/g, '%27')}')"></div>` : '';
-      return `<a class="post" href="/blog/${p.slug}/">${thumb}<div class="body"><h2>${p.title}</h2>${p.date ? `<p class="date">${esc(frDate(p.date))}</p>` : ''}<p class="excerpt">${p.desc}</p></div></a>`;
-    }).join('\n');
-    const url = `${SITE}/blog/`;
+  // ── 3) les pages de liste, en francais ET en anglais ─────────────────────
+  // La page anglaise etait une page Elementor figee : 3 articles ecrits en dur
+  // et un 4e emplacement qui affichait « No Content Available » au visiteur.
+  // Les deux listes sont desormais generees, avec la meme grille de cartes.
+  const CAT_EN = { 'Acupuncture': 'Acupuncture', 'Médecine chinoise': 'Chinese Medicine',
+    '5 Éléments': '5 Elements', '5 éléments': '5 Elements', 'Feng Shui': 'Feng Shui',
+    'Allergies': 'Allergies', 'Méridiens': 'Meridians', 'Tao': 'Tao',
+    'Problèmes saisonniers': 'Seasonal Issues', 'Printemps': 'Spring' };
+
+  const T = {
+    fr: { rac: '', titre: 'Blogue', fil: 'Accueil', eyebrow: 'À lire',
+          intro: 'Des articles pour mieux comprendre l’acupuncture et prendre soin de votre santé',
+          par: 'par', vide: 'Aucun article pour le moment.', lang: 'fr-CA', desc: BLOG_DESC },
+    en: { rac: '/en', titre: 'Blog', fil: 'Home', eyebrow: 'Read',
+          intro: 'Articles to better understand acupuncture and care for your health',
+          par: 'by', vide: 'No articles yet.', lang: 'en-CA',
+          desc: 'Articles by Monique St-Arnault on acupuncture, traditional Chinese medicine, the five elements and the seasons.' },
+  };
+
+  function ecrireListe(lang, liste) {
+    const L = T[lang];
+    const cartes = liste.length ? liste.map((p) => {
+      const m = metas.find((x) => x.slug === p.slug) || {};
+      // Sur la page anglaise, le titre et l'image viennent de la page ANGLAISE :
+      // sinon on afficherait les titres francais a un lecteur anglophone.
+      let titre = p.title, img = p.image;
+      if (lang === 'en') {
+        try {
+          const en = readMeta(fs.readFileSync(path.join('en', 'blog', p.slug, 'index.html'), 'utf8'));
+          if (en.title) titre = en.title;
+          if (en.image) img = en.image;
+        } catch (e) { /* page anglaise illisible : on garde les valeurs francaises */ }
+      }
+      const cat = lang === 'en' ? (CAT_EN[m.categorie] || '') : (m.categorie || '');
+      const fond = img ? ` style="background-image:url('${img.replace(/'/g, '%27')}')"` : '';
+      const quand = lang === 'en' ? enDate(p.date) : frDate(p.date);
+      return `<a class="bl-card" href="${L.rac}/blog/${p.slug}/"${fond}><span class="in">`
+        + (cat ? `<span class="cat">${esc(cat)}</span>` : '')
+        + `<span class="ttl">${esc(titre)}</span>`
+        + `<span class="by">${L.par} <b>${esc(m.auteur || 'Monique St-Arnault')}</b>`
+        + (quand ? ` &middot; ${esc(quand)}` : '') + `</span></span></a>`;
+    }).join('\n') : `<p class="bl-vide">${esc(L.vide)}</p>`;
+
+    const url = `${SITE}${L.rac}/blog/`;
     const head = rewriteHead({
-      title: 'Blogue', desc: BLOG_DESC, url, image: '',
-      extraHead: `<link rel="alternate" type="application/rss+xml" title="Blogue — ${SUFFIX_NAME}" href="/blog/feed.xml">`,
-      ld: [{ '@context': 'https://schema.org', '@type': 'Blog', name: 'Blogue — ' + SUFFIX_NAME, url, description: BLOG_DESC, inLanguage: 'fr-CA', publisher: orgLD }],
+      title: L.titre, desc: L.desc, url, image: '',
+      extraHead: lang === 'fr'
+        ? `<link rel="alternate" type="application/rss+xml" title="Blogue — ${SUFFIX_NAME}" href="/blog/feed.xml">` : '',
+      ld: [{ '@context': 'https://schema.org', '@type': 'Blog', name: L.titre + ' — ' + SUFFIX_NAME,
+             url, description: L.desc, inLanguage: L.lang, publisher: orgLD }],
     });
     const body = `${STYLE_BLOG}
+<header class="bl-cover" style="background-image:url('${HERO_AMBIANCE.replace(/'/g, '%27')}')">
+  <div class="in">
+    <h1>${esc(L.titre)}</h1>
+    <p class="fil"><a href="${L.rac}/">${esc(L.fil)}</a><i>›</i>${esc(L.titre)}</p>
+  </div>
+</header>
 <main id="content" class="msa-blog">
-  <div class="bloghead"><h1>Blogue</h1><p>Acupuncture, médecine chinoise et saisons</p></div>
-  <div class="posts">
-${cards}
+  <div class="bl-intro"><span class="eyebrow">${esc(L.eyebrow)}</span><h2>${esc(L.intro)}</h2></div>
+  <div class="bl-grid">
+${cartes}
   </div>
 </main>`;
     const RECHERCHE = `<script>
 (function(){
-  // Filtre la liste selon ?q= — le champ de recherche de la barre laterale
-  // pointe ici. Tout se passe dans le navigateur : aucun serveur necessaire.
+  // Filtre la grille selon ?q= — le champ de recherche de la barre laterale
+  // des articles pointe ici. Tout se passe dans le navigateur.
   var q=(new URLSearchParams(location.search).get('q')||'').trim().toLowerCase();
   if(!q) return;
-  var liste=document.querySelector('.msa-blog'); if(!liste) return;
+  var g=document.querySelector('.bl-grid'); if(!g) return;
   var n=0;
-  liste.querySelectorAll('.post').forEach(function(p){
-    var ok=p.textContent.toLowerCase().indexOf(q)>=0;
-    p.hidden=!ok; if(ok) n++;
+  g.querySelectorAll('.bl-card').forEach(function(c){
+    var ok=c.textContent.toLowerCase().indexOf(q)>=0;
+    c.hidden=!ok; if(ok) n++;
   });
   var avis=document.createElement('p');
-  avis.style.cssText='margin:0 0 26px;color:var(--e-global-color-text)';
-  avis.textContent=n?(n+' article'+(n>1?'s':'')+' pour « '+q+' »')
-                    :('Aucun article pour « '+q+' ».');
-  liste.parentNode.insertBefore(avis,liste);
+  avis.style.cssText='text-align:center;margin:0 0 26px;color:var(--e-global-color-text)';
+  avis.textContent=n?(n+' article'+(n>1?'s':'')+' pour « '+q+' »'):('Aucun article pour « '+q+' ».');
+  g.parentNode.insertBefore(avis,g);
 })();
 </script>`;
-    fs.writeFileSync(path.join('blog', 'index.html'), head + '\n' + body + '\n' + RECHERCHE + '\n' + SUFFIX);
-    console.log(`build-blog: wrote blog/index.html (${posts.length} posts listed)`);
+    const dossier = lang === 'en' ? path.join('en', 'blog') : 'blog';
+    fs.mkdirSync(dossier, { recursive: true });
+    fs.writeFileSync(path.join(dossier, 'index.html'), head + '\n' + body + '\n' + RECHERCHE + '\n' + SUFFIX);
+    console.log(`build-blog: wrote ${dossier}/index.html (${liste.length} article(s))`);
+  }
+
+  try {
+    ecrireListe('fr', posts);
+    // L'anglais ne liste QUE les articles reellement traduits : mieux vaut une
+    // liste courte qu'un lecteur anglophone renvoye sur une page francaise.
+    ecrireListe('en', posts.filter((p) => fs.existsSync(path.join('en', 'blog', p.slug, 'index.html'))));
   } catch (e) { console.warn('build-blog: index not rewritten — ' + e.message); }
 
   // ── 4) RSS feed (blog/feed.xml) ──────────────────────────────────────────

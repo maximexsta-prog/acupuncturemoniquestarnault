@@ -193,50 +193,67 @@ header a,
 <style>
 .elementor-718 .header.e-con{background-color:var(--e-global-color-primary);margin:0!important}
 .elementor-718 .elementor-element-4fdf38d{display:none!important}
-.msa-blog{max-width:900px;margin:0 auto;padding:48px 20px;color:var(--e-global-color-text)}
-.msa-blog .bloghead{text-align:center;margin:0 0 40px}
-.msa-blog .bloghead h1{color:var(--e-global-color-primary);margin:0 0 8px}
-.msa-blog .bloghead p{color:#5d7d3a;font-family:"Federo",sans-serif;font-size:1.35em;margin:0}
-.msa-blog .posts{display:grid;gap:22px}
-.msa-blog .post{display:flex;gap:0;background:#fff;border:1px solid var(--e-global-color-193b8aa);border-radius:12px;overflow:hidden;text-decoration:none!important;transition:box-shadow .15s,transform .15s}
-.msa-blog .post:hover{box-shadow:0 8px 26px rgba(0,0,0,.08);transform:translateY(-2px)}
-.msa-blog .post .thumb{flex:0 0 220px;min-height:170px;background:#eef0ec center/cover no-repeat}
-.msa-blog .post .body{padding:24px 26px}
-.msa-blog .post h2{color:var(--e-global-color-primary)!important;margin:0 0 8px;font-size:1.45em;line-height:1.25}
-.msa-blog .post .date{color:#9aa6a0;font-style:italic;font-size:.9em;margin:0 0 10px;text-transform:none}
-/* Le theme met en majuscules tout ce bloc : illisible pour du texte courant. */
-.msa-blog .post .excerpt,.msa-blog .post .date{text-transform:none}
-.msa-blog .post .excerpt{color:var(--e-global-color-text);line-height:1.6;margin:0}
-@media(max-width:680px){.msa-blog .post{flex-direction:column}.msa-blog .post .thumb{flex:0 0 180px;width:100%}}
+/* Banniere de tete, comme sur les articles */
+.bl-cover{position:relative;min-height:330px;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 22px 48px;background:var(--e-global-color-primary) center/cover no-repeat}
+.bl-cover::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,42,35,.58),rgba(24,42,35,.50))}
+.bl-cover .in{position:relative}
+.bl-cover h1{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:#fff;font-size:clamp(2em,5vw,3.1em);letter-spacing:.05em;margin:0}
+.bl-cover .fil{color:rgba(255,255,255,.8);font-size:.92em;margin:16px 0 0}
+.bl-cover .fil a{color:rgba(255,255,255,.8)!important;text-decoration:none!important}
+.bl-cover .fil i{font-style:normal;color:var(--e-global-color-193b8aa);margin:0 8px}
+/* Intro */
+.msa-blog{max-width:1180px;margin:0 auto;padding:58px 22px 76px;color:var(--e-global-color-text)}
+.bl-intro{text-align:center;margin:0 auto 46px;max-width:720px}
+.bl-intro .eyebrow{display:block;font-size:.8em;letter-spacing:.18em;text-transform:uppercase;color:var(--e-global-color-193b8aa);margin:0 0 14px}
+.bl-intro h2{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:var(--e-global-color-primary);font-size:clamp(1.6em,3.4vw,2.4em);line-height:1.22;margin:0;text-wrap:balance}
+/* Grille de cartes */
+.bl-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+@media(max-width:820px){.bl-grid{grid-template-columns:1fr}}
+.bl-card{position:relative;display:block;min-height:340px;border-radius:2px;overflow:hidden;text-decoration:none!important;background:var(--e-global-color-primary) center/cover no-repeat;transition:transform .2s}
+.bl-card:hover{transform:translateY(-3px)}
+/* Degrade franc : certaines images sont tres claires (illustration, diagramme)
+   et le texte en surimpression devenait illisible. */
+.bl-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,42,35,0) 18%,rgba(24,42,35,.55) 52%,rgba(24,42,35,.93) 100%)}
+.bl-card .in{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;min-height:340px;padding:26px 28px}
+.bl-card .cat{font-size:.74em;letter-spacing:.16em;text-transform:uppercase;color:var(--e-global-color-193b8aa);margin:0 0 10px}
+.bl-card .ttl{font-family:var( --e-global-typography-primary-font-family ),"Federo",serif;font-weight:400;color:#fff;font-size:1.22em;line-height:1.28;letter-spacing:.04em;text-transform:uppercase;margin:0 0 10px}
+.bl-card .by{font-size:.8em;color:rgba(255,255,255,.82);text-transform:none;letter-spacing:.02em}
+.bl-card .by b{font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.bl-vide{grid-column:1/-1;text-align:center;color:var(--e-global-color-text);padding:24px 0}
 </style>
+<header class="bl-cover" style="background-image:url('/wp-content/uploads/2026/04/stones-and-bamboo-sprout-in-water-on-dark-backgrou-2026-01-05-19-12-47-utc.jpg')">
+  <div class="in">
+    <h1>Blogue</h1>
+    <p class="fil"><a href="/">Accueil</a><i>›</i>Blogue</p>
+  </div>
+</header>
 <main id="content" class="msa-blog">
-  <div class="bloghead"><h1>Blogue</h1><p>Acupuncture, médecine chinoise et saisons</p></div>
-  <div class="posts">
-<a class="post" href="/blog/acupuncture-expliquee-simplement-comment-ca-marche/"><div class="thumb" style="background-image:url('https://acupuncturemoniquestarnault.com/images/blog/mubdmxuv-screenshot-2026-09-21-110436.jpg')"></div><div class="body"><h2>L'acupuncture expliquée simplement : comment ça marche vraiment</h2><p class="date">21 septembre 2026</p><p class="excerpt">Une acupunctrice de Montréal explique en mots simples comment fonctionne l'acupuncture : énergie, saisons et équilibre du corps. Doux et clair.</p></div></a>
-<a class="post" href="/blog/immunite-medecine-chinoise-wei-qi/"><div class="thumb" style="background-image:url('/images/blog/immunite-wei-qi.webp')"></div><div class="body"><h2>Renforcer son immunité selon la médecine chinoise : le Wei Qi</h2><p class="date">21 septembre 2026</p><p class="excerpt">Découvrez le Wei Qi, l'énergie de défense en médecine chinoise, et des gestes simples pour soutenir votre immunité au fil des saisons.</p></div></a>
-<a class="post" href="/blog/meridiens-rivieres-invisibles/"><div class="thumb" style="background-image:url('/images/blog/meridiens.webp')"></div><div class="body"><h2>Les méridiens : un voyage au cœur d’une carte ancienne</h2><p class="date">26 juin 2026</p><p class="excerpt">Monique Starnault, acupunctrice à Montréal depuis 1990, explique avec ses mots simples ce que sont les méridiens en médecine traditionnelle chinoise.</p></div></a>
-<a class="post" href="/blog/le-printemps/"><div class="thumb" style="background-image:url('/wp-content/uploads/2026/04/flowers-276014_1920-1.jpg')"></div><div class="body"><h2>Le printemps, la saison du mouvement de l’élément Bois</h2><p class="date">19 avril 2026</p><p class="excerpt">Le printemps selon la médecine chinoise : saison du Bois et du mouvement. Découvrez comment l'acupuncture aide à retrouver l'équilibre au printemps.</p></div></a>
-<a class="post" href="/blog/le-tao/"><div class="thumb" style="background-image:url('/images/blog/cinq-elements.webp')"></div><div class="body"><h2>Le Tao</h2><p class="date">19 avril 2026</p><p class="excerpt">Le Tao, voie des mystères de la vie. Monique St-Arnault explore les fondements philosophiques de la médecine traditionnelle chinoise.</p></div></a>
-<a class="post" href="/blog/les-allergies-du-printemps/"><div class="thumb" style="background-image:url('/images/blog/allergies-printemps.webp')"></div><div class="body"><h2>Les allergies du printemps</h2><p class="date">19 avril 2026</p><p class="excerpt">Les allergies saisonnières vues par la médecine traditionnelle chinoise. Comment l'acupuncture soulage les symptômes du printemps à Montréal.</p></div></a>
+  <div class="bl-intro"><span class="eyebrow">À lire</span><h2>Des articles pour mieux comprendre l’acupuncture et prendre soin de votre santé</h2></div>
+  <div class="bl-grid">
+<a class="bl-card" href="/blog/acupuncture-expliquee-simplement-comment-ca-marche/" style="background-image:url('/images/blog/mubdmxuv-screenshot-2026-09-21-110436.jpg')"><span class="in"><span class="cat">acupuncture</span><span class="ttl">L'acupuncture expliquée simplement : comment ça marche vraiment</span><span class="by">par <b>Monique St-Arnault</b> &middot; 21 septembre 2026</span></span></a>
+<a class="bl-card" href="/blog/immunite-medecine-chinoise-wei-qi/" style="background-image:url('/images/blog/immunite-wei-qi.webp')"><span class="in"><span class="cat">médecine chinoise</span><span class="ttl">Renforcer son immunité selon la médecine chinoise : le Wei Qi</span><span class="by">par <b>Monique St-Arnault</b> &middot; 21 septembre 2026</span></span></a>
+<a class="bl-card" href="/blog/meridiens-rivieres-invisibles/" style="background-image:url('/images/blog/meridiens.webp')"><span class="in"><span class="cat">méridiens</span><span class="ttl">Les méridiens : un voyage au cœur d’une carte ancienne</span><span class="by">par <b>Monique St-Arnault</b> &middot; 26 juin 2026</span></span></a>
+<a class="bl-card" href="/blog/le-printemps/" style="background-image:url('/wp-content/uploads/2026/04/flowers-276014_1920-1.jpg')"><span class="in"><span class="cat">5 éléments</span><span class="ttl">Le printemps, la saison du mouvement de l’élément Bois</span><span class="by">par <b>Monique St-Arnault</b> &middot; 19 avril 2026</span></span></a>
+<a class="bl-card" href="/blog/le-tao/" style="background-image:url('/images/blog/cinq-elements.webp')"><span class="in"><span class="cat">Feng Shui</span><span class="ttl">Le Tao</span><span class="by">par <b>Monique St-Arnault</b> &middot; 19 avril 2026</span></span></a>
+<a class="bl-card" href="/blog/les-allergies-du-printemps/" style="background-image:url('/images/blog/allergies-printemps.webp')"><span class="in"><span class="cat">Allergies</span><span class="ttl">Les allergies du printemps</span><span class="by">par <b>Monique St-Arnault</b> &middot; 19 avril 2026</span></span></a>
   </div>
 </main>
 <script>
 (function(){
-  // Filtre la liste selon ?q= — le champ de recherche de la barre laterale
-  // pointe ici. Tout se passe dans le navigateur : aucun serveur necessaire.
+  // Filtre la grille selon ?q= — le champ de recherche de la barre laterale
+  // des articles pointe ici. Tout se passe dans le navigateur.
   var q=(new URLSearchParams(location.search).get('q')||'').trim().toLowerCase();
   if(!q) return;
-  var liste=document.querySelector('.msa-blog'); if(!liste) return;
+  var g=document.querySelector('.bl-grid'); if(!g) return;
   var n=0;
-  liste.querySelectorAll('.post').forEach(function(p){
-    var ok=p.textContent.toLowerCase().indexOf(q)>=0;
-    p.hidden=!ok; if(ok) n++;
+  g.querySelectorAll('.bl-card').forEach(function(c){
+    var ok=c.textContent.toLowerCase().indexOf(q)>=0;
+    c.hidden=!ok; if(ok) n++;
   });
   var avis=document.createElement('p');
-  avis.style.cssText='margin:0 0 26px;color:var(--e-global-color-text)';
-  avis.textContent=n?(n+' article'+(n>1?'s':'')+' pour « '+q+' »')
-                    :('Aucun article pour « '+q+' ».');
-  liste.parentNode.insertBefore(avis,liste);
+  avis.style.cssText='text-align:center;margin:0 0 26px;color:var(--e-global-color-text)';
+  avis.textContent=n?(n+' article'+(n>1?'s':'')+' pour « '+q+' »'):('Aucun article pour « '+q+' ».');
+  g.parentNode.insertBefore(avis,g);
 })();
 </script>
 <div class="elementor-element elementor-element-5b64c0eb e-con-full e-flex e-con e-parent" data-id="5b64c0eb" data-element_type="container" data-e-type="container">
