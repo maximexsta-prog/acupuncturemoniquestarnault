@@ -146,6 +146,14 @@ header a,
 .msa-ls-mobile .msa-lb {
   font-size: 15px !important;
 }
+/* Voile derriere le menu mobile ouvert : sans position ni hauteur dans cet
+   export, il laissait passer le toucher. Plein ecran sous le panneau
+   (z-index 1000), legerement assombri pour signaler qu'on peut toucher
+   pour fermer. Le clic est gere par /menu-mobile.js. */
+.jkit-menu-wrapper.active ~ .jkit-overlay {
+  position: fixed !important; inset: 0 !important; width: auto !important; height: auto !important;
+  z-index: 999 !important; background: rgba(24, 42, 35, .35) !important; cursor: pointer;
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalWebPage","name":"L’acupuncture sportive","url":"https://acupuncturemoniquestarnault.com/sport/","inLanguage":"fr-CA","description":"Acupuncture sportive à Montréal (Rosemont) : tendinites, épicondylites, entorses, récupération et prévention des blessures — escalade, course, vélo, sports de raquette. Monique St-Arnault, ancienne gymnaste de compétition, depuis 1990. (514) 778-7975.","about":{"@type":"MedicalTherapy","name":"Acupuncture sportive"},"audience":{"@type":"PeopleAudience","audienceType":"Sportifs, athlètes et personnes actives — dont les grimpeurs"},"provider":{"@type":["LocalBusiness","MedicalOrganization"],"@id":"https://acupuncturemoniquestarnault.com/#business","name":"Acupuncture Monique St-Arnault","url":"https://acupuncturemoniquestarnault.com","telephone":"+1-514-778-7975","email":"acumsta@hotmail.com","address":{"@type":"PostalAddress","streetAddress":"Rosemont et Lacordaire","addressLocality":"Montréal","addressRegion":"QC","postalCode":"H1M 2N1","addressCountry":"CA"},"areaServed":{"@type":"City","name":"Montréal"}}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://acupuncturemoniquestarnault.com/"},{"@type":"ListItem","position":2,"name":"L’acupuncture sportive","item":"https://acupuncturemoniquestarnault.com/sport/"}]}</script></head>
 <body class="home wp-singular page-template page-template-elementor_header_footer page page-id-718 wp-embed-responsive wp-theme-hello-elementor jkit-color-scheme hello-elementor-default elementor-default elementor-template-full-width elementor-kit-16 elementor-page elementor-page-718">
@@ -501,5 +509,6 @@ var ekit_config = {"ajaxurl":"/wp-admin/admin-ajax.php","nonce":"f62a237e23"};
 <script src="/translate.js"></script>
 <script src="/annees.js"></script>
 <script src="/photos.js"></script>
+<script src="/menu-mobile.js"></script>
 </body>
 </html>
