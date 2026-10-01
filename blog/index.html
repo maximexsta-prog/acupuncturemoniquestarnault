@@ -134,6 +134,16 @@ header a,
 .elementor-element-4c0053dc .elementor-heading-title {
   white-space: nowrap;
 }
+/* Menu hamburger (mobile) : les liens etaient a 13 px, trop petits pour une
+   lecture confortable et pour viser au doigt sur un telephone. Cette regle vit
+   dans l'accueil : toutes les pages qui ont ce menu en sont generees, elle se
+   propage donc partout au build. */
+#menu-menu-mobile-view > li > a {
+  font-size: 17px !important;
+}
+.msa-ls-mobile .msa-lb {
+  font-size: 15px !important;
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"Blogue — Acupuncture Monique St-Arnault","url":"https://acupuncturemoniquestarnault.com/blog/","description":"Articles de Monique St-Arnault, acupunctrice à Montréal (Rosemont) depuis 1990 : acupuncture, médecine traditionnelle chinoise, cinq éléments et saisons.","inLanguage":"fr-CA","publisher":{"@type":"Organization","name":"Acupuncture Monique St-Arnault","url":"https://acupuncturemoniquestarnault.com"}}</script><link rel="alternate" type="application/rss+xml" title="Blogue — Acupuncture Monique St-Arnault" href="/blog/feed.xml"></head>
 <body class="home wp-singular page-template page-template-elementor_header_footer page page-id-718 wp-embed-responsive wp-theme-hello-elementor jkit-color-scheme hello-elementor-default elementor-default elementor-template-full-width elementor-kit-16 elementor-page elementor-page-718">
