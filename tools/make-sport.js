@@ -38,6 +38,7 @@ const U = 'https://acupuncturemoniquestarnault.com/sport/';
 
 // ── head SEO rewrites ────────────────────────────────────────────────────
 prefix = prefix
+  .split('href="#sec-1"').join('href="#rendez-vous"')
   .replace('<title>Acupunctrice d’expérience à Montréal — Rosemont | Depuis 1990</title>', `<title>${TITLE}</title>`)
   .split('content="Acupunctrice d’expérience à Montréal — Rosemont | Depuis 1990"').join(`content="${TITLE}"`)
   .split(HOME_DESC).join(DESC)
@@ -107,7 +108,7 @@ const STYLE = `<style>
 .msa-esc .msa-photo{margin:24px auto 0;max-width:360px}
 .msa-esc .msa-photo img{width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--e-global-color-ae87854)}
 .msa-esc .msa-photo figcaption{margin-top:10px;font-size:.9em;font-style:italic;color:var(--e-global-color-text)}
-.msa-esc .contact{text-align:center;margin-top:52px}
+.msa-esc .contact{text-align:center;margin-top:52px;scroll-margin-top:28px}
 .msa-esc .contact .cta{margin:8px 0 24px}
 /* a global theme rule forces bare links to white/uppercase (built for dark
    backgrounds); override it so the email and address stay legible here */
@@ -128,6 +129,16 @@ const PHOTO = fs.existsSync(PHOTO_FILE)
     </figure>`
   : `<!-- PHOTO a venir : ajouter le fichier ${PHOTO_FILE} puis relancer node tools/make-sport.js -->`;
 
+// Seconde photo : 1977 etablit le passe de gymnaste, celle-ci montre qu'elle
+// est toujours active. C'est la PAIRE qui porte le message.
+const PHOTO2_FILE = 'wp-content/uploads/2026/09/monique-triathlon-2026.webp';
+const PHOTO2 = fs.existsSync(PHOTO2_FILE)
+  ? `<figure class="msa-photo">
+      <img src="/${PHOTO2_FILE}" width="720" height="1099" alt="Monique St-Arnault, médaille au cou, au bassin olympique après son triathlon de septembre 2026" loading="lazy">
+      <figcaption>Toujours aussi active dans le sport — triathlon, septembre 2026.</figcaption>
+    </figure>`
+  : '';
+
 const CONTENT = `${STYLE}
 <main id="content" class="msa-esc">
   <section class="msa-esc-hero">
@@ -141,10 +152,10 @@ const CONTENT = `${STYLE}
   <section>
     <h2>Ce que je traite souvent chez les sportifs</h2>
     <ul class="treat">
-      <li>Tendinites et épicondylites (coudes, épaules, genoux)</li>
+      <li>Tendinites et épicondylites (épaules, coudes, poignets)</li>
       <li>Entorses, foulures et raideurs articulaires</li>
-      <li>Tensions à la nuque, au dos et aux épaules</li>
-      <li>Poignets, doigts et articulations sursollicités</li>
+      <li>Tensions et douleurs musculaires</li>
+      <li>Poignets, doigts et articulations trop sollicités</li>
       <li>Stress et anxiété de performance</li>
       <li>Récupération, fatigue et prévention des blessures</li>
     </ul>
@@ -154,11 +165,11 @@ const CONTENT = `${STYLE}
     <h2>Adaptée à votre sport</h2>
     <p class="intro">Chaque discipline sollicite le corps différemment. Les soins sont adaptés à votre pratique :</p>
     <ul class="treat">
-      <li>Escalade et bloc — coudes, doigts, poignets, épaules</li>
-      <li>Course à pied — genoux, hanches, tendons</li>
-      <li>Vélo et cyclisme — dos, nuque, genoux</li>
-      <li>Sports de raquette — coudes, épaules, poignets</li>
-      <li>Gymnastique et sports acrobatiques — poignets, dos, souplesse</li>
+      <li>Escalade et bloc — épaules, coudes, poignets et doigts</li>
+      <li>Course à pied — hanches, genoux, chevilles et pieds</li>
+      <li>Vélo et cyclisme — nuque, bas du dos et genoux</li>
+      <li>Sports de raquette — épaules, coudes et poignets</li>
+      <li>Gymnastique et sports acrobatiques — articulations en général</li>
       <li>Musculation et entraînement — récupération, tendons</li>
       <li>Sports d’équipe — entorses, chocs, surmenage</li>
     </ul>
@@ -187,11 +198,12 @@ const CONTENT = `${STYLE}
 
   <section class="credit">
     <h2>Une praticienne qui connaît le sport de l’intérieur</h2>
-    <p>Avant l’acupuncture, Monique a été gymnaste de compétition et entraîneuse de haut niveau au Canada — quatre médailles d’or en 1977. Cette expérience du sport, de l’entraînement et de la blessure nourrit chaque traitement.</p>
+    <p>Avant l’acupuncture, Monique a été gymnaste de compétition et entraîneuse de haut niveau au Canada — quatre médailles d’or en 1977. Cette expérience du sport et de l’entraînement intensif a fait en sorte d’aider à comprendre l’importance de la guérison de chaque blessure.</p>
     ${PHOTO}
+    ${PHOTO2}
   </section>
 
-  <section class="contact">
+  <section class="contact" id="rendez-vous">
     <h2>Pour prendre rendez-vous</h2>
     <p class="lead">La prise de rendez-vous se fait par téléphone. Laissez un message vocal ou texto si je suis en consultation, je vous rappelle personnellement.</p>
     <a class="cta" href="tel:+15147787975">Appeler le (514) 778-7975</a>
@@ -201,7 +213,12 @@ const CONTENT = `${STYLE}
   </section>
 </main>`;
 
-const page = prefix + '\n' + CONTENT + '\n' + suffix;
+let page = prefix + '\n' + CONTENT + '\n' + suffix;
 fs.mkdirSync('sport', { recursive: true });
+// Banniere d'avertissement : ce fichier a deja ete edite a la main une fois,
+// et un simple « node tools/make-sport.js » a efface le travail (photo du
+// triathlon, corrections de contenu, ancre du bouton). Le message doit etre
+// visible des la premiere ligne du <head>.
+page = page.replace('<head>', '<head>\n<!-- ATTENTION : FICHIER GENERE AUTOMATIQUEMENT. Ne le modifiez pas a la main :\n     toute retouche sera effacee au prochain build. Modifiez tools/make-sport.js. -->\n');
 fs.writeFileSync('sport/index.html', page);
 console.log('wrote sport/index.html (' + page.length + ' bytes)');

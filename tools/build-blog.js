@@ -266,6 +266,8 @@ function main() {
   const PREFIX = h.slice(0, kids[nHeader - 1].end);
   const SUFFIX = h.slice(kids[kids.length - 1].start);
 
+  const BANNIERE = '<head>\n<!-- ATTENTION : FICHIER GENERE AUTOMATIQUEMENT. Ne le modifiez pas a la main :\n     toute retouche sera effacee au prochain build. Modifiez blog-content/*.md et tools/build-blog.js. -->';
+
   function rewriteHead(p) {
     let out = PREFIX
       // L'en-tete est clone de l'accueil, ou le bouton pointe vers l'ancre
@@ -289,7 +291,7 @@ function main() {
     if (p.noindex) out = out.replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex, follow">');
     out = out.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
     const ld = (p.ld || []).map((b) => `<script type="application/ld+json">${JSON.stringify(b)}</script>`).join('');
-    return out.replace('</head>', ld + (p.extraHead || '') + '</head>');
+    return out.replace('<head>', BANNIERE).replace('</head>', ld + (p.extraHead || '') + '</head>');
   }
   const orgLD = { '@type': 'Organization', name: SUFFIX_NAME, url: SITE };
 

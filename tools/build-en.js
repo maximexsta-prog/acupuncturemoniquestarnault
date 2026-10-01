@@ -205,6 +205,14 @@ for (const [route, file] of Object.entries(PAGES)) {
       return ouvre + cartes + ferme;
     });
 
+  // Meme avertissement que pour la page sport : ces pages ont deja perdu des
+  // traductions saisies a la main lors d'un rebuild.
+  // La page source peut deja porter la banniere (cas de sport/index.html,
+  // lui-meme genere) : on ne la double pas.
+  if (html.indexOf('FICHIER GENERE') < 0) {
+  html = html.replace('<head>', '<head>\n<!-- ATTENTION : FICHIER GENERE AUTOMATIQUEMENT. Ne le modifiez pas a la main :\n     toute retouche sera effacee au prochain build. Modifiez tools/build-en.js et translate.js. -->');
+  }
+
   const out = path.join('en', route === '/' ? '' : route.slice(1), 'index.html');
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, html);

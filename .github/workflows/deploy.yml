@@ -49,8 +49,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build blog posts from Markdown (blog-content/*.md)
+      # TOUS les generateurs tournent a chaque deploiement, dans cet ordre.
+      #
+      # Pourquoi : auparavant seul build-blog.js tournait ici. make-sport.js et
+      # build-en.js n'etaient lances qu'a la main, parfois apres des semaines.
+      # Entre-temps leurs fichiers de sortie recevaient des retouches directes
+      # qu'un seul lancement effacait d'un coup — c'est ainsi que la photo du
+      # triathlon et plusieurs corrections de la page sport ont disparu.
+      # En les executant a chaque fois, un ecart ne peut plus s'accumuler en
+      # silence : il se voit au deploiement suivant.
+      #
+      # L'ordre compte : la page sport d'abord, puis le blogue francais, puis
+      # l'anglais qui en derive, puis le blogue a nouveau — la liste anglaise
+      # lit les titres sur les pages anglaises, qui doivent exister avant.
+      - name: Build sports page
+        run: node tools/make-sport.js
+      - name: Build blog (French)
         run: node tools/build-blog.js
+      - name: Build English pages
+        run: node tools/build-en.js
+      - name: Rebuild blog listings (English titles)
+        run: node tools/build-blog.js
+      - name: Refresh llms-full.txt for AI crawlers
+        run: node tools/build-llms-full.js
 
       - uses: actions/configure-pages@v5
 
